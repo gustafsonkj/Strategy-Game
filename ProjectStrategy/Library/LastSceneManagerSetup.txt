@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Main.unity
+- path: C:/Users/zacli/Downloads/OpenAW3D-master/OpenAW3D-master/Assets/Scenes/Scene01.unity
   isLoaded: 1
   isActive: 1
