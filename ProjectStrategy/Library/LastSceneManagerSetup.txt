@@ -1,4 +1,1 @@
-sceneSetups:
-- path: C:/Users/zacli/Downloads/OpenAW3D-master/OpenAW3D-master/Assets/Scenes/Scene01.unity
-  isLoaded: 1
-  isActive: 1
+sceneSetups: []
