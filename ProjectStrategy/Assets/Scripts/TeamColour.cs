@@ -49,7 +49,6 @@ public class TeamColour : MonoBehaviour
                         r.material = MaterialNormal;
                     break;
             }
-            GetComponentInChildren<Renderer>().material.SetColor("_Color", (Color.white - colorOffset) * colorMultiplier);
 
             //if (colorOffset.a > 0)
             //{
