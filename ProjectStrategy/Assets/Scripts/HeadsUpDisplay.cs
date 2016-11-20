@@ -57,8 +57,8 @@ public class HeadsUpDisplay : MonoBehaviour
 	private bool Tutorial_Visible = true;
 	private GUIStyle Tutorial_Style;
 	private const string Tutorial_Message =
-		"Capture all Enemy Buildings and Destroy their Tanks!\n" +
-		"Build more Tanks at Bases and Capture Buildings for more Resources.\n\n" +
+		"Forces of light and dark have began to CLASH!\n" +
+		"Only one can reign supreme. \n" + " CSC 323 will never be the same........\n\n\n" +
 		"Capturing Buildings take multiple turns, make sure to select 'Capture' each time.\n\n" +
 		"Heal Tanks by leaving them in friendly buildings.\n" +
 		"(Cities=1hp  Bases=2hp).\n\n\n" +
