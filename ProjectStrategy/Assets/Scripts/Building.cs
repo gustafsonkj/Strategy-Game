@@ -167,7 +167,7 @@ public class Building : MonoBehaviour
         //		}
     }
 
-    public Point TilePosition() { return new Point(Mathf.RoundToInt(this.gameObject.transform.position.x), Mathf.RoundToInt(this.gameObject.transform.position.z)); }
+    public Point TilePosition() { return new Point(Mathf.RoundToInt(this.gameObject.transform.position.z), Mathf.RoundToInt(this.gameObject.transform.position.x)); }
 
     public string GetTypeName()
     {

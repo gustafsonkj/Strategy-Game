@@ -27,8 +27,7 @@ public class TeamColour : MonoBehaviour
             //    GetComponent<Renderer>().material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
             foreach (Renderer r in GetComponentsInChildren<Renderer>())
             {
-                if (r == null)
-                    r.material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
+                r.material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
             }
         }
         else
