@@ -18,7 +18,6 @@ public class Level : MonoBehaviour
         for (int i = 0; i < TileObjects.childCount; i++)
         {
             Vector3 pos = TileObjects.GetChild(i).gameObject.transform.position;
-
             if (pos.x < Bounds.x)
                 Bounds.x = pos.x;
             else if (pos.x > Bounds.width)
