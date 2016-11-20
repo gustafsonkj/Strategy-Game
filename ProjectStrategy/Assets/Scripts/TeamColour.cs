@@ -24,10 +24,10 @@ public class TeamColour : MonoBehaviour
                 default: color = Color.white; break;
             }
             if (GetComponent<Renderer>() != null)
-               GetComponent<Renderer>().material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
+                GetComponent<Renderer>().material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
             foreach (Renderer r in GetComponentsInChildren<Renderer>())
             {
-                if (r == null)
+                if (r != null)
                     r.material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
             }
         }
