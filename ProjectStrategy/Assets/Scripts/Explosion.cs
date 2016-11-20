@@ -21,7 +21,6 @@ public class Explosion : MonoBehaviour
 	{
 		if (Alpha <= 0)
 		{
-			if (!GetComponent<AudioSource>().isPlaying)
 				GameObject.Destroy(this.gameObject);
 			return;
 		}
