@@ -19,28 +19,48 @@ public class TeamColour : MonoBehaviour
             Color color;
             switch (team)
             {
-                case 1: color = Color.red; break;
-                case 2: color = Color.blue; break;
+                case 1: color = Color.blue; break;
+                case 2: color = Color.yellow; break;
                 default: color = Color.white; break;
             }
-            if (GetComponent<Renderer>() != null)
-                GetComponent<Renderer>().material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
+            //if (GetComponent<Renderer>() != null)
+            //    GetComponent<Renderer>().material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
+            foreach (Renderer r in GetComponentsInChildren<Renderer>())
+            {
+                if (r == null)
+                    r.material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
+            }
         }
         else
         {
             // Change Material
             switch (team)
             {
-                case 1: GetComponent<Renderer>().material = MaterialRed; break;
-                case 2: GetComponent<Renderer>().material = MaterialBlue; break;
-                default: GetComponent<Renderer>().material = MaterialNormal; break;
+                case 1:
+                    foreach (Renderer r in GetComponentsInChildren<Renderer>())
+                        r.material = MaterialRed;
+                    break;
+                case 2:
+                    foreach (Renderer r in GetComponentsInChildren<Renderer>())
+                        r.material = MaterialBlue;
+                    break;
+                default:
+                    foreach (Renderer r in GetComponentsInChildren<Renderer>())
+                        r.material = MaterialNormal;
+                    break;
             }
-            GetComponent<Renderer>().material.SetColor("_Color", (Color.white - colorOffset) * colorMultiplier);
+            GetComponentInChildren<Renderer>().material.SetColor("_Color", (Color.white - colorOffset) * colorMultiplier);
 
             if (colorOffset.a > 0)
-                GetComponent<Renderer>().material.shader = ShaderAlpha;
+            {
+                foreach (Renderer r in GetComponentsInChildren<Renderer>())
+                    r.material.shader = ShaderAlpha;
+            }
             else
-                GetComponent<Renderer>().material.shader = ShaderNormal;
+            {
+                foreach (Renderer r in GetComponentsInChildren<Renderer>())
+                    r.material.shader = ShaderNormal;
+            }
         }
     }
 }

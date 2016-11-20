@@ -119,7 +119,10 @@ public class Unit : MonoBehaviour
 
         // On Left-MouseDown
         if (!Selected)
+        {
+            //Debug.Log("SELECTING UNIT");
             Game.Selector.SelectUnit(this);
+        }
         else if (!IsWaitingForActionAccept())
             OnReachedWaypoint();
     }
@@ -389,7 +392,11 @@ public class Unit : MonoBehaviour
         if (Mathf.RoundToInt(transform.position.x) == posX && Mathf.RoundToInt(transform.position.z) == posY)
         {
             foreach (Point pos in Game.Level.AllTilePositions())
+            {
                 Game.Level.GetTile(pos).ClearPathFindingInfo();
+                //Debug.Log("POS:"+pos);
+                //Debug.Log("TILE:"+Game.Level.GetTile(pos));
+            }
             return false;
         }
 
