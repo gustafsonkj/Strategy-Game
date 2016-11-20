@@ -8,8 +8,8 @@ public class TeamColour : MonoBehaviour
     public Material MaterialRed;
     public Material MaterialBlue;
 
-    public Shader ShaderNormal;
-    public Shader ShaderAlpha;
+    //public Shader ShaderNormal;
+    //public Shader ShaderAlpha;
 
     public void SetTeam(int team, Color colorOffset = default(Color), float colorMultiplier = 1)
     {
@@ -23,11 +23,16 @@ public class TeamColour : MonoBehaviour
                 case 2: color = Color.yellow; break;
                 default: color = Color.white; break;
             }
+<<<<<<< HEAD
         //  if (GetComponent<Renderer>() != null)
             //   GetComponent<Renderer>().material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
+=======
+            if (GetComponent<Renderer>() != null)
+                GetComponent<Renderer>().material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
+>>>>>>> 5b2889a5a20c214fd82b4559ec7fe58b451a7058
             foreach (Renderer r in GetComponentsInChildren<Renderer>())
             {
-                if (r == null)
+                if (r != null)
                     r.material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
             }
         }
@@ -53,16 +58,16 @@ public class TeamColour : MonoBehaviour
 
 			GetComponentInChildren<Renderer>().material.SetColor("_Color", (Color.white - colorOffset) * colorMultiplier);
 
-            if (colorOffset.a > 0)
-            {
-                foreach (Renderer r in GetComponentsInChildren<Renderer>())
-                    r.material.shader = ShaderAlpha;
-            }
-            else
-            {
-                foreach (Renderer r in GetComponentsInChildren<Renderer>())
-                    r.material.shader = ShaderNormal;
-            }
+            //if (colorOffset.a > 0)
+            //{
+            //    foreach (Renderer r in GetComponentsInChildren<Renderer>())
+            //        r.material.shader = ShaderAlpha;
+            //}
+            //else
+            //{
+            //    foreach (Renderer r in GetComponentsInChildren<Renderer>())
+            //        r.material.shader = ShaderNormal;
+            //}
         }
     }
 }
