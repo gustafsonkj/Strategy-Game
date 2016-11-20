@@ -51,6 +51,8 @@ public class Level : MonoBehaviour
                 continue;
 
             Tiles[Mathf.RoundToInt(pos.z)][Mathf.RoundToInt(pos.x)] = TileObjects.GetChild(i).gameObject.GetComponent<Tile>();
+            //The titles of the tile objects inside "Tiles" have the numbers reversed. Example: transform.position of Tile_Ground 0,1 is ACTUALLY Z1, X0
+            Debug.Log(Tiles[Mathf.RoundToInt(pos.z)][Mathf.RoundToInt(pos.x)]);
         }
 
         // Let Tiles know about buildings that are on top of them
