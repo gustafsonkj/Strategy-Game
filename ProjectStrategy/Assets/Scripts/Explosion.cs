@@ -35,5 +35,7 @@ public class Explosion : MonoBehaviour
 		                           GetComponent<Renderer>().material.GetColor("_OutlineColor").g,
 		                           GetComponent<Renderer>().material.GetColor("_OutlineColor").b,
 		                           Alpha));
+		
+			
 	}
 }
