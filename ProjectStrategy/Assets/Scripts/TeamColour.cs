@@ -31,16 +31,31 @@ public class TeamColour : MonoBehaviour
             // Change Material
             switch (team)
             {
-                case 1: GetComponent<Renderer>().material = MaterialRed; break;
-                case 2: GetComponent<Renderer>().material = MaterialBlue; break;
-                default: GetComponent<Renderer>().material = MaterialNormal; break;
+                case 1:
+                    foreach (Renderer r in GetComponentsInChildren<Renderer>())
+                        r.material = MaterialRed;
+                    break;
+                case 2:
+                    foreach (Renderer r in GetComponentsInChildren<Renderer>())
+                        r.material = MaterialBlue;
+                    break;
+                default:
+                    foreach (Renderer r in GetComponentsInChildren<Renderer>())
+                        r.material = MaterialNormal;
+                    break;
             }
-            GetComponent<Renderer>().material.SetColor("_Color", (Color.white - colorOffset) * colorMultiplier);
+            GetComponentInChildren<Renderer>().material.SetColor("_Color", (Color.white - colorOffset) * colorMultiplier);
 
             if (colorOffset.a > 0)
-                GetComponent<Renderer>().material.shader = ShaderAlpha;
+            {
+                foreach (Renderer r in GetComponentsInChildren<Renderer>())
+                    r.material.shader = ShaderAlpha;
+            }
             else
-                GetComponent<Renderer>().material.shader = ShaderNormal;
+            {
+                foreach (Renderer r in GetComponentsInChildren<Renderer>())
+                    r.material.shader = ShaderNormal;
+            }
         }
     }
 }
