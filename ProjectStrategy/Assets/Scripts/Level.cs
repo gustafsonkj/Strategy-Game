@@ -32,10 +32,10 @@ public class Level : MonoBehaviour
 
         // Setup 2D Array
         Tiles = new List<List<Tile>>();
-        for (int y = 0; y < Bounds.height + 1; y++)
+		for (int y = 0; y < Bounds.height + 1; y++)
         {
             Tiles.Add(new List<Tile>());
-            for (int x = 0; x < Bounds.width + 1; x++)
+			for (int x = 0; x < Bounds.width + 1; x++)
                 Tiles[y].Add(null);
         }
 
@@ -47,10 +47,10 @@ public class Level : MonoBehaviour
 
             Vector3 pos = TileObjects.GetChild(i).gameObject.transform.position;
 
-            if (Tiles[Mathf.RoundToInt(pos.z)][Mathf.RoundToInt(pos.x)] != null && TileObjects.GetChild(i).gameObject.GetComponent<Tile>().Type != Tile.BRIDGE)
+            if (Tiles[Mathf.RoundToInt(pos.x)][Mathf.RoundToInt(pos.z)] != null && TileObjects.GetChild(i).gameObject.GetComponent<Tile>().Type != Tile.BRIDGE)
                 continue;
 
-            Tiles[Mathf.RoundToInt(pos.z)][Mathf.RoundToInt(pos.x)] = TileObjects.GetChild(i).gameObject.GetComponent<Tile>();
+            Tiles[Mathf.RoundToInt(pos.x)][Mathf.RoundToInt(pos.z)] = TileObjects.GetChild(i).gameObject.GetComponent<Tile>();
         }
 
         // Let Tiles know about buildings that are on top of them
