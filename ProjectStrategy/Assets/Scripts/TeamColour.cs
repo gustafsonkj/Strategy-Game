@@ -19,8 +19,8 @@ public class TeamColour : MonoBehaviour
             Color color;
             switch (team)
             {
-                case 1: color = Color.red; break;
-                case 2: color = Color.blue; break;
+                case 1: color = Color.blue; break;
+                case 2: color = Color.yellow; break;
                 default: color = Color.white; break;
             }
             if (GetComponent<Renderer>() != null)
