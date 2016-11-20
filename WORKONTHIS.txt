@@ -1,9 +1,0 @@
-6:21pm  - "NullReferenceException: Object reference not set to an instance of an object, Level.Start() (at Assets/Scripts/Level.cs:63)"
-	- this problem was caused by Building class not being applied to EnergyCenter and ResourceNode
-	- Problem fixed
-
-6:30pm  - NullReferenceException to EnergyCenters color script
-	- change class structure to energycenter to reflect building class structure
-	- Problem fixed
-
-
