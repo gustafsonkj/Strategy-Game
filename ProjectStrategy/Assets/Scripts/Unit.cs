@@ -405,7 +405,11 @@ public class Unit : MonoBehaviour
 
 
         foreach (Point pos in Game.Level.AllTilePositions())
+        {
+            Debug.Log(pos);
+            Debug.Log(Game.Level.GetTile(pos));
             Game.Level.GetTile(pos).ClearPathFindingInfo();
+        }
 
         Game.Level.GetTile(posX, posY).DistanceSteps = 0;
 
