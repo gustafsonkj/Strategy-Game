@@ -202,7 +202,7 @@ public class Unit : MonoBehaviour
         if (HitPoints <= 1 || HitPoints - amount < 1)
         {
             // Death
-            Instantiate(Game.Effect_Explosion, transform.position, Quaternion.identity);
+           Instantiate(Game.Effect_Explosion, transform.position, Quaternion.identity);
 
             Remove();
 

@@ -23,8 +23,13 @@ public class TeamColour : MonoBehaviour
                 case 2: color = Color.yellow; break;
                 default: color = Color.white; break;
             }
+
+        //  if (GetComponent<Renderer>() != null)
+            //   GetComponent<Renderer>().material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
+
             if (GetComponent<Renderer>() != null)
                 GetComponent<Renderer>().material.SetColor("_Color", (color - colorOffset) * colorMultiplier);
+
             foreach (Renderer r in GetComponentsInChildren<Renderer>())
             {
                 if (r != null)
@@ -49,6 +54,12 @@ public class TeamColour : MonoBehaviour
                         r.material = MaterialNormal;
                     break;
             }
+<<<<<<< HEAD
+=======
+           
+
+			GetComponentInChildren<Renderer>().material.SetColor("_Color", (Color.white - colorOffset) * colorMultiplier);
+>>>>>>> 630ac29b8badf1243eddad20962560e021c67e70
 
             //if (colorOffset.a > 0)
             //{
