@@ -138,33 +138,33 @@ public class Building : MonoBehaviour
         // Set Colour
         GetComponentInChildren<TeamColour>().SetTeam(team, AlphaOffset);
 
-        //		switch (Team)
-        //		{
-        //			case 1:
-        //			{
-        //				for (int i = 0; i < transform.childCount; i++)
-        //					transform.GetChild(i).renderer.material.SetColor("_Color", Color.red - AlphaOffset);
-        //				if (renderer != null)
-        //					renderer.material.SetColor("_Color", Color.red);
-        //				break;
-        //			}
-        //			case 2:
-        //			{
-        //				for (int i = 0; i < transform.childCount; i++)
-        //					transform.GetChild(i).renderer.material.SetColor("_Color", Color.blue - AlphaOffset);
-        //				if (renderer != null)
-        //					renderer.material.SetColor("_Color", Color.blue);
-        //				break;
-        //			}
-        //			default:
-        //			{
-        //				for (int i = 0; i < transform.childCount; i++)
-        //					transform.GetChild(i).renderer.material.SetColor("_Color", Color.white - AlphaOffset);
-        //				if (renderer != null)
-        //					renderer.material.SetColor("_Color", Color.white);
-        //				break;
-        //			}
-        //		}
+        		switch (Team)
+        		{
+        			case 1:
+        			{
+        				for (int i = 0; i < transform.childCount; i++)
+        					transform.GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.red - AlphaOffset);
+        				if (GetComponent<Renderer>() != null)
+        					GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+        				break;
+        			}
+        			case 2:
+        			{
+        				for (int i = 0; i < transform.childCount; i++)
+        					transform.GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.blue - AlphaOffset);
+        				if (GetComponent<Renderer>() != null)
+        					GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+        				break;
+        			}
+        			default:
+        			{
+        				for (int i = 0; i < transform.childCount; i++)
+        					transform.GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.white - AlphaOffset);
+        				if (GetComponent<Renderer>() != null)
+        					GetComponent<Renderer>().material.SetColor("_Color", Color.white);
+        				break;
+        			}
+        		}
     }
 
     public Point TilePosition() { return new Point(Mathf.RoundToInt(this.gameObject.transform.position.x), Mathf.RoundToInt(this.gameObject.transform.position.z)); }
