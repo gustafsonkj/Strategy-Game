@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 5.4.2f2:2.3.0.0
 StandaloneOSXIntel
+=======
+5.4.1f1:2.3.0.0
+StandaloneWindows
+>>>>>>> 06d5d1af44f9fcb21f088fc3791748f26f887f5d
 C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll
 C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
 C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
