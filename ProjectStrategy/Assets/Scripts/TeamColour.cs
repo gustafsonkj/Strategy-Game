@@ -8,8 +8,8 @@ public class TeamColour : MonoBehaviour
     public Material MaterialRed;
     public Material MaterialBlue;
 
-    public Shader ShaderNormal;
-    public Shader ShaderAlpha;
+    //public Shader ShaderNormal;
+    //public Shader ShaderAlpha;
 
     public void SetTeam(int team, Color colorOffset = default(Color), float colorMultiplier = 1)
     {
@@ -51,16 +51,16 @@ public class TeamColour : MonoBehaviour
             }
             GetComponentInChildren<Renderer>().material.SetColor("_Color", (Color.white - colorOffset) * colorMultiplier);
 
-            if (colorOffset.a > 0)
-            {
-                foreach (Renderer r in GetComponentsInChildren<Renderer>())
-                    r.material.shader = ShaderAlpha;
-            }
-            else
-            {
-                foreach (Renderer r in GetComponentsInChildren<Renderer>())
-                    r.material.shader = ShaderNormal;
-            }
+            //if (colorOffset.a > 0)
+            //{
+            //    foreach (Renderer r in GetComponentsInChildren<Renderer>())
+            //        r.material.shader = ShaderAlpha;
+            //}
+            //else
+            //{
+            //    foreach (Renderer r in GetComponentsInChildren<Renderer>())
+            //        r.material.shader = ShaderNormal;
+            //}
         }
     }
 }
