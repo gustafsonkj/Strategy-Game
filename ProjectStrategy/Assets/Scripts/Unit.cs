@@ -8,6 +8,8 @@ public class Unit : MonoBehaviour
     private bool Moved = false;
     private bool WaitingForMoveAccept = false;
     private bool WaitingForActionAccept = false;
+    private ParticleSystem system;
+    private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
 
     public Building BuildingOn;
 
@@ -210,6 +212,23 @@ public class Unit : MonoBehaviour
         }
         else
             HitPoints -= amount;
+
+        if (system == null) system = GetComponent<ParticleSystem>();
+
+        var count = system.GetParticles(particles);
+
+        for (int i = 0; i < count; i++)
+        {
+            var particle = particles[i];
+            float distance = Vector3.Distance(CurrentAttackTarget.transform.position, particle.position);
+            if (distance > 0.1f)
+            {
+                particle.position = Vector3.Lerp(particle.position, CurrentAttackTarget.transform.position, Time.deltaTime / 2.0f);
+                particles[i] = particle;
+            }
+            system.SetParticles(particles, count);
+        }
+
     }
     public void Heal(float amount)
     {
