@@ -213,6 +213,9 @@ public class Unit : MonoBehaviour
         else
             HitPoints -= amount;
 
+        var enableParts = GetComponent<ParticleSystem>().emission.enabled;
+        enableParts = true;
+
         if (system == null) system = GetComponent<ParticleSystem>();
 
         var count = system.GetParticles(particles);
