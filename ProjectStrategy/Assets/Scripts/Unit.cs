@@ -10,7 +10,10 @@ public class Unit : MonoBehaviour
     private bool WaitingForActionAccept = false;
     public ParticleSystem system;
     private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
+<<<<<<< HEAD
     //private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
+=======
+>>>>>>> 050bb00bb09e9d92e1ac9107aa3eb1bbf4dfbc15
 
     public Building BuildingOn;
 
@@ -314,7 +317,7 @@ public class Unit : MonoBehaviour
 				particles[i] = particle;
 				//print ("Firing the particle system"); Check to see if entering.
 			}
-			//system.SetParticles(particles, count);
+			system.SetParticles(particles, count);
 
 		} 
 		system.Emit (count);
