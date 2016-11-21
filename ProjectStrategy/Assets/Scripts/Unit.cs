@@ -9,7 +9,11 @@ public class Unit : MonoBehaviour
     private bool WaitingForMoveAccept = false;
     private bool WaitingForActionAccept = false;
     public ParticleSystem system;
+<<<<<<< HEAD
+    private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
+=======
    private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
+>>>>>>> 20e8df56ce1e17e773865c26b7414c023c9555d8
 
     public Building BuildingOn;
 
@@ -213,12 +217,18 @@ public class Unit : MonoBehaviour
         else
             HitPoints -= amount;
 
+<<<<<<< HEAD
+
+        if (system == null) system = GetComponent<ParticleSystem>();
+        system.Play();
+=======
       /* var enableParts = GetComponent<ParticleSystem>().emission.enabled;
         enableParts = true;
 
 	if (system == null) { 
 			system = GetComponent<ParticleSystem> ();
 		}
+>>>>>>> 20e8df56ce1e17e773865c26b7414c023c9555d8
 
         var count = 1000;
 
@@ -232,8 +242,13 @@ public class Unit : MonoBehaviour
                 particles[i] = particle;
             }
             system.SetParticles(particles, count);
+<<<<<<< HEAD
+        }
+        //system.Stop();
+=======
 			print ("Firing the particle system");
         }*/
+>>>>>>> 20e8df56ce1e17e773865c26b7414c023c9555d8
 
     }
     public void Heal(float amount)
