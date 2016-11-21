@@ -357,7 +357,7 @@ public class Unit : MonoBehaviour
         List<string> items = new List<string>();
 
         if (UnitsInAttackRange.Count != 0)
-            items.Add("Fire");
+            items.Add("Emit");
         if (BuildingOn != null && BuildingOn.Team != Team)
             items.Add("Capture");
         items.Add("Wait");
