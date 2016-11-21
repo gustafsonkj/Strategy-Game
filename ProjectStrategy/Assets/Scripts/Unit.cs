@@ -235,10 +235,8 @@ public class Unit : MonoBehaviour
                 particles[i] = particle;
             }
             system.SetParticles(particles, count);
-<<<<<<< HEAD
         }
         //system.Stop();
-=======
 			print ("Firing the particle system");
         }*/
 
