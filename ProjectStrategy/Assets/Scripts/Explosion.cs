@@ -21,7 +21,6 @@ public class Explosion : MonoBehaviour
 	{
 		if (Alpha <= 0)
 		{
-			if (!GetComponent<AudioSource>().isPlaying)
 				GameObject.Destroy(this.gameObject);
 			return;
 		}
@@ -36,5 +35,7 @@ public class Explosion : MonoBehaviour
 		                           GetComponent<Renderer>().material.GetColor("_OutlineColor").g,
 		                           GetComponent<Renderer>().material.GetColor("_OutlineColor").b,
 		                           Alpha));
+		
+			
 	}
 }

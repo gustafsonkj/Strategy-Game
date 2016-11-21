@@ -9,7 +9,11 @@ public class Unit : MonoBehaviour
     private bool WaitingForMoveAccept = false;
     private bool WaitingForActionAccept = false;
     public ParticleSystem system;
+<<<<<<< HEAD
     private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
+=======
+   private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
+>>>>>>> 20e8df56ce1e17e773865c26b7414c023c9555d8
 
     public Building BuildingOn;
 
@@ -213,11 +217,20 @@ public class Unit : MonoBehaviour
         else
             HitPoints -= amount;
 
+<<<<<<< HEAD
 
         if (system == null) system = GetComponent<ParticleSystem>();
         system.Play();
+=======
+      /* var enableParts = GetComponent<ParticleSystem>().emission.enabled;
+        enableParts = true;
 
-        var count = system.GetParticles(particles);
+	if (system == null) { 
+			system = GetComponent<ParticleSystem> ();
+		}
+>>>>>>> 20e8df56ce1e17e773865c26b7414c023c9555d8
+
+        var count = 1000;
 
         for (int i = 0; i < count; i++)
         {
@@ -225,12 +238,17 @@ public class Unit : MonoBehaviour
             float distance = Vector3.Distance(CurrentAttackTarget.transform.position, particle.position);
             if (distance > 0.1f)
             {
-                particle.position = Vector3.Lerp(particle.position, CurrentAttackTarget.transform.position, Time.deltaTime / 2.0f);
+                particle.position = Vector3.Lerp(particle.position, CurrentAttackTarget.transform.position, Time.deltaTime / 1.0f);
                 particles[i] = particle;
             }
             system.SetParticles(particles, count);
+<<<<<<< HEAD
         }
         //system.Stop();
+=======
+			print ("Firing the particle system");
+        }*/
+>>>>>>> 20e8df56ce1e17e773865c26b7414c023c9555d8
 
     }
     public void Heal(float amount)
@@ -276,13 +294,40 @@ public class Unit : MonoBehaviour
         // Face Each Other
         CurrentAttackTarget.transform.LookAt(transform.position);
         transform.LookAt(CurrentAttackTarget.transform.position);
-
+	
         // Sound Effect
         if (Sound_Fire != null)
             GetComponent<AudioSource>().PlayOneShot(Sound_Fire);
 
         // Damage Enemy
         CurrentAttackTarget.Damage(GetHitPoints() * 0.5f);
+
+
+
+		//// Particle System shot
+		var enableParts = GetComponent<ParticleSystem>().emission.enabled;
+		enableParts = true;
+
+		if (system == null) system = GetComponent<ParticleSystem>();
+
+		int count = 1000;
+
+		 for (int i = 0; i < count; i++)
+		{
+			var particle = particles[i];
+			float distance = Vector3.Distance(CurrentAttackTarget.transform.position, particle.position);
+			print ("Firing the particle system: Line 301");
+			if (distance > 0.1f)
+			{
+				particle.position = Vector3.Lerp(particle.position, CurrentAttackTarget.transform.position, Time.deltaTime / 2.0f);
+				particles[i] = particle;
+				//print ("Firing the particle system"); Check to see if entering.
+			}
+			//system.SetParticles(particles, count);
+
+		} 
+		system.Emit (count);
+
         // Take Damage
         Damage(CurrentAttackTarget.GetHitPoints() * 0.2f);
 
