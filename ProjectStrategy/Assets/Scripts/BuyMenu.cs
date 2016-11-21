@@ -32,7 +32,7 @@ public class BuyMenu : Menu
 
 		ClearItems();
 
-		AddItem("Tank", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+		AddItem("Basic", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
 	}
 
 	public override void Show(bool middleOfScreen, Vector3 position)
@@ -74,7 +74,7 @@ public class BuyMenu : Menu
 
 		switch (item)
 		{
-		case "Tank":
+		case "Basic":
 			if (Game.GetCurrentTeam().Resources < prices[0])
 				break;
 			Game.GetCurrentTeam().Resources -= prices[0];
