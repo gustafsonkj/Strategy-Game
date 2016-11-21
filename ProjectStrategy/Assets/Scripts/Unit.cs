@@ -10,6 +10,7 @@ public class Unit : MonoBehaviour
     private bool WaitingForActionAccept = false;
     public ParticleSystem system;
     private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
+    //private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
 
     public Building BuildingOn;
 
