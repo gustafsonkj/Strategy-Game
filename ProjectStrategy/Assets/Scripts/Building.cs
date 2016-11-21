@@ -173,9 +173,9 @@ public class Building : MonoBehaviour
     {
         switch (Type)
         {
-            case CITY: return "City";
-            case HQ: return "GQ";
-            case BASE: return "Base";
+            case CITY: return "Resource Node";
+            case HQ: return "Energy Center";
+            case BASE: return "Factory";
         }
         return "";
     }
