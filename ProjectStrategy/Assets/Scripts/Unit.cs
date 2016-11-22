@@ -10,7 +10,6 @@ public class Unit : MonoBehaviour
     private bool WaitingForActionAccept = false;
     public ParticleSystem system;
     private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
-    //private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
 
     public Building BuildingOn;
 
@@ -295,21 +294,22 @@ public class Unit : MonoBehaviour
 
 
 
-		//// Particle System shot
-		//var enableParts = GetComponent<ParticleSystem>().emission.enabled;
-		//enableParts = true;
+        //// Particle System shot
+        //var enableParts = GetComponent<ParticleSystem>().emission.enabled;
+        //enableParts = true;
 
-<<<<<<< HEAD
-		if (system == null) system = GetComponent<ParticleSystem>();
+
+        if (system == null) system = GetComponent<ParticleSystem>();
         //system.Play();
-=======
-		if (system == null)
-            system = GetComponent<ParticleSystem>();
+
+        //ParticleSystem.Particle[] particles = new ParticleSystem.Particle[this.GetComponent<ParticleSystem>().particleCount];
+        //GetComponent<ParticleSystem>().GetParticles(particles);
 
         system.Play();
->>>>>>> 0ae8721936bda7a0cd9ac4c98b1826871994a6e1
 
-        int count = 1000;
+
+
+        int count = system.particleCount;
 
 		for (int i = 0; i < count; i++)
 		{
@@ -325,8 +325,10 @@ public class Unit : MonoBehaviour
 			}
 			system.SetParticles(particles, count);
 
-		} 
-		//system.Emit (count);
+		}
+        //GetComponent<ParticleSystem>().SetParticles(particles, particles.Length);
+        //system.Emit (count);
+        system.Stop();
 
         // Take Damage
         Damage(CurrentAttackTarget.GetHitPoints() * 0.2f);
