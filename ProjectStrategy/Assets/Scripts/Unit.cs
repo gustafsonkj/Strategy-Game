@@ -299,15 +299,12 @@ public class Unit : MonoBehaviour
 		//var enableParts = GetComponent<ParticleSystem>().emission.enabled;
 		//enableParts = true;
 
-<<<<<<< HEAD
 		if (system == null) system = GetComponent<ParticleSystem>();
         //system.Play();
-=======
 		if (system == null)
             system = GetComponent<ParticleSystem>();
 
         system.Play();
->>>>>>> 0ae8721936bda7a0cd9ac4c98b1826871994a6e1
 
         int count = 1000;
 
