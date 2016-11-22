@@ -284,11 +284,15 @@ public class Unit : MonoBehaviour
 
         // Damage Enemy
         if (Game.Level.GetTile(CurrentAttackTarget.TilePosition()).tag.Equals("Deflect")) //Zac Lindsey
-            CurrentAttackTarget.Damage(GetHitPoints() * 0.25f);
-        else 
-            CurrentAttackTarget.Damage(GetHitPoints() * 0.75f);
+            CurrentAttackTarget.Damage(GetHitPoints() * 0.3f);
+        else //More damage if enemy not on deflect
+            CurrentAttackTarget.Damage(GetHitPoints() * 0.6f);
 
-
+        //Bonus damage if the current unit on deflect
+        if (Game.Level.GetTile(TilePosition()).tag.Equals("Deflect"))
+        {
+            CurrentAttackTarget.Damage(GetHitPoints() * 0.3f);
+        }
 
         // Particle System shot
         //var enableParts = GetComponent<ParticleSystem>().emission.enabled;
