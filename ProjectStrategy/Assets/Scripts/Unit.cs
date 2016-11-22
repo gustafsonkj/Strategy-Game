@@ -295,18 +295,18 @@ public class Unit : MonoBehaviour
 
 		if (system == null) system = GetComponent<ParticleSystem>();
 
-		int count = 1000;
+		int count = 100;
 
 		 for (int i = 0; i < count; i++)
 		{
 			var particle = particles[i];
 			float distance = Vector3.Distance(CurrentAttackTarget.transform.position, particle.position);
-			print ("Firing the particle system: Line 301");
+
 			if (distance > 0.1f)
 			{
 				particle.position = Vector3.Lerp(particle.position, CurrentAttackTarget.transform.position, Time.deltaTime / 2.0f);
 				particles[i] = particle;
-				//print ("Firing the particle system"); Check to see if entering.
+
 			}
 			//system.SetParticles(particles, count);
 
@@ -351,7 +351,7 @@ public class Unit : MonoBehaviour
         List<string> items = new List<string>();
 
         if (UnitsInAttackRange.Count != 0)
-            items.Add("Fire");
+            items.Add("Emit");
         if (BuildingOn != null && BuildingOn.Team != Team)
             items.Add("Capture");
         items.Add("Wait");

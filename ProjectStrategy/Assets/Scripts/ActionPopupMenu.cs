@@ -18,7 +18,7 @@ public class ActionPopupMenu : Menu
 			if (Game.Selector.CurrentUnit != null)
 				Game.Selector.CurrentUnit.AcceptMove();
 			break;
-		case "Fire":
+		case "Emit":
 			if (Game.Selector.CurrentUnit != null)
 				Game.Selector.CurrentUnit.SetAttackTarget();
 			break;

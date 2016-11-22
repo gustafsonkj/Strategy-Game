@@ -196,7 +196,7 @@ public class HeadsUpDisplay : MonoBehaviour
 		GUIUtils.DrawBoxWithOutline(TeamBanner_Rect, GUIContent.none, TeamBanner_Style, Texture_White, 2);
 
 		// Resource
-		GUIUtils.DrawTextWithOutline(ResourcesTag_Position, "G.", ResourcesTag_Style, Color.white, 2);
+		GUIUtils.DrawTextWithOutline(ResourcesTag_Position, "Erik", ResourcesTag_Style, Color.white, 2);
 		GUIUtils.DrawTextWithOutline(Resources_Position, Resources.ToString(), Resources_Style, Color.white, 2);
 
 		// Help
