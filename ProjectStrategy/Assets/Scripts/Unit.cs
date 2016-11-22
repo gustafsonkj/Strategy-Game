@@ -283,7 +283,10 @@ public class Unit : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(Sound_Fire);
 
         // Damage Enemy
-        CurrentAttackTarget.Damage(GetHitPoints() * 0.5f);
+        if (Game.Level.GetTile(CurrentAttackTarget.TilePosition()).tag.Equals("Deflect")) //Zac Lindsey
+            CurrentAttackTarget.Damage(GetHitPoints() * 0.25f);
+        else 
+            CurrentAttackTarget.Damage(GetHitPoints() * 0.75f);
 
 
 
@@ -292,7 +295,7 @@ public class Unit : MonoBehaviour
         //enableParts = true;
 
 
-		if (system == null) system = GetComponent<ParticleSystem>();
+        if (system == null) system = GetComponent<ParticleSystem>();
         //system.Play();
 		if (system == null)
             system = GetComponent<ParticleSystem>();
@@ -349,7 +352,7 @@ public class Unit : MonoBehaviour
         //system.Stop();
 
         // Take Damage
-        Damage(CurrentAttackTarget.GetHitPoints() * 0.2f);
+        //Damage(CurrentAttackTarget.GetHitPoints() * 0.2f);
 
         CurrentAttackTarget = null;
 
