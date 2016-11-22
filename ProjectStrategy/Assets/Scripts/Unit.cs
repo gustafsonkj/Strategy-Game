@@ -10,6 +10,7 @@ public class Unit : MonoBehaviour
     private bool WaitingForActionAccept = false;
     public ParticleSystem system;
     private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
+    //private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
 
     public Building BuildingOn;
 
@@ -235,10 +236,8 @@ public class Unit : MonoBehaviour
                 particles[i] = particle;
             }
             system.SetParticles(particles, count);
-<<<<<<< HEAD
         }
         //system.Stop();
-=======
 			print ("Firing the particle system");
         }*/
 
@@ -361,7 +360,7 @@ public class Unit : MonoBehaviour
         List<string> items = new List<string>();
 
         if (UnitsInAttackRange.Count != 0)
-            items.Add("Fire");
+            items.Add("Emit");
         if (BuildingOn != null && BuildingOn.Team != Team)
             items.Add("Capture");
         items.Add("Wait");

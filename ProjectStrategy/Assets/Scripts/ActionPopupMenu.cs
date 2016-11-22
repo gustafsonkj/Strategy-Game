@@ -18,7 +18,7 @@ public class ActionPopupMenu : Menu
 			if (Game.Selector.CurrentUnit != null)
 				Game.Selector.CurrentUnit.AcceptMove();
 			break;
-		case "Fire":
+		case "Emit":
 			if (Game.Selector.CurrentUnit != null)
 				Game.Selector.CurrentUnit.SetAttackTarget();
 			break;
@@ -42,7 +42,7 @@ public class ActionPopupMenu : Menu
 		case "Wait": return Icon_Wait;
 		case "End": return Icon_End;
 		case "Options": return Icon_Options;
-		case "Fire": return Icon_Fire;
+		case "Emit": return Icon_Fire;
 		case "Capture": return Icon_Capture;
 		}
 		return null;
