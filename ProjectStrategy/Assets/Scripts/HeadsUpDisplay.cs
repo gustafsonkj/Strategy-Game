@@ -92,6 +92,7 @@ public class HeadsUpDisplay : MonoBehaviour
 	public Texture2D Icon_Building;
 
 	//public Texture2D Icon_Plain;
+    public Texture2D Icon_Basic;
 	public Texture2D Icon_Sea;
 	public Texture2D Icon_Road;
 	public Texture2D Icon_Bridge;
@@ -373,6 +374,7 @@ public class HeadsUpDisplay : MonoBehaviour
 		{
 		//case "Plain": TileInfoIcon_Texture = Icon_Plain; break;
 		case "Road": TileInfoIcon_Texture = Icon_Road; break;
+        case "Plain": TileInfoIcon_Texture = Icon_Basic; break;
 		case "Sea": TileInfoIcon_Texture = Icon_Sea; break;
 		case "Bridge":
 			TileInfoIcon_Texture = Icon_Bridge;
