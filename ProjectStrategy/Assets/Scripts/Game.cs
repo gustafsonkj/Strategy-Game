@@ -87,8 +87,7 @@ public class Game : MonoBehaviour
     {
         for (int t = 0; t < Teams.Count; t++)
         {
-            if (Teams[t].Buildings.Count != 0 || Teams[t].Units.Count != 0)
-                continue;
+           
 
             if (t == 0)
                 HUD.ShowTeamWomMessage(2);
