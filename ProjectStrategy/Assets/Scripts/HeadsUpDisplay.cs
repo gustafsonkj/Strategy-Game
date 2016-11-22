@@ -91,7 +91,7 @@ public class HeadsUpDisplay : MonoBehaviour
 
 	public Texture2D Icon_Building;
 
-	public Texture2D Icon_Plain;
+	//public Texture2D Icon_Plain;
 	public Texture2D Icon_Sea;
 	public Texture2D Icon_Road;
 	public Texture2D Icon_Bridge;
@@ -210,10 +210,10 @@ public class HeadsUpDisplay : MonoBehaviour
 		GUI.Box(TileInfoBox_Rect, GUIContent.none, TileInfoBox_Style);
 		//// Icon
 		GUI.color = new Color(1, 1, 1, 0.85f);
-		GUI.DrawTexture(new Rect(TileInfoBox_Rect.x + ((TileInfoBox_Rect.width - (TileInfoIcon_Texture.width * TileInfoIcon_Scale)) / 2) + TileInfoIncoOffset.x,
-			TileInfoBox_Rect.y + 35 + TileInfoIncoOffset.y,
-			TileInfoIcon_Texture.width * TileInfoIcon_Scale,
-			TileInfoIcon_Texture.height * TileInfoIcon_Scale), TileInfoIcon_Texture);
+		//GUI.DrawTexture(new Rect(TileInfoBox_Rect.x + ((TileInfoBox_Rect.width - (TileInfoIcon_Texture.width * TileInfoIcon_Scale)) / 2) + TileInfoIncoOffset.x,
+			//TileInfoBox_Rect.y + 35 + TileInfoIncoOffset.y,
+			//TileInfoIcon_Texture.width * TileInfoIcon_Scale,
+			//TileInfoIcon_Texture.height * TileInfoIcon_Scale), TileInfoIcon_Texture);
 		GUI.color = new Color(1, 1, 1);
 		//// Name
 		TileInfoName_Rect.x = TileInfoBox_Rect.x;
@@ -371,7 +371,7 @@ public class HeadsUpDisplay : MonoBehaviour
 		TileInfoIncoOffset = new Vector2();
 		switch (name)
 		{
-		case "Plain": TileInfoIcon_Texture = Icon_Plain; break;
+		//case "Plain": TileInfoIcon_Texture = Icon_Plain; break;
 		case "Road": TileInfoIcon_Texture = Icon_Road; break;
 		case "Sea": TileInfoIcon_Texture = Icon_Sea; break;
 		case "Bridge":
