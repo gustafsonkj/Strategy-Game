@@ -119,7 +119,7 @@ public class HeadsUpDisplay : MonoBehaviour
 		// Colours
 		Texture_Red = new Texture2D(1, 1);
 		Texture_Red.wrapMode = TextureWrapMode.Repeat;
-		Texture_Red.SetPixel(0, 0, Color.red);
+		Texture_Red.SetPixel(0, 0, Color.yellow);
 		Texture_Red.Apply();
 
 		Texture_Blue = new Texture2D(1, 1);
@@ -339,7 +339,7 @@ public class HeadsUpDisplay : MonoBehaviour
 	{
 		Day_No = no;
 		if (Team == 1)
-			Day_Color = Color.red;
+			Day_Color = Color.yellow;
 		else if (Team == 2)
 			Day_Color = Color.blue;
 		Day_Style.normal.textColor = Day_Color;
