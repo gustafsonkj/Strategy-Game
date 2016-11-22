@@ -215,8 +215,8 @@ public class Unit : MonoBehaviour
             HitPoints -= amount;
 
 
-        if (system == null) system = GetComponent<ParticleSystem>();
-        system.Play();
+        //if (system == null) system = GetComponent<ParticleSystem>();
+        //system.Play();
       /* var enableParts = GetComponent<ParticleSystem>().emission.enabled;
         enableParts = true;
 
@@ -299,12 +299,19 @@ public class Unit : MonoBehaviour
 		//var enableParts = GetComponent<ParticleSystem>().emission.enabled;
 		//enableParts = true;
 
+<<<<<<< HEAD
 		if (system == null) system = GetComponent<ParticleSystem>();
         //system.Play();
+=======
+		if (system == null)
+            system = GetComponent<ParticleSystem>();
 
-		int count = 1000;
+        system.Play();
+>>>>>>> 0ae8721936bda7a0cd9ac4c98b1826871994a6e1
 
-		 for (int i = 0; i < count; i++)
+        int count = 1000;
+
+		for (int i = 0; i < count; i++)
 		{
             system.Emit(i);
 			var particle = particles[i];
