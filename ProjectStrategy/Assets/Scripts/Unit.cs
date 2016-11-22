@@ -214,8 +214,8 @@ public class Unit : MonoBehaviour
             HitPoints -= amount;
 
 
-        if (system == null) system = GetComponent<ParticleSystem>();
-        system.Play();
+        //if (system == null) system = GetComponent<ParticleSystem>();
+        //system.Play();
       /* var enableParts = GetComponent<ParticleSystem>().emission.enabled;
         enableParts = true;
 
@@ -300,11 +300,14 @@ public class Unit : MonoBehaviour
 		var enableParts = GetComponent<ParticleSystem>().emission.enabled;
 		enableParts = true;
 
-		if (system == null) system = GetComponent<ParticleSystem>();
+		if (system == null)
+            system = GetComponent<ParticleSystem>();
 
-		int count = 1000;
+        system.Play();
 
-		 for (int i = 0; i < count; i++)
+        int count = 1000;
+
+		for (int i = 0; i < count; i++)
 		{
 			var particle = particles[i];
 			float distance = Vector3.Distance(CurrentAttackTarget.transform.position, particle.position);
