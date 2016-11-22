@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour
     private bool WaitingForMoveAccept = false;
     private bool WaitingForActionAccept = false;
     public ParticleSystem system;
-    //private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
+    private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
 
     public Building BuildingOn;
 
@@ -292,7 +292,6 @@ public class Unit : MonoBehaviour
         //enableParts = true;
 
 
-<<<<<<< HEAD
 		if (system == null) system = GetComponent<ParticleSystem>();
         //system.Play();
 		if (system == null)
@@ -318,7 +317,6 @@ public class Unit : MonoBehaviour
 
 		} 
 		//system.Emit (count);
-=======
         //if (system == null) system = GetComponent<ParticleSystem>();
         //system.Play();
 
@@ -349,7 +347,6 @@ public class Unit : MonoBehaviour
         //GetComponent<ParticleSystem>().SetParticles(particles, particles.Length);
         //system.Emit (count);
         //system.Stop();
->>>>>>> 51c797a64cecef57e2d8043391c618ecfde4f15f
 
         // Take Damage
         Damage(CurrentAttackTarget.GetHitPoints() * 0.2f);
