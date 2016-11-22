@@ -42,7 +42,7 @@ public class ActionPopupMenu : Menu
 		case "Wait": return Icon_Wait;
 		case "End": return Icon_End;
 		case "Options": return Icon_Options;
-		case "Fire": return Icon_Fire;
+		case "Emit": return Icon_Fire;
 		case "Capture": return Icon_Capture;
 		}
 		return null;

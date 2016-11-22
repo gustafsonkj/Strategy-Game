@@ -56,7 +56,7 @@ public class MainMenu : Menu
 		switch (item)
 		{
 		case "Play (Hotseat Multiplayer)":
-			Application.LoadLevel("Scene01");
+			//Application.LoadLevel("Scene01");
 			break;
 		case "Quit":
 			Application.Quit();

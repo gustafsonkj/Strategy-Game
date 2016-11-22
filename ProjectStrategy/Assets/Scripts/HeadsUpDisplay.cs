@@ -91,7 +91,8 @@ public class HeadsUpDisplay : MonoBehaviour
 
 	public Texture2D Icon_Building;
 
-	public Texture2D Icon_Plain;
+	//public Texture2D Icon_Plain;
+    public Texture2D Icon_Basic;
 	public Texture2D Icon_Sea;
 	public Texture2D Icon_Road;
 	public Texture2D Icon_Bridge;
@@ -119,7 +120,7 @@ public class HeadsUpDisplay : MonoBehaviour
 		// Colours
 		Texture_Red = new Texture2D(1, 1);
 		Texture_Red.wrapMode = TextureWrapMode.Repeat;
-		Texture_Red.SetPixel(0, 0, Color.red);
+		Texture_Red.SetPixel(0, 0, Color.yellow);
 		Texture_Red.Apply();
 
 		Texture_Blue = new Texture2D(1, 1);
@@ -196,7 +197,11 @@ public class HeadsUpDisplay : MonoBehaviour
 		GUIUtils.DrawBoxWithOutline(TeamBanner_Rect, GUIContent.none, TeamBanner_Style, Texture_White, 2);
 
 		// Resource
+<<<<<<< HEAD
 		GUIUtils.DrawTextWithOutline(ResourcesTag_Position, "Erik", ResourcesTag_Style, Color.white, 2);
+=======
+		GUIUtils.DrawTextWithOutline(ResourcesTag_Position, "Energy:", ResourcesTag_Style, Color.white, 2);
+>>>>>>> 501d1fd001987cf28fce88d0c6395c4bf7521df9
 		GUIUtils.DrawTextWithOutline(Resources_Position, Resources.ToString(), Resources_Style, Color.white, 2);
 
 		// Help
@@ -210,10 +215,10 @@ public class HeadsUpDisplay : MonoBehaviour
 		GUI.Box(TileInfoBox_Rect, GUIContent.none, TileInfoBox_Style);
 		//// Icon
 		GUI.color = new Color(1, 1, 1, 0.85f);
-		GUI.DrawTexture(new Rect(TileInfoBox_Rect.x + ((TileInfoBox_Rect.width - (TileInfoIcon_Texture.width * TileInfoIcon_Scale)) / 2) + TileInfoIncoOffset.x,
-			TileInfoBox_Rect.y + 35 + TileInfoIncoOffset.y,
-			TileInfoIcon_Texture.width * TileInfoIcon_Scale,
-			TileInfoIcon_Texture.height * TileInfoIcon_Scale), TileInfoIcon_Texture);
+		//GUI.DrawTexture(new Rect(TileInfoBox_Rect.x + ((TileInfoBox_Rect.width - (TileInfoIcon_Texture.width * TileInfoIcon_Scale)) / 2) + TileInfoIncoOffset.x,
+			//TileInfoBox_Rect.y + 35 + TileInfoIncoOffset.y,
+			//TileInfoIcon_Texture.width * TileInfoIcon_Scale,
+			//TileInfoIcon_Texture.height * TileInfoIcon_Scale), TileInfoIcon_Texture);
 		GUI.color = new Color(1, 1, 1);
 		//// Name
 		TileInfoName_Rect.x = TileInfoBox_Rect.x;
@@ -339,7 +344,7 @@ public class HeadsUpDisplay : MonoBehaviour
 	{
 		Day_No = no;
 		if (Team == 1)
-			Day_Color = Color.red;
+			Day_Color = Color.yellow;
 		else if (Team == 2)
 			Day_Color = Color.blue;
 		Day_Style.normal.textColor = Day_Color;
@@ -371,8 +376,9 @@ public class HeadsUpDisplay : MonoBehaviour
 		TileInfoIncoOffset = new Vector2();
 		switch (name)
 		{
-		case "Plain": TileInfoIcon_Texture = Icon_Plain; break;
+		//case "Plain": TileInfoIcon_Texture = Icon_Plain; break;
 		case "Road": TileInfoIcon_Texture = Icon_Road; break;
+        case "Plain": TileInfoIcon_Texture = Icon_Basic; break;
 		case "Sea": TileInfoIcon_Texture = Icon_Sea; break;
 		case "Bridge":
 			TileInfoIcon_Texture = Icon_Bridge;
