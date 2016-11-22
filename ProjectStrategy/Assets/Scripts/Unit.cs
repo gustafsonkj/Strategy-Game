@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour
     private bool WaitingForMoveAccept = false;
     private bool WaitingForActionAccept = false;
     public ParticleSystem system;
-    private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
+    //private ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1000];
 
     public Building BuildingOn;
 
@@ -213,32 +213,25 @@ public class Unit : MonoBehaviour
         else
             HitPoints -= amount;
 
+        ///////I DONT KNOW WHY BUT THIS CODE CAUSES THE ENTIRE SCRIPT TO BE BUGGED
+        //ParticleSystem.Particle[] m_Particles = new ParticleSystem.Particle[this.GetComponent<ParticleSystem>().particleCount];
+        //system.GetParticles(m_Particles);
 
-        //if (system == null) system = GetComponent<ParticleSystem>();
+        //foreach (Particle p in m_Particles)
+        //{
+        //    var particle = p;
+        //    float distance = Vector3.Distance(CurrentAttackTarget.transform.position, p.position);
+        //    if (distance > 0.1f)
+        //    {
+        //        p.position = Vector3.Lerp(p.position, CurrentAttackTarget.transform.position, Time.deltaTime / 1.0f);
+        //        p = particle;
+        //    }
+        //    system.SetParticles(m_Particles, m_Particles.Length);
+        //}
+        ////system.Stop();
+        ////print ("Firing the particle system");
         //system.Play();
-      /* var enableParts = GetComponent<ParticleSystem>().emission.enabled;
-        enableParts = true;
-
-	if (system == null) { 
-			system = GetComponent<ParticleSystem> ();
-		}
-
-        var count = 1000;
-
-        for (int i = 0; i < count; i++)
-        {
-            var particle = particles[i];
-            float distance = Vector3.Distance(CurrentAttackTarget.transform.position, particle.position);
-            if (distance > 0.1f)
-            {
-                particle.position = Vector3.Lerp(particle.position, CurrentAttackTarget.transform.position, Time.deltaTime / 1.0f);
-                particles[i] = particle;
-            }
-            system.SetParticles(particles, count);
-        }
-        //system.Stop();
-			print ("Firing the particle system");
-        }*/
+        //}
 
     }
     public void Heal(float amount)
@@ -294,41 +287,41 @@ public class Unit : MonoBehaviour
 
 
 
-        //// Particle System shot
+        // Particle System shot
         //var enableParts = GetComponent<ParticleSystem>().emission.enabled;
         //enableParts = true;
 
 
-        if (system == null) system = GetComponent<ParticleSystem>();
+        //if (system == null) system = GetComponent<ParticleSystem>();
         //system.Play();
 
         //ParticleSystem.Particle[] particles = new ParticleSystem.Particle[this.GetComponent<ParticleSystem>().particleCount];
         //GetComponent<ParticleSystem>().GetParticles(particles);
 
-        system.Play();
+        //system.Play();
 
 
 
-        int count = system.particleCount;
+  //      int count = system.particleCount;
 
-		for (int i = 0; i < count; i++)
-		{
-            system.Emit(i);
-			var particle = particles[i];
-			float distance = Vector3.Distance(CurrentAttackTarget.transform.position, particle.position);
-			//print ("Firing the particle system: Line 301");
-			if (distance > 0.1f)
-			{
-				particle.position = Vector3.Lerp(particle.position, CurrentAttackTarget.transform.position, Time.deltaTime / 2.0f);
-				particles[i] = particle;
-				//print ("Firing the particle system"); Check to see if entering.
-			}
-			system.SetParticles(particles, count);
+		//for (int i = 0; i < count; i++)
+		//{
+  //          system.Emit(i);
+		//	var particle = particles[i];
+		//	float distance = Vector3.Distance(CurrentAttackTarget.transform.position, particle.position);
+		//	//print ("Firing the particle system: Line 301");
+		//	if (distance > 0.1f)
+		//	{
+		//		particle.position = Vector3.Lerp(particle.position, CurrentAttackTarget.transform.position, Time.deltaTime / 2.0f);
+		//		particles[i] = particle;
+		//		//print ("Firing the particle system"); Check to see if entering.
+		//	}
+		//	system.SetParticles(particles, count);
 
-		}
+		//}
         //GetComponent<ParticleSystem>().SetParticles(particles, particles.Length);
         //system.Emit (count);
-        system.Stop();
+        //system.Stop();
 
         // Take Damage
         Damage(CurrentAttackTarget.GetHitPoints() * 0.2f);
