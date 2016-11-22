@@ -146,7 +146,7 @@ public class Tile : MonoBehaviour
     {
         InRange = true;
 
-        Tint(Color.yellow);
+        Tint(Color.cyan);
     }
     public void TintAsSelected()
     {
