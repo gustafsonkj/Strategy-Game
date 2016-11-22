@@ -296,15 +296,17 @@ public class Unit : MonoBehaviour
 
 
 		//// Particle System shot
-		var enableParts = GetComponent<ParticleSystem>().emission.enabled;
-		enableParts = true;
+		//var enableParts = GetComponent<ParticleSystem>().emission.enabled;
+		//enableParts = true;
 
 		if (system == null) system = GetComponent<ParticleSystem>();
+        //system.Play();
 
 		int count = 1000;
 
 		 for (int i = 0; i < count; i++)
 		{
+            system.Emit(i);
 			var particle = particles[i];
 			float distance = Vector3.Distance(CurrentAttackTarget.transform.position, particle.position);
 			//print ("Firing the particle system: Line 301");
@@ -317,7 +319,7 @@ public class Unit : MonoBehaviour
 			system.SetParticles(particles, count);
 
 		} 
-		system.Emit (count);
+		//system.Emit (count);
 
         // Take Damage
         Damage(CurrentAttackTarget.GetHitPoints() * 0.2f);
