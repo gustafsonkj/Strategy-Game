@@ -306,22 +306,20 @@ public class Unit : MonoBehaviour
 
         system.Play();
 
-<<<<<<< HEAD
 		int count = 100;
-=======
-        int count = 1000;
->>>>>>> 501d1fd001987cf28fce88d0c6395c4bf7521df9
+
+        
+
 
 		for (int i = 0; i < count; i++)
 		{
             system.Emit(i);
 			var particle = particles[i];
 			float distance = Vector3.Distance(CurrentAttackTarget.transform.position, particle.position);
-<<<<<<< HEAD
 
-=======
+
 			//print ("Firing the particle system: Line 301");
->>>>>>> 501d1fd001987cf28fce88d0c6395c4bf7521df9
+
 			if (distance > 0.1f)
 			{
 				particle.position = Vector3.Lerp(particle.position, CurrentAttackTarget.transform.position, Time.deltaTime / 2.0f);
@@ -331,7 +329,7 @@ public class Unit : MonoBehaviour
 			system.SetParticles(particles, count);
 
 		} 
-		//system.Emit (count);
+		system.Emit (count);
         //if (system == null) system = GetComponent<ParticleSystem>();
         //system.Play();
 
