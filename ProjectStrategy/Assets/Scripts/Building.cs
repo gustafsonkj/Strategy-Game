@@ -175,7 +175,7 @@ public class Building : MonoBehaviour
         {
             case CITY: return "Resource Node";
             case HQ: return "Energy Center";
-            case BASE: return "Factory";
+            case BASE: return "Generator";
         }
         return "";
     }

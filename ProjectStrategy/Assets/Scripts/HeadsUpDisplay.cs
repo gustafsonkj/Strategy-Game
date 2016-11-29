@@ -257,7 +257,7 @@ public class HeadsUpDisplay : MonoBehaviour
 		{
 			Day_Style.normal.textColor = Day_Color - new Color(0, 0, 0, Day_AlphaOffset);
 			Day_OutlineColor = new Color(0, 0, 0, 0.75f - Day_AlphaOffset);
-			GUIUtils.DrawTextWithOutline(new Rect(Screen.width/2, Screen.height/2, 0, 0), "Day " + Day_No, Day_Style, Day_OutlineColor);
+			GUIUtils.DrawTextWithOutline(new Rect(Screen.width/2, Screen.height/2, 0, 0), "Epoch " + Day_No, Day_Style, Day_OutlineColor);
 
 			if (Day_ShowTime >= 0.75f)
 			{
@@ -373,7 +373,7 @@ public class HeadsUpDisplay : MonoBehaviour
 
 
 		TileInfoIcon_Scale = 1;
-		TileInfoIncoOffset = new Vector2();
+		TileInfoIncoOffset = new Vector2(-5.0f,0.0f);
 		switch (name)
 		{
 		//case "Plain": TileInfoIcon_Texture = Icon_Plain; break;

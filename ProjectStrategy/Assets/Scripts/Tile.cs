@@ -155,7 +155,7 @@ public class Tile : MonoBehaviour
             c = GetComponent<Renderer>().material.color;
         else
             c = transform.GetChild(0).GetComponent<Renderer>().material.color;
-        Tint(c * 1.2f);
+        Tint(c * 2.0f);
     }
     public void UnTint()
     {
@@ -207,8 +207,8 @@ public class Tile : MonoBehaviour
     {
         switch (Type)
         {
-            case GRASS: return "Plain";
-            case ROAD: return "Road";
+            case GRASS: return "Rock";
+            case ROAD: return "Power Tile";
             case WATER: case RAMP: return "Sea";
             case BRIDGE: return "Bridge";
         }
