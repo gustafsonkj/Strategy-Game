@@ -16,6 +16,8 @@ public class Game : MonoBehaviour
     public int Day = 1;
 
     public Transform Unit_Tank;
+	public Transform Unit_TankA;
+	public Transform Unit_TankB;
 
     public Transform Effect_Explosion;
     public Transform Arrow_Line;
