@@ -1,0 +1,151 @@
+User Stories:
+	Menu - Upon starting the game, multiple levels are available for selection in a main menu.
+	Priority: 10
+	Time: 1 hour
+	TASKS:
+		Create a main menu scene with options for each level, quitting the game, and loading from a save.
+		Time: 15 minutes
+		Write scripts to make the main menu scene appear upon playing the game and also upon a player winning the game.
+		Time: 15 minutes
+		Write scripts to go to each level upon the appropriate button being selected.
+		Time: 30 minutes
+	Gameboard - Upon the starting a level, the players see the gameboard in its entirety and all of the units and buildings are 	already laid out.
+	Priority: 10
+	Time: 50 minutes
+	TASKS:
+		Develop gameboard by setting the game mode to 3D and creating a 2D grid.
+		Time: 45 minutes
+		Set camera at desired position.
+		Time: 5 minutes
+	Indication Text - The player who goes first sees text indicating that it is their turn
+	Priority: 10
+	Time: 1 hour 30 minutes
+	TASKS:
+		Implement a GUI in the main scene by using GUI GameObjects.
+		Time: 1 hour
+		Write scripts to display text in the GUI upon the player’s turn.
+		Time: 30 minutes
+	Starting Units - Each player starts with some basic units, including harvester units, which start positioned 	on the game board.
+	Priority: 10
+	Time: 1 hour 30 minutes
+	TASKS:
+		Create the unit class with all basic attributes.
+		Time: 15 minutes
+		Create prefab for basic emission unit
+		Time: 15 minutes
+		Create prefab for harvester unit
+		Time: 15 minutes
+		Apply unit class to each prefab
+		Time: 15 minutes
+		Use decorator pattern to extend basic unit classes. [Iteration 2]
+		Time: 30 minutes
+	Unit Aesthetic - Each ball has a light. Either a white light or a black light (i.e., a light with the color 	white or black for light / darkness).
+	Priority: 15
+	Time: 30 minutes
+	TASKS:
+		Add a light GameObject to the Basic Unit Prefab
+		Time: 15 minutes
+	Team Aesthetic - Lightness is yellow color, darkness team is light purple color.
+	Priority: 15
+	Time: 30 minutes
+	TASKS:
+		Update parameters in scripts to make units and buildings for darkness a light purple color
+		Time: 15 minutes
+	Interact With Units - The player who is taking their turn can now click on their own units. If a unit has 	been clicked, the grid positions where that unit can be moved and where it can emit are highlighted in 	different colors.
+	Priority: 10
+	Time: 15 hours
+	TASKS:
+		Write scripts to calculate which squares are available to be moved on to, and then update the 		corresponding GUI.
+		Time: 2 hours
+		Write script that moves a unit when a highlighted square is clicked on. Use Dijkstra’s Algorithm to 			calculate the shortest path, and have the unit continuously move across that path.
+		Time: 4 hours
+		Create an emission type for a dark unit and light unit [Iteration 2]
+		Time: 2 hours
+		Write script for when player clicks on an enemy unit that is within range, the selected unit will 		emit to that enemy unit.
+		Time: 2 hours
+		Ensure that if a player clicks on a unit that has already moved in the turn, no squares are 		highlighted, indicating that the unit can not be moved again.
+		Time: 2 hours
+		If the player clicks on a building within range, the unit will move to that location and start to 		“occupy” that building. [Iteration 2]
+		Time: 3 hours
+	Generator - A player can click on a generator in order to see options in an information panel depending on 	whether they own the building.
+	Priority: 30
+	Time: 1 hour
+	TASKS:
+		Develop a building class which will be extended for energy centers, factories, resource nodes, and 		generators.
+		Time: 1 hour
+	Generator Builds Units - If the player owns the generator, different types of units that can be built are 	displayed in the information panel. [Iteration 2]
+	Priority: 40
+	Time: 1 hour
+	TASKS:
+		Write script to create different types of units; factors in “light” costs per unit. (The unit pops 		up next to the generator on the game board, but can not be moved until the next turn.)
+		Time: 1 hour
+	Resource Node - A player can click on a resource (energy) node in order to see options depending on whether 	they own the resource.
+	Priority: 30
+	Time: 1 hour
+	TASKS:
+		Develop different energy nodes as a child of the building parent class (maybe some nodes deliver 		more energy than others, giving players incentive to choose certain nodes over others).
+		Time: 1 hour
+	Player Receives Resources - If the player is controlling the resource then after their turn has passed, they 	will receive X amount of resources which they can use on their next turn.
+	Priority: 30
+	Time: 1 hour
+	TASKS:
+		Write script to deliver energy to player if they have a harvesting unit on that particular energy 		node.
+		Time: 30 minutes
+		Write a script ensuring that only Harvester Units can get energy for a player. 
+		Time: 30 minutes
+	Player Ends Turn - The player has an option to end their turn, which they can see as a button on the 		information panel. This can be done at any point during the turn.
+	Priority: 20
+	Time: 2 hours 15 minutes
+	TASKS:
+		Create a GUI button within the information panel which is clickable.
+		Time: 15 minutes
+		Write script to display a GUI indication that it is the next player’s turn, and then change which 		objects are available to be moved.
+		Time: 2 hours
+	Player Command Centers - Each player has one energy center.
+	Priority: 10
+	Time: 10 minutes
+	TASKS:
+		Create energy center prefab. 
+		Time: 5 minutes
+		Place energy center in correct locations for the level (probably opposite sides of the game board).
+		Time: 5 minutes
+	Player Win / Lose - If this center is occupied by an enemy then the player loses the game.
+	Priority: 10
+	Time: 45 minutes
+	TASKS:
+		Write script to check if the center has been occupied every turn.
+		Time: 15 minutes
+		Write script to change GUI to reflect the end of the game.
+		Time: 30 minutes
+	Information Panels - Between turns, the player can bring up an info panel to describe different types of 	light and darkness, a panel describing the different types of spaces, a panel giving the current strength of 	players, an option to quit, and an option to save.
+	Priority: 15
+	Time: 5 hours
+	TASKS: 
+		Add to the menu an option to bring up an light/dark information panel.
+		Time: 15 minutes
+		Write script to show the information about the different types of light and darkness when the 		light/dark information panel is selected.
+		Time: 45 minutes
+		Add to the menu an option to bring up a panel giving the players’ current light/dark strength.
+		Time: 15 minutes
+		Write script to show the strength of each player when the option is selected on the menu.
+		Time: 30 minutes
+		Add to the menu an option to save
+		Time: 15 minutes
+		Write script to save the game’s current state
+		Time: 2 hours
+		Add to the menu an option to quit
+		Time: 15 minutes
+		Write script to quit the game.
+		Time: 45 minutes
+	Different Colors of Light / Darkness Units - For both sides (light and darkness) the player can build units 	of different colors. The unit’s color, whether it be light or dark, determine what types of spaces the unit 	can move on, and what types of units they can emit to.
+	Priority: 20
+	Time: 3 hours
+	TASKS:
+		Make new tile prefabs with different colors indicating the type of space.
+		Time: 45 minutes
+		Update movement scripts to change conditions for unit movevement based on the color of the unit - 		should make certain squares unavailable.
+		Time: 1 hour
+		Add a new parameter to the unit class to indicate color.
+		Time: 15 minutes
+		Make new prefabs for new unit types.
+		Time: 30 minutes
