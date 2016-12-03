@@ -138,7 +138,7 @@ public class Building : MonoBehaviour
         // Set Colour
         GetComponentInChildren<TeamColour>().SetTeam(team, AlphaOffset);
 
-        		switch (Team)
+        		/*switch (Team)
         		{
         			case 1:
         			{
@@ -164,7 +164,7 @@ public class Building : MonoBehaviour
         					GetComponent<Renderer>().material.SetColor("_Color", Color.white);
         				break;
         			}
-        		}
+        		}*/
     }
 
     public Point TilePosition() { return new Point(Mathf.RoundToInt(this.gameObject.transform.position.x), Mathf.RoundToInt(this.gameObject.transform.position.z)); }
