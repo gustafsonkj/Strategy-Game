@@ -19,6 +19,9 @@ public class Game : MonoBehaviour
 	public Transform Unit_TankA;
 	public Transform Unit_TankB;
 
+    public Transform Unit_Basic;
+    public Transform Unit_Ranged;
+
     public Transform Effect_Explosion;
     public Transform Arrow_Line;
     public Transform Arrow_Corner;

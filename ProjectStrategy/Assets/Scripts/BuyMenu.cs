@@ -79,7 +79,7 @@ public class BuyMenu : Menu
 
 		switch (item)
 		{
-		    case "Basic":
+		    case "Basic Red":
 			    if (Game.GetCurrentTeam ().Resources < prices [0])
 				    break;
 			    Game.GetCurrentTeam ().Resources -= prices [0];
@@ -88,12 +88,13 @@ public class BuyMenu : Menu
 			    Game.HUD.SetResources (Game.GetCurrentTeam ().Resources);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
-                    unitObject = Instantiate(Game.Unit_TankA, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
                     unitObject.parent = GameObject.Find("Units").transform;
                     unit = unitObject.GetComponent<Unit>();
                     unit.Init();
                     unit.SetTeam(Building.Team);
                     unit.AcceptMove();
+                    unit.UnitColor = 0;
                 }
                 else
                 {
@@ -105,7 +106,132 @@ public class BuyMenu : Menu
                     unit.AcceptMove();
                 }
 			    break;
-		}
+            case "Basic Green":
+                if (Game.GetCurrentTeam().Resources < prices[0])
+                    break;
+                Game.GetCurrentTeam().Resources -= prices[0];
+                Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
+                if (Game.GetCurrentTeam().TeamNo == 1)
+                {
+                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                    unit.UnitColor = 1;
+                }
+                else
+                {
+                    unitObject = Instantiate(Game.Unit_TankB, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                }
+                break;
+            case "Basic Blue":
+                if (Game.GetCurrentTeam().Resources < prices[0])
+                    break;
+                Game.GetCurrentTeam().Resources -= prices[0];
+                Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
+                if (Game.GetCurrentTeam().TeamNo == 1)
+                {
+                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                    unit.UnitColor = 2;
+                }
+                else
+                {
+                    unitObject = Instantiate(Game.Unit_TankB, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                }
+                break;
+            case "Ranged Red":
+                if (Game.GetCurrentTeam().Resources < prices[0])
+                    break;
+                Game.GetCurrentTeam().Resources -= prices[0];
+                Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
+                if (Game.GetCurrentTeam().TeamNo == 1)
+                {
+                    unitObject = Instantiate(Game.Unit_Ranged, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                    unit.UnitColor = 0;
+                }
+                else
+                {
+                    unitObject = Instantiate(Game.Unit_TankB, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                }
+                break;
+            case "Ranged Green":
+                if (Game.GetCurrentTeam().Resources < prices[0])
+                    break;
+                Game.GetCurrentTeam().Resources -= prices[0];
+                Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
+                if (Game.GetCurrentTeam().TeamNo == 1)
+                {
+                    unitObject = Instantiate(Game.Unit_Ranged, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                    unit.UnitColor = 1;
+                }
+                else
+                {
+                    unitObject = Instantiate(Game.Unit_TankB, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                }
+                break;
+            case "Ranged Blue":
+                if (Game.GetCurrentTeam().Resources < prices[0])
+                    break;
+                Game.GetCurrentTeam().Resources -= prices[0];
+                Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
+                if (Game.GetCurrentTeam().TeamNo == 1)
+                {
+                    unitObject = Instantiate(Game.Unit_Ranged, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                    unit.UnitColor = 2;
+                }
+                else
+                {
+                    unitObject = Instantiate(Game.Unit_TankB, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                }
+                break;
+        }
 
 		Game.Selector.UnselectCurrentBuilding();
 
