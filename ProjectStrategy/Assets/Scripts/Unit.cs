@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Unit : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Unit : MonoBehaviour
     private float Range;
     private float AttackRange;
     private float HitPoints = 10;
+	public GameObject ranged;
 
     public int Team = 0;
 
@@ -311,81 +313,90 @@ public class Unit : MonoBehaviour
             CurrentAttackTarget.Damage(GetHitPoints() * 0.3f);
         }
 
-        // Particle System shot
-        //var enableParts = GetComponent<ParticleSystem>().emission.enabled;
-        //enableParts = true;
-
-
-        if (system == null) system = GetComponent<ParticleSystem>();
-        //system.Play();
-		if (system == null)
+       
+		if (system == null&&Type!=1)
             system = GetComponent<ParticleSystem>();
-
-        system.Play();
 
 		int count = 100;
 
         
+		if (Type == 0) {
+
+			for (int i = 0; i < count; i++) {
+				system.Emit (i);
+				var particle = particles [i];
+				float distance = Vector3.Distance (CurrentAttackTarget.transform.position, particle.position);
 
 
-		for (int i = 0; i < count; i++)
-		{
-            system.Emit(i);
-			var particle = particles[i];
-			float distance = Vector3.Distance(CurrentAttackTarget.transform.position, particle.position);
+				//print ("Firing the particle system: Line 301");
 
+				if (distance > 0.1f) {
+					particle.position = Vector3.Lerp (particle.position, CurrentAttackTarget.transform.position, Time.deltaTime / 2.0f);
+					particles [i] = particle;
 
-			//print ("Firing the particle system: Line 301");
-
-			if (distance > 0.1f)
-			{
-				particle.position = Vector3.Lerp(particle.position, CurrentAttackTarget.transform.position, Time.deltaTime / 2.0f);
-				particles[i] = particle;
-
+				}
+				system.SetParticles (particles, count);
+		
 			}
-			system.SetParticles(particles, count);
-
-		} 
-		system.Emit (count);
-        //if (system == null) system = GetComponent<ParticleSystem>();
-        //system.Play();
-
-        //ParticleSystem.Particle[] particles = new ParticleSystem.Particle[this.GetComponent<ParticleSystem>().particleCount];
-        //GetComponent<ParticleSystem>().GetParticles(particles);
-
-        //system.Play();
+		}
+		//float speed = 1;
+		//ranged.transform.position = this.transform.position;
+		//Vector3 target = CurrentAttackTarget.transform.position;
 
 
+		//ranged.transform.forward = target;
+		//Vector3 direction = this.transform.postion - target;
+		//ranged.transform.position = Vector3.Lerp (this.transform.position, CurrentAttackTarget.transform.position, Time.deltaTime / 2.0f);
 
-  //      int count = system.particleCount;
+		//ranged.transform.L((direction.x * speed * Time.deltaTime), (direction.y * speed * Time.deltaTime), (direction.z * speed * Time.deltaTime),Space.World);
 
-		//for (int i = 0; i < count; i++)
-		//{
-  //          system.Emit(i);
-		//	var particle = particles[i];
-		//	float distance = Vector3.Distance(CurrentAttackTarget.transform.position, particle.position);
-		//	//print ("Firing the particle system: Line 301");
-		//	if (distance > 0.1f)
-		//	{
-		//		particle.position = Vector3.Lerp(particle.position, CurrentAttackTarget.transform.position, Time.deltaTime / 2.0f);
-		//		particles[i] = particle;
-		//		//print ("Firing the particle system"); Check to see if entering.
-		//	}
-		//	system.SetParticles(particles, count);
+		//Used to do ranged attack. Sets color depending on what team is attacking. ~Erik
+		GameObject Ranged =	Instantiate(ranged);
+		Ranged.transform.position = CurrentAttackTarget.transform.position;
+		if (Type == 1) {
+			system = Ranged.GetComponent<ParticleSystem> ();
+			var col = system.colorOverLifetime;
+			col.enabled = true;
+			Gradient grad = new Gradient ();
+			if (Team == 1) {
+				grad.SetKeys (new GradientColorKey[] {
+					new GradientColorKey (Color.yellow, 0.0f),
+					new GradientColorKey (Color.white, 1.0f),
+				}, new GradientAlphaKey[] {
+					new GradientAlphaKey (2.0f, 0.0f),
+					new GradientAlphaKey (0.0f, 0.0f)
+				});
+			} 
+			else {
+				grad.SetKeys (new GradientColorKey[] {
+					new GradientColorKey (Color.blue, 0.0f),
+					new GradientColorKey (Color.magenta, 1.0f)
+				}, new GradientAlphaKey[] {
+					new GradientAlphaKey (2.0f, 0.0f),
+					new GradientAlphaKey (0.0f, 1.0f)
+				});
+				
+			}
+			col.color = grad;
+			system.Emit (100);
+		}
+		CurrentAttackTarget = null;
 
-		//}
-        //GetComponent<ParticleSystem>().SetParticles(particles, particles.Length);
-        //system.Emit (count);
-        //system.Stop();
 
-        // Take Damage
-        //Damage(CurrentAttackTarget.GetHitPoints() * 0.2f);
-
-        CurrentAttackTarget = null;
-
+		//ranged.transform.localRotation = 0;
+		//ranged.GetComponent<Rigidbody>().MovePosition(Vector3.Lerp(ranged.transform.position, CurrentAttackTarget.transform.position,Time.deltaTime/2.0f));
+		//ranged.transform.position = CurrentAttackTarget.transform.position; 
+		//	system.Emit (count);
+		//} 
+      
+		StartCoroutine(DestroyRanged (Ranged));
         AcceptMove();
     }
-
+	IEnumerator DestroyRanged(GameObject ranged)	//Used to destroy ranged attack object after X amount of time ~ Erik 
+	{
+		yield return new WaitForSeconds(3);
+		DestroyImmediate(ranged);
+	}
     private void GetUnitsInAttackRange()
     {
         UnitsInAttackRange.Clear();
