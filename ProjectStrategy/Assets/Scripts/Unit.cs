@@ -13,13 +13,14 @@ public class Unit : MonoBehaviour
 
     public Building BuildingOn;
 
-    private float Range = 4;
-    private float AttackRange = 1;
+    private float Range;
+    private float AttackRange;
     private float HitPoints = 10;
 
     public int Team = 0;
 
     public int Type = 0;
+    public int UnitColor = 0;
 
     public const int TANK = 1;
 
@@ -65,6 +66,21 @@ public class Unit : MonoBehaviour
         PosY = transform.position.y;
 
         SetTeam(Team, true);
+
+        switch (Type)
+        {
+            case 0: //Basic
+                Range = 4;
+                AttackRange = 1;
+                break;
+            case 1: //Ranged
+                Range = 2;
+                AttackRange = 5;
+                break;
+            default:
+                break;
+    }
+        
 
         if (Game.Level != null)
             Game.Level.GetTile(TilePosition()).OnUnitEnter(this);

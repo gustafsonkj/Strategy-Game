@@ -211,7 +211,7 @@ public class Tile : MonoBehaviour
 
     public bool CanWalkOn()
     {
-        switch (Game.Selector.CurrentUnit.Type)
+        switch (Game.Selector.CurrentUnit.UnitColor)
         {
             case 0: return Type == R || Type == RG || Type == RB || Type == RGB;
             case 1: return Type == G || Type == RG || Type == GB || Type == RGB;
