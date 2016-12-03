@@ -52,7 +52,7 @@ public class Menu : MonoBehaviour
 		// Colours
 		Texture_Red = new Texture2D(1, 1);
 		Texture_Red.wrapMode = TextureWrapMode.Repeat;
-		Texture_Red.SetPixel(0, 0, Color.red);
+		Texture_Red.SetPixel(0, 0, Color.yellow);
 		Texture_Red.Apply();
 
 		Texture_Blue = new Texture2D(1, 1);

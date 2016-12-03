@@ -16,6 +16,8 @@ public class Game : MonoBehaviour
     public int Day = 1;
 
     public Transform Unit_Tank;
+	public Transform Unit_TankA;
+	public Transform Unit_TankB;
 
     public Transform Effect_Explosion;
     public Transform Arrow_Line;
@@ -87,8 +89,7 @@ public class Game : MonoBehaviour
     {
         for (int t = 0; t < Teams.Count; t++)
         {
-            if (Teams[t].Buildings.Count != 0 || Teams[t].Units.Count != 0)
-                continue;
+           
 
             if (t == 0)
                 HUD.ShowTeamWomMessage(2);

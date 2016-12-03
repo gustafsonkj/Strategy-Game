@@ -32,7 +32,7 @@ public class BuyMenu : Menu
 
 		ClearItems();
 
-		AddItem("Tank", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+		AddItem("Basic", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
 	}
 
 	public override void Show(bool middleOfScreen, Vector3 position)
@@ -74,18 +74,28 @@ public class BuyMenu : Menu
 
 		switch (item)
 		{
-		case "Tank":
-			if (Game.GetCurrentTeam().Resources < prices[0])
+		case "Basic":
+			if (Game.GetCurrentTeam ().Resources < prices [0])
 				break;
-			Game.GetCurrentTeam().Resources -= prices[0];
-			Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
-
-			Transform unitObject = Instantiate(Game.Unit_Tank, Building.transform.position, Quaternion.identity) as Transform;
-			unitObject.parent = GameObject.Find("Units").transform;
-			Unit unit = unitObject.GetComponent<Unit>();
-			unit.Init();
-			unit.SetTeam(Building.Team);
-			unit.AcceptMove();
+			Game.GetCurrentTeam ().Resources -= prices [0];
+			Transform unitObject;
+			Unit unit;
+			Game.HUD.SetResources (Game.GetCurrentTeam ().Resources);
+			if (Game.GetCurrentTeam().TeamNo == 1) {
+				unitObject = Instantiate (Game.Unit_TankA, Building.transform.position, Quaternion.identity) as Transform;
+				unitObject.parent = GameObject.Find ("Units").transform;
+				unit = unitObject.GetComponent<Unit> ();
+				unit.Init ();
+				unit.SetTeam (Building.Team);
+				unit.AcceptMove ();
+			}
+			else
+		    unitObject = Instantiate (Game.Unit_TankB, Building.transform.position, Quaternion.identity) as Transform;
+			unitObject.parent = GameObject.Find ("Units").transform;
+			unit = unitObject.GetComponent<Unit> ();
+			unit.Init ();
+			unit.SetTeam (Building.Team);
+			unit.AcceptMove ();
 
 			break;
 		}
