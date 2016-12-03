@@ -10,9 +10,9 @@ public class BuyMenu : Menu
 	private Rect Price_Rect;
 	private GUIStyle Price_Style;
 
-	private int[] prices = new int[]
-	{
-		6000 /// 7000 in the actual game
+    private int[] prices = new int[]
+    {
+        10000, 12000, 14000, 18000, 20000, 24000
 	};
 
 	protected override void Init()
@@ -32,8 +32,13 @@ public class BuyMenu : Menu
 
 		ClearItems();
 
-		AddItem("Basic", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
-	}
+		AddItem("Basic Red", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+        AddItem("Basic Green", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+        AddItem("Basic Blue", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+        AddItem("Ranged Red", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+        AddItem("Ranged Green", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+        AddItem("Ranged Blue", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+    }
 
 	public override void Show(bool middleOfScreen, Vector3 position)
 	{
@@ -61,7 +66,7 @@ public class BuyMenu : Menu
 
 	protected override void DrawButton(int i)
 	{
-		Price_Rect.y = Button_Rect.y + 5;
+		Price_Rect.y = Button_Rect.y + 35;
 		GUI.TextArea(Price_Rect, prices[i].ToString(), Price_Style);
 
 		base.DrawButton(i);

@@ -127,6 +127,7 @@ public class Unit : MonoBehaviour
 
             transform.localScale = new Vector3(1, ScaleY, 1);
             transform.position = new Vector3(transform.position.x, (PosY / 2) + (transform.localScale.y / 2), transform.position.z);
+            transform.Rotate(0.0f, Time.deltaTime * 180.0f, 0.0f);
         }
     }
 
