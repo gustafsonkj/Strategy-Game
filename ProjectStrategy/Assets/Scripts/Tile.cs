@@ -188,7 +188,7 @@ public class Tile : MonoBehaviour
                 transform.GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", color);
             else
             {
-                for (int p = 0; p < transform.childCount; p++)
+                for (int p = 0; p < transform.GetChild(i).childCount; p++)
                     transform.GetChild(i).transform.GetChild(p).GetComponent<Renderer>().material.SetColor("_Color", color);
             }
         }
@@ -207,7 +207,7 @@ public class Tile : MonoBehaviour
     }
     public bool ValidPath() { return CanWalkOn() && !PartOfCurrentPath; }
 
-    // old public bool CanWalkOn() { return Type != WATER && Type != RAMP; }
+    //public bool CanWalkOn() { return Type != WATER && Type != RAMP; }
 
     public bool CanWalkOn()
     {
