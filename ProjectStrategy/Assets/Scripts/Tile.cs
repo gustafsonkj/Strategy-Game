@@ -22,6 +22,14 @@ public class Tile : MonoBehaviour
     public const int RAMP = 4;
     public const int BRIDGE = 5;
 
+    public const int RGB = 0;
+    public const int RG = 1;
+    public const int RB = 2;
+    public const int GB = 3;
+    public const int R = 4;
+    public const int G = 5;
+    public const int B = 6;
+
     // Use this for initialization
     void Start()
     {
@@ -180,7 +188,7 @@ public class Tile : MonoBehaviour
                 transform.GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", color);
             else
             {
-                for (int p = 0; p < transform.childCount; p++)
+                for (int p = 0; p < transform.GetChild(i).childCount; p++)
                     transform.GetChild(i).transform.GetChild(p).GetComponent<Renderer>().material.SetColor("_Color", color);
             }
         }
@@ -199,7 +207,19 @@ public class Tile : MonoBehaviour
     }
     public bool ValidPath() { return CanWalkOn() && !PartOfCurrentPath; }
 
-    public bool CanWalkOn() { return Type != WATER && Type != RAMP; }
+    //public bool CanWalkOn() { return Type != WATER && Type != RAMP; }
+
+    public bool CanWalkOn()
+    {
+        switch (Game.Selector.CurrentUnit.Type)
+        {
+            case 0: return Type == R || Type == RG || Type == RB || Type == RGB;
+            case 1: return Type == G || Type == RG || Type == GB || Type == RGB;
+            case 2: return Type == B || Type == RB || Type == GB || Type == RGB;
+            default:
+                return true;
+        }
+    }
 
     public Point TilePosition() { return new Point(Mathf.RoundToInt(this.gameObject.transform.position.x), Mathf.RoundToInt(this.gameObject.transform.position.z)); }
 

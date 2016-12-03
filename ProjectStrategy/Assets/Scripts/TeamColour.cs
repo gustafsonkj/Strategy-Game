@@ -13,7 +13,6 @@ public class TeamColour : MonoBehaviour
 
     public void SetTeam(int team, Color colorOffset = default(Color), float colorMultiplier = 1)
     {
-        Debug.Log("setting");
         if ((team == 1 && MaterialRed == null) || (team == 1 && MaterialBlue == null) || (team != 1 && team != 2 && MaterialNormal == null))
         {
             // Tint
@@ -49,7 +48,6 @@ public class TeamColour : MonoBehaviour
         }
         else
         {
-            Debug.Log("switching-else");
             // Change Material
             switch (team)
             {
@@ -66,13 +64,9 @@ public class TeamColour : MonoBehaviour
                         r.material = MaterialNormal;
                     break;
             }
-            Debug.Log("HERE!!!!");
-            Debug.Log(gameObject);
             Light l = gameObject.GetComponentInParent<Light>();
-            Debug.Log(l);
             if (l != null)
             {
-                Debug.Log("LIGHT");
                 switch (team)
                 {
                     case 1: l.color = Color.magenta; break;
