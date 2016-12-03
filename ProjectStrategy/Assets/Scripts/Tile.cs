@@ -207,7 +207,19 @@ public class Tile : MonoBehaviour
     }
     public bool ValidPath() { return CanWalkOn() && !PartOfCurrentPath; }
 
-    public bool CanWalkOn() { return Type != WATER && Type != RAMP; }
+    // old public bool CanWalkOn() { return Type != WATER && Type != RAMP; }
+
+    public bool CanWalkOn()
+    {
+        switch (Game.Selector.CurrentUnit.Type)
+        {
+            case 0: return Type == R || Type == RG || Type == RB || Type == RGB;
+            case 1: return Type == G || Type == RG || Type == GB || Type == RGB;
+            case 2: return Type == B || Type == RB || Type == GB || Type == RGB;
+            default:
+                return true;
+        }
+    }
 
     public Point TilePosition() { return new Point(Mathf.RoundToInt(this.gameObject.transform.position.x), Mathf.RoundToInt(this.gameObject.transform.position.z)); }
 
