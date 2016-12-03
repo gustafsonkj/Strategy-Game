@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour
 
 	public Font Font;
 
-	protected int BoxWidth = 120;
+	protected int BoxWidth = 240;
 	protected int ButtonHeight = 30;
 	protected int IconSize = 30;
 	protected List<string> Items = new List<string>();

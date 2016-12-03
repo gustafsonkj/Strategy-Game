@@ -19,7 +19,7 @@ public class BuyMenu : Menu
 	{
 		base.Init();
 
-		BoxWidth = 200;
+		BoxWidth = 450;
 
 		Price_Style = new GUIStyle(ButtonStyle);
 		Price_Style.alignment = TextAnchor.UpperRight;
@@ -57,7 +57,7 @@ public class BuyMenu : Menu
 		}
 		Price_Style.normal.textColor = ButtonStyle.normal.textColor;
 
-		base.Show(middleOfScreen, position);
+		base.Show(true, position);
 
 		Price_Rect = new Rect();
 		Price_Rect.height = ButtonHeight;
@@ -66,7 +66,7 @@ public class BuyMenu : Menu
 
 	protected override void DrawButton(int i)
 	{
-		Price_Rect.y = Button_Rect.y + 35;
+		Price_Rect.y = Button_Rect.y + 0;
 		GUI.TextArea(Price_Rect, prices[i].ToString(), Price_Style);
 
 		base.DrawButton(i);
