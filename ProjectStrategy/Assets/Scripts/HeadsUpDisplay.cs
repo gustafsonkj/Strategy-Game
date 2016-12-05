@@ -125,7 +125,7 @@ public class HeadsUpDisplay : MonoBehaviour
 
 		Texture_Blue = new Texture2D(1, 1);
 		Texture_Blue.wrapMode = TextureWrapMode.Repeat;
-		Texture_Blue.SetPixel(0, 0, Color.blue);
+		Texture_Blue.SetPixel(0, 0, Color.magenta);
 		Texture_Blue.Apply();
 
 		Texture_White = new Texture2D(1, 1);
@@ -346,7 +346,7 @@ public class HeadsUpDisplay : MonoBehaviour
 		if (Team == 1)
 			Day_Color = Color.yellow;
 		else if (Team == 2)
-			Day_Color = Color.blue;
+			Day_Color = Color.magenta;
 		Day_Style.normal.textColor = Day_Color;
 		Day_AlphaOffset = 0;
 		Day_ShowTime = 0;

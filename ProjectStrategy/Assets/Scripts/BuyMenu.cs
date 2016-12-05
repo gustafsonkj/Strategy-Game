@@ -98,7 +98,7 @@ public class BuyMenu : Menu
                 }
                 else
                 {
-                    unitObject = Instantiate(Game.Unit_TankB, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
                     unitObject.parent = GameObject.Find("Units").transform;
                     unit = unitObject.GetComponent<Unit>();
                     unit.Init();
@@ -123,7 +123,7 @@ public class BuyMenu : Menu
                 }
                 else
                 {
-                    unitObject = Instantiate(Game.Unit_TankB, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
                     unitObject.parent = GameObject.Find("Units").transform;
                     unit = unitObject.GetComponent<Unit>();
                     unit.Init();
@@ -148,7 +148,7 @@ public class BuyMenu : Menu
                 }
                 else
                 {
-                    unitObject = Instantiate(Game.Unit_TankB, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
                     unitObject.parent = GameObject.Find("Units").transform;
                     unit = unitObject.GetComponent<Unit>();
                     unit.Init();
@@ -173,7 +173,7 @@ public class BuyMenu : Menu
                 }
                 else
                 {
-                    unitObject = Instantiate(Game.Unit_TankB, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject = Instantiate(Game.Unit_Ranged, Building.transform.position, Quaternion.identity) as Transform;
                     unitObject.parent = GameObject.Find("Units").transform;
                     unit = unitObject.GetComponent<Unit>();
                     unit.Init();
@@ -198,7 +198,7 @@ public class BuyMenu : Menu
                 }
                 else
                 {
-                    unitObject = Instantiate(Game.Unit_TankB, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject = Instantiate(Game.Unit_Ranged, Building.transform.position, Quaternion.identity) as Transform;
                     unitObject.parent = GameObject.Find("Units").transform;
                     unit = unitObject.GetComponent<Unit>();
                     unit.Init();
@@ -223,7 +223,7 @@ public class BuyMenu : Menu
                 }
                 else
                 {
-                    unitObject = Instantiate(Game.Unit_TankB, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject = Instantiate(Game.Unit_Ranged, Building.transform.position, Quaternion.identity) as Transform;
                     unitObject.parent = GameObject.Find("Units").transform;
                     unit = unitObject.GetComponent<Unit>();
                     unit.Init();
