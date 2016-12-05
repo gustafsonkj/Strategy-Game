@@ -77,7 +77,7 @@ public class Unit : MonoBehaviour
                 break;
             case 1: //Ranged
                 Range = 2;
-                AttackRange = 5;
+                AttackRange = 4;
                 break;
             default:
                 break;
