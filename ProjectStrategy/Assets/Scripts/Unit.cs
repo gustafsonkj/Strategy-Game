@@ -339,19 +339,19 @@ public class Unit : MonoBehaviour
 		
 			}
 		}
-		//float speed = 1;
-		//ranged.transform.position = this.transform.position;
-		//Vector3 target = CurrentAttackTarget.transform.position;
+        //float speed = 1;
+        //ranged.transform.position = this.transform.position;
+        //Vector3 target = CurrentAttackTarget.transform.position;
 
 
-		//ranged.transform.forward = target;
-		//Vector3 direction = this.transform.postion - target;
-		//ranged.transform.position = Vector3.Lerp (this.transform.position, CurrentAttackTarget.transform.position, Time.deltaTime / 2.0f);
+        //ranged.transform.forward = target;
+        //Vector3 direction = this.transform.postion - target;
+        //ranged.transform.position = Vector3.Lerp (this.transform.position, CurrentAttackTarget.transform.position, Time.deltaTime / 2.0f);
 
-		//ranged.transform.L((direction.x * speed * Time.deltaTime), (direction.y * speed * Time.deltaTime), (direction.z * speed * Time.deltaTime),Space.World);
+        //ranged.transform.L((direction.x * speed * Time.deltaTime), (direction.y * speed * Time.deltaTime), (direction.z * speed * Time.deltaTime),Space.World);
 
-		//Used to do ranged attack. Sets color depending on what team is attacking. ~Erik
-		GameObject Ranged =	Instantiate(ranged);
+        //Used to do ranged attack. Sets color depending on what team is attacking. ~Erik
+        GameObject Ranged = Instantiate(ranged);
 		Ranged.transform.position = CurrentAttackTarget.transform.position;
 		if (Type == 1) {
 			system = Ranged.GetComponent<ParticleSystem> ();

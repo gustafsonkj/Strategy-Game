@@ -35,13 +35,13 @@ public class WinMessage : Menu
 	{
 		if (team == 1)
 		{
-			Message = "Red";
-			OutlineColor = Color.red;
+			Message = "Lightness";
+			OutlineColor = Color.yellow;
 		}
 		else if (team == 2)
 		{
-			Message = "Blue";
-			OutlineColor = Color.blue;
+			Message = "Darkness";
+			OutlineColor = Color.magenta;
 		}
 		Message += " Team Wins!";
 	}
