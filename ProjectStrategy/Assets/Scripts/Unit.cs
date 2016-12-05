@@ -351,10 +351,11 @@ public class Unit : MonoBehaviour
         //ranged.transform.L((direction.x * speed * Time.deltaTime), (direction.y * speed * Time.deltaTime), (direction.z * speed * Time.deltaTime),Space.World);
 
         //Used to do ranged attack. Sets color depending on what team is attacking. ~Erik
-        GameObject Ranged = Instantiate(ranged);
-		Ranged.transform.position = CurrentAttackTarget.transform.position;
+        
 		if (Type == 1) {
-			system = Ranged.GetComponent<ParticleSystem> ();
+            GameObject Ranged = Instantiate(ranged);
+            Ranged.transform.position = CurrentAttackTarget.transform.position;
+            system = Ranged.GetComponent<ParticleSystem> ();
 			var col = system.colorOverLifetime;
 			col.enabled = true;
 			Gradient grad = new Gradient ();
@@ -379,19 +380,19 @@ public class Unit : MonoBehaviour
 			}
 			col.color = grad;
 			system.Emit (100);
-            
+            CurrentAttackTarget = null; // ?
+
+
+            //ranged.transform.localRotation = 0;
+            //ranged.GetComponent<Rigidbody>().MovePosition(Vector3.Lerp(ranged.transform.position, CurrentAttackTarget.transform.position,Time.deltaTime/2.0f));
+            //ranged.transform.position = CurrentAttackTarget.transform.position; 
+            //	system.Emit (count);
+            //} 
+
+            StartCoroutine(DestroyRanged(Ranged));
+            AcceptMove();
         }
-        CurrentAttackTarget = null; // ?
-
-
-        //ranged.transform.localRotation = 0;
-        //ranged.GetComponent<Rigidbody>().MovePosition(Vector3.Lerp(ranged.transform.position, CurrentAttackTarget.transform.position,Time.deltaTime/2.0f));
-        //ranged.transform.position = CurrentAttackTarget.transform.position; 
-        //	system.Emit (count);
-        //} 
-
-        StartCoroutine(DestroyRanged(Ranged));
-        AcceptMove();
+        
     }
 	IEnumerator DestroyRanged(GameObject ranged)	//Used to destroy ranged attack object after X amount of time ~ Erik 
 	{
