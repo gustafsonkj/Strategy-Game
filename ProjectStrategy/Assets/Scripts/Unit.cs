@@ -379,23 +379,24 @@ public class Unit : MonoBehaviour
 			}
 			col.color = grad;
 			system.Emit (100);
-		}
-		CurrentAttackTarget = null;
+            
+        }
+        CurrentAttackTarget = null; // ?
 
 
-		//ranged.transform.localRotation = 0;
-		//ranged.GetComponent<Rigidbody>().MovePosition(Vector3.Lerp(ranged.transform.position, CurrentAttackTarget.transform.position,Time.deltaTime/2.0f));
-		//ranged.transform.position = CurrentAttackTarget.transform.position; 
-		//	system.Emit (count);
-		//} 
-      
-		StartCoroutine(DestroyRanged (Ranged));
+        //ranged.transform.localRotation = 0;
+        //ranged.GetComponent<Rigidbody>().MovePosition(Vector3.Lerp(ranged.transform.position, CurrentAttackTarget.transform.position,Time.deltaTime/2.0f));
+        //ranged.transform.position = CurrentAttackTarget.transform.position; 
+        //	system.Emit (count);
+        //} 
+
+        StartCoroutine(DestroyRanged(Ranged));
         AcceptMove();
     }
 	IEnumerator DestroyRanged(GameObject ranged)	//Used to destroy ranged attack object after X amount of time ~ Erik 
 	{
 		yield return new WaitForSeconds(3);
-		DestroyImmediate(ranged);
+		DestroyImmediate(ranged.gameObject);
 	}
     private void GetUnitsInAttackRange()
     {
