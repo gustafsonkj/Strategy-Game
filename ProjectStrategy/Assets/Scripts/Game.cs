@@ -92,11 +92,9 @@ public class Game : MonoBehaviour
     {
         for (int t = 0; t < Teams.Count; t++)
         {
-           
-
-            if (t == 0)
+            if (t == 1)
                 HUD.ShowTeamWomMessage(2);
-            else if (t == 1)
+            else if (t == 0)
                 HUD.ShowTeamWomMessage(1);
             else
                 return;
