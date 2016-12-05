@@ -227,10 +227,13 @@ public class Tile : MonoBehaviour
     {
         switch (Type)
         {
-            case GRASS: return "Rock";
-            case ROAD: return "Power Tile";
-            case WATER: case RAMP: return "Sea";
-            case BRIDGE: return "Bridge";
+            case R: return "Red";
+            case G: return "Green";
+            case B: return "Blue";
+            case RG: return "Red-Green";
+            case RB: return "Red-Blue";
+            case GB: return "Green-Blue";
+            case RGB: return "RGB";
         }
         return "";
     }
