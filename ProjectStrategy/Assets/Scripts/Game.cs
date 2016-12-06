@@ -90,16 +90,15 @@ public class Game : MonoBehaviour
 
     public void CheckWinLoseConditions()
     {
-        for (int t = 0; t < Teams.Count; t++)
+        if (Teams[0].Units.Count == 0 && Teams[0].Buildings.Count <= 1 || 
+            Teams[0].Buildings[0].Team==2)
         {
-            if (t == 1)
-                HUD.ShowTeamWomMessage(2);
-            else if (t == 0)
-                HUD.ShowTeamWomMessage(1);
-            else
-                return;
 
-            StopGame();
+        }
+        if (Teams[1].Units.Count == 0 && Teams[1].Buildings.Count <= 1 ||
+            Teams[1].Buildings[1].Team == 1)
+        {
+
         }
     }
 
