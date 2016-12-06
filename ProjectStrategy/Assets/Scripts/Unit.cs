@@ -227,7 +227,7 @@ public class Unit : MonoBehaviour
 
             Remove();
 
-            Game.CheckWinLoseConditions();
+            Game.CheckWinLoseConditions(-1, -1);
         }
         else
             HitPoints -= amount;

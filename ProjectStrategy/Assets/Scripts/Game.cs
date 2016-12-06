@@ -88,17 +88,26 @@ public class Game : MonoBehaviour
         HUD.ShowDayNo(Day);
     }
 
-    public void CheckWinLoseConditions()
+    public void CheckWinLoseConditions(int BuildingType, int newTeam)
     {
-        if (Teams[0].Units.Count == 0 && Teams[0].Buildings.Count <= 1 || 
-            Teams[0].Buildings[0].Team==2)
+        // Energy center is captured: game automatically stops
+        if (BuildingType==2)
         {
-
+            HUD.ShowTeamWomMessage(newTeam);
+            StopGame();
         }
-        if (Teams[1].Units.Count == 0 && Teams[1].Buildings.Count <= 1 ||
-            Teams[1].Buildings[1].Team == 1)
-        {
 
+        // Energy center is not captured: see if any units remain
+        // And if they have at least one building
+        if (Teams[0].Units.Count == 0 && Teams[0].Buildings.Count <= 1)
+        {
+            HUD.ShowTeamWomMessage(2);
+            StopGame();
+        }
+        if (Teams[1].Units.Count == 0 && Teams[1].Buildings.Count <= 1)
+        {
+            HUD.ShowTeamWomMessage(1);
+            StopGame();
         }
     }
 

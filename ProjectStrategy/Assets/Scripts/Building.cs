@@ -104,7 +104,7 @@ public class Building : MonoBehaviour
             HitPoints = GetHitPointsMax();
 
             if (previousTeam != 0)
-                Game.CheckWinLoseConditions();
+                Game.CheckWinLoseConditions(Type, team);
         }
         else
             HitPoints -= hitPoints;
