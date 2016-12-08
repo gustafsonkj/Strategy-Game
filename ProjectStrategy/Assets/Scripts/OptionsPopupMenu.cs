@@ -5,6 +5,8 @@ public class OptionsPopupMenu : Menu
 	protected override void Init()
 	{
 		AddItem("Exit Map");
+        AddItem("Game Info");
+        AddItem("Save Game");
 
 		ButtonStyle.contentOffset = new Vector2(4, 0);
 	}
