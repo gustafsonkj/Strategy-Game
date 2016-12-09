@@ -71,13 +71,41 @@ public class Level : MonoBehaviour
     }
 
 
-    public Tile GetTile(Point tilePosition) { return Tiles[tilePosition.y][tilePosition.x]; }
+    public Tile GetTile(Point tilePosition, bool check = false) // Zac Lindsey
+    {
+        if (!check)
+            return Tiles[tilePosition.y][tilePosition.x];
+        else
+        {
+            try
+            {
+                return Tiles[tilePosition.y][tilePosition.x];
+            }
+            catch (System.IndexOutOfRangeException ex)
+            {
+                System.ArgumentException argEx = new System.ArgumentException("Index is out of range", "index", ex);
+                throw argEx;
+            }
+        }
+    }
+    //public Tile GetTile(Point tilePosition) { return Tiles[tilePosition.y][tilePosition.x]; }
     public Tile GetTile(int x, int y) { return Tiles[y][x]; }
 
     public bool ValidTile(int x, int y) { return x >= 0 && y >= 0 && x <= Bounds.width && y <= Bounds.height; }
     public bool ValidTile(Point tilePosition) { return ValidTile(tilePosition.x, tilePosition.y); }
 
-
+    public IEnumerable<Point> TilePositionsWithinRange(Point tile, float range)
+    {
+        int r = (int)range;
+        for (int y = tile.y-r; y < tile.y+r; y++)
+        {
+            for (int x = tile.x-r; x < tile.x+r; x++)
+            {
+                if (ValidTile(x, y))
+                    yield return new Point(x, y);
+            }
+        }
+    }
     public IEnumerable<Point> AllTilePositions()
     {
         for (int y = 0; y < Tiles.Count; y++)

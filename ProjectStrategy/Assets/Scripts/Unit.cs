@@ -183,9 +183,9 @@ public class Unit : MonoBehaviour
         foreach (Point pos in Game.Level.AllTilePositions())
         {
             if (!IsMoving())
-                Game.Level.GetTile(pos).ClearPathFindingInfo();
+                Game.Level.GetTile(pos).ClearPathFindingInfo(Team);
             Game.Level.GetTile(pos).InRange = false;
-            Game.Level.GetTile(pos).UnTint();
+            Game.Level.GetTile(pos).UnTint(Team);
         }
 
         if (Game != null && !IsMoving())
@@ -523,7 +523,7 @@ public class Unit : MonoBehaviour
         {
             foreach (Point pos in Game.Level.AllTilePositions())
             {
-                Game.Level.GetTile(pos).ClearPathFindingInfo();
+                Game.Level.GetTile(pos).ClearPathFindingInfo(Team);
                 //Debug.Log("POS:"+pos);
                 //Debug.Log("TILE:"+Game.Level.GetTile(pos));
             }
@@ -542,11 +542,12 @@ public class Unit : MonoBehaviour
 
 
         foreach (Point pos in Game.Level.AllTilePositions())
-            Game.Level.GetTile(pos).ClearPathFindingInfo();
+            Game.Level.GetTile(pos).ClearPathFindingInfo(Team);
 
         Game.Level.GetTile(posX, posY).DistanceSteps = 0;
 
         // Calculate distance between tiles
+        int counter = 0;
         while (true)
         {
             bool madeProgress = false;
@@ -576,6 +577,7 @@ public class Unit : MonoBehaviour
             }
             if (!madeProgress)
                 break;
+            //counter++;
         }
 
         // Calculate Path
@@ -607,7 +609,8 @@ public class Unit : MonoBehaviour
                 // If lowest number, add Waypoint.
                 posX = lowestPoint.x;
                 posY = lowestPoint.y;
-                Waypoints.Add(new Vector3(posX, transform.position.y, posY));
+                if (Game.Level.GetTile(posX, posY).CanWalkOn())
+                    Waypoints.Add(new Vector3(posX, transform.position.y, posY));
             }
             else
                 break;
@@ -657,7 +660,7 @@ public class Unit : MonoBehaviour
 
     private void HighlightTilesInRange()
     {
-        Game.Level.GetTile(TilePosition()).TintAsInRange();
+        Game.Level.GetTile(TilePosition()).TintAsInRange(Team);
 
         foreach (Point pos in Game.Level.AllTilePositions())
         {
@@ -665,7 +668,7 @@ public class Unit : MonoBehaviour
                 continue;
 
             if (Game.Level.ValidTile(pos) && Game.Level.GetTile(pos).CanWalkOn())
-                Game.Level.GetTile(pos).TintAsInRange();
+                Game.Level.GetTile(pos).TintAsInRange(Team);
         }
     }
 

@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour
 
     public Building BuildingOnTop;
     private Transform Arrow;
+    private int ArrowCount;
 
     // Distance from current Unit
     public int DistanceSteps = 10000;
@@ -150,11 +151,14 @@ public class Tile : MonoBehaviour
     }
 
 
-    public void TintAsInRange()
+    public void TintAsInRange(int Team=1)
     {
         InRange = true;
 
-        Tint(Color.cyan);
+        if (Team == 1)
+            Tint(Color.yellow);
+        else
+            Tint(Color.magenta);
     }
     public void TintAsSelected()
     {
@@ -165,7 +169,7 @@ public class Tile : MonoBehaviour
             c = transform.GetChild(0).GetComponent<Renderer>().material.color;
         Tint(c * 2.0f);
     }
-    public void UnTint()
+    public void UnTint(int Team=1)
     {
         if (PartOfCurrentPath)
         {
@@ -174,13 +178,22 @@ public class Tile : MonoBehaviour
         }
         else if (InRange)
         {
-            TintAsInRange();
+            TintAsInRange(Team);
             return;
         }
         Tint(Color.white);
     }
 
-    private void Tint(Color color)
+    private void Tint(Color color) // Tint 2.0 - Zac Lindsey
+    {
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            if (r.tag == "Top")
+                r.material.SetColor("_Color", color);
+        }
+    }
+
+    /*private void Tint(Color color) // This tint caused performance issues - ZL
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -194,16 +207,16 @@ public class Tile : MonoBehaviour
         }
         if (GetComponent<Renderer>() != null)
             GetComponent<Renderer>().material.SetColor("_Color", color);
-    }
+    }*/
 
 
 
-    public void ClearPathFindingInfo()
+    public void ClearPathFindingInfo(int Team)
     {
         DistanceSteps = 1000;
         PartOfCurrentPath = false;
         RemovePathArrow();
-        UnTint();
+        UnTint(Team);
     }
     public bool ValidPath() { return CanWalkOn() && !PartOfCurrentPath; }
 
