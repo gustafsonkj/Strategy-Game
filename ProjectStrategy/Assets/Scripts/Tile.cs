@@ -156,9 +156,9 @@ public class Tile : MonoBehaviour
         InRange = true;
 
         if (Team == 1)
-            Tint(Color.yellow);
+            Tint(Color.yellow, 1); // second parameter set to true to brighten
         else
-            Tint(Color.magenta);
+            Tint(Color.magenta, 1);
     }
     public void TintAsSelected()
     {
@@ -181,15 +181,26 @@ public class Tile : MonoBehaviour
             TintAsInRange(Team);
             return;
         }
-        Tint(Color.white);
+        Tint(Color.white, 2); //2 used to reduce emission
     }
 
-    private void Tint(Color color) // Tint 2.0 - Zac Lindsey
+    private void Tint(Color color, int brighten=0) // Tint 2.0 - Zac Lindsey
     {
+        // brighten == 0: no brighten
+        // brighten == 1: brighten
+        // brighten == 2: unbrighten 
         foreach (Renderer r in GetComponentsInChildren<Renderer>())
         {
             if (r.tag == "Top")
+            {
                 r.material.SetColor("_Color", color);
+
+                if (brighten==1)
+                    r.material.SetColor("_EmissionColor", color*0.25f);
+
+                if (brighten==2)
+                    r.material.SetColor("_EmissionColor", color*0.0f);
+            }
         }
     }
 
