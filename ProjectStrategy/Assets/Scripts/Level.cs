@@ -40,10 +40,14 @@ public class Level : MonoBehaviour
         }
 
         // Add Tiles into Array
+        Debug.Log(TileObjects.childCount);
         for (int i = 0; i < TileObjects.childCount; i++)
         {
             if (TileObjects.GetChild(i).gameObject.GetComponent<Tile>() == null)
+            {
+                Debug.Log(TileObjects.childCount);
                 continue;
+            }
 
             Vector3 pos = TileObjects.GetChild(i).gameObject.transform.position;
 
