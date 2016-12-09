@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
@@ -22,10 +23,10 @@ public class DataRetriever : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        Init();
+        //saveAllData();
 	}
 
-    public void Init()
+    public void saveAllData()
     {
         if (Game != null)
             return;
@@ -40,13 +41,32 @@ public class DataRetriever : MonoBehaviour {
         currentTeam = Game.GetCurrentTeam();
         currentLevel = SceneManager.GetActiveScene();
     }
+}
 
-    // Update is called once per frame
-    
-	
-	// Update is called once per frame
-	void Update ()
+public class saver : MonoBehaviour
+{
+    public void saveGame()
+    {
+        if (File.Exists(Application.persistentDataPath + "strategygamesave"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            DataRetriever dr = new DataRetriever();
+            FileStream fs = File.Open(Application.persistentDataPath + "strategygamesave", FileMode.Open);
+            bf.Serialize(fs, dr);
+            fs.Close();
+        }
+        else
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            DataRetriever dr = new DataRetriever();
+            FileStream fs = File.Create(Application.persistentDataPath + "strategygamesave");
+            bf.Serialize(fs, dr);
+            fs.Close();
+        }
+    }
+
+    public void loadGame()
     {
 
-	}
+    }
 }

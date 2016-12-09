@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OptionsPopupMenu : Menu
 {
+    DataRetriever dr;
+    saver s;
 	protected override void Init()
 	{
 		AddItem("Exit Map");
@@ -18,6 +21,10 @@ public class OptionsPopupMenu : Menu
 		case "Exit Map":
 			Application.LoadLevel("MainMenu");
 			break;
+        case "Save Game":
+            dr.saveAllData();
+            s.saveGame();
+            break;
 		}
 
 		Hide();
