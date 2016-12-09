@@ -23,6 +23,7 @@ public class Tile : MonoBehaviour
     public const int RAMP = 4;
     public const int BRIDGE = 5;
 
+    public const int SPECIAL = 7;
     public const int RGB = 0;
     public const int RG = 1;
     public const int RB = 2;
@@ -167,7 +168,7 @@ public class Tile : MonoBehaviour
             c = GetComponent<Renderer>().material.color;
         else
             c = transform.GetChild(0).GetComponent<Renderer>().material.color;
-        Tint(c * 2.0f);
+        Tint(c * 2.0f,1);
     }
     public void UnTint(int Team=1)
     {
@@ -237,9 +238,9 @@ public class Tile : MonoBehaviour
     {
         switch (Game.Selector.CurrentUnit.UnitColor)
         {
-            case 0: return Type == R || Type == RG || Type == RB || Type == RGB;
-            case 1: return Type == G || Type == RG || Type == GB || Type == RGB;
-            case 2: return Type == B || Type == RB || Type == GB || Type == RGB;
+            case 0: return Type == R || Type == RG || Type == RB || Type == RGB || Type == SPECIAL;
+            case 1: return Type == G || Type == RG || Type == GB || Type == RGB || Type == SPECIAL;
+            case 2: return Type == B || Type == RB || Type == GB || Type == RGB || Type == SPECIAL;
             default:
                 return true;
         }
@@ -258,6 +259,7 @@ public class Tile : MonoBehaviour
             case RB: return "Red-Blue";
             case GB: return "Green-Blue";
             case RGB: return "RGB";
+            case SPECIAL: return "Special";
         }
         return "";
     }
