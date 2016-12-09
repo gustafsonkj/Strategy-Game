@@ -2,10 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class DataRetriever : MonoBehaviour {
-    public string currentLevel;//get current level the player is on
+    public Scene currentLevel;//get current level the player is on
     List<Building> buildings = new List<Building>();//get teams and hitpoints
     protected Game Game;//get current day, current team
     //get the unit lists from the team script
@@ -13,13 +14,15 @@ public class DataRetriever : MonoBehaviour {
     List<Unit> unitsB;//team 2 units
     List<Building> buildingsA;//team 1 buildings
     List<Building> buildingsB;//team 2 buildings
-    public Team team;//get resources for each team
     public int teamARes;
     public int teamBRes;
+    public int Day;
+    public Team currentTeam;
+
     // Use this for initialization
     void Start ()
     {
-        
+        Init();
 	}
 
     public void Init()
@@ -33,6 +36,9 @@ public class DataRetriever : MonoBehaviour {
         buildingsB = Game.Teams[1].Buildings;
         teamARes = Game.Teams[0].Resources;
         teamBRes = Game.Teams[1].Resources;
+        Day = Game.Day;
+        currentTeam = Game.GetCurrentTeam();
+        currentLevel = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
