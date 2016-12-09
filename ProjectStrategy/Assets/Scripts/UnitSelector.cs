@@ -145,6 +145,8 @@ public class UnitSelector : MonoBehaviour
         UnselectCurrentTile();
         CurrentTile = tile;
 
+        if (tile == null)
+            return;
         tile.gameObject.GetComponent<Tile>().Select();
 
         transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y + 1, tile.transform.position.z);
@@ -155,7 +157,8 @@ public class UnitSelector : MonoBehaviour
     }
     public void SelectTile(Point tilePosition)
     {
-        SelectTile(Game.Level.GetTile(tilePosition).transform);
+        if (Game.Level.GetTile(tilePosition)!=null)
+            SelectTile(Game.Level.GetTile(tilePosition).transform);
     }
 
     private void UnselectTile(Transform tile)

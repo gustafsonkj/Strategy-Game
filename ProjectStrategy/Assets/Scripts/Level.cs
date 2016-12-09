@@ -83,8 +83,9 @@ public class Level : MonoBehaviour
             }
             catch (System.IndexOutOfRangeException ex)
             {
-                System.ArgumentException argEx = new System.ArgumentException("Index is out of range", "index", ex);
-                throw argEx;
+                //System.ArgumentException argEx = new System.ArgumentException("Index is out of range", "index", ex);
+                //throw argEx;
+                return null;
             }
         }
     }
