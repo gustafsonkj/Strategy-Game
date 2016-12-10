@@ -12,7 +12,7 @@ public class BuyMenu : Menu
 
     private int[] prices = new int[]
     {
-        10000, 10000, 10000, 15000, 15000, 15000, 50000, 50000
+        10000, 10000, 10000, 15000, 15000, 15000, 50000
     };
 
     protected override void Init()
@@ -38,8 +38,7 @@ public class BuyMenu : Menu
         AddItem("Ranged Red", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
         AddItem("Ranged Green", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
         AddItem("Ranged Blue", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
-        AddItem("The Quacker Yellow", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
-        AddItem("The Quacker Magenta", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+        AddItem("The Quacker", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
     }
 
     public override void Show(bool middleOfScreen, Vector3 position)
@@ -131,6 +130,7 @@ public class BuyMenu : Menu
                     unit.Init();
                     unit.SetTeam(Building.Team);
                     unit.AcceptMove();
+                    unit.UnitColor = 1;
                 }
                 break;
             case "Basic Blue":
@@ -156,6 +156,7 @@ public class BuyMenu : Menu
                     unit.Init();
                     unit.SetTeam(Building.Team);
                     unit.AcceptMove();
+                    unit.UnitColor = 2;
                 }
                 break;
             case "Ranged Red":
@@ -181,6 +182,7 @@ public class BuyMenu : Menu
                     unit.Init();
                     unit.SetTeam(Building.Team);
                     unit.AcceptMove();
+                    unit.UnitColor = 0;
                 }
                 break;
             case "Ranged Green":
@@ -206,6 +208,7 @@ public class BuyMenu : Menu
                     unit.Init();
                     unit.SetTeam(Building.Team);
                     unit.AcceptMove();
+                    unit.UnitColor = 1;
                 }
                 break;
             case "Ranged Blue":
@@ -231,9 +234,10 @@ public class BuyMenu : Menu
                     unit.Init();
                     unit.SetTeam(Building.Team);
                     unit.AcceptMove();
+                    unit.UnitColor = 2;
                 }
                 break;
-            case "The Quacker Yellow":
+            case "The Quacker":
                 if (Game.GetCurrentTeam().Resources < prices[6])
                     break;
                 Game.GetCurrentTeam().Resources -= prices[6];
@@ -256,31 +260,7 @@ public class BuyMenu : Menu
                     unit.Init();
                     unit.SetTeam(Building.Team);
                     unit.AcceptMove();
-                }
-                break;
-            case "The Quacker Magenta":
-                if (Game.GetCurrentTeam().Resources < prices[7])
-                    break;
-                Game.GetCurrentTeam().Resources -= prices[7];
-                Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
-                if (Game.GetCurrentTeam().TeamNo == 1)
-                {
-                    unitObject = Instantiate(Game.Unit_TheQuacker, Building.transform.position, Quaternion.identity) as Transform;
-                    unitObject.parent = GameObject.Find("Units").transform;
-                    unit = unitObject.GetComponent<Unit>();
-                    unit.Init();
-                    unit.SetTeam(Building.Team);
-                    unit.AcceptMove();
                     unit.UnitColor = 4;
-                }
-                else
-                {
-                    unitObject = Instantiate(Game.Unit_TheQuacker, Building.transform.position, Quaternion.identity) as Transform;
-                    unitObject.parent = GameObject.Find("Units").transform;
-                    unit = unitObject.GetComponent<Unit>();
-                    unit.Init();
-                    unit.SetTeam(Building.Team);
-                    unit.AcceptMove();
                 }
                 break;
     
