@@ -243,6 +243,8 @@ public class Tile : MonoBehaviour
             case 0: return Type == R || Type == RG || Type == RB || Type == RGB || Type == SPECIAL;
             case 1: return Type == G || Type == RG || Type == GB || Type == RGB || Type == SPECIAL;
             case 2: return Type == B || Type == RB || Type == GB || Type == RGB || Type == SPECIAL;
+            case 3: return true; // yellow
+            case 4: return true; // magenta
             default:
                 return true;
         }

@@ -17,9 +17,9 @@ public class Building : MonoBehaviour
 
     public int Type = 0;
 
-    public const int CITY = 1;
-    public const int HQ = 2;
-    public const int BASE = 3;
+    public const int RESOURCE = 1;
+    public const int EC = 2;
+    public const int GENERATOR = 3;
 
     void Start()
     {
@@ -58,7 +58,7 @@ public class Building : MonoBehaviour
     {
         Selected = true;
 
-        if (Type == BASE)
+        if (Type == GENERATOR)
         {
             Game.HUD.BuyMenu.SetBuilding(this);
             Game.HUD.BuyMenu.Show(false, transform.position);
@@ -68,7 +68,7 @@ public class Building : MonoBehaviour
     {
         Selected = false;
 
-        if (Type == BASE)
+        if (Type == GENERATOR)
             Game.HUD.BuyMenu.Hide();
     }
 
@@ -173,9 +173,9 @@ public class Building : MonoBehaviour
     {
         switch (Type)
         {
-            case CITY: return "Resource Node";
-            case HQ: return "Energy Center";
-            case BASE: return "Generator";
+            case RESOURCE: return "Resource Node";
+            case EC: return "Energy Center";
+            case GENERATOR: return "Generator";
         }
         return "";
     }

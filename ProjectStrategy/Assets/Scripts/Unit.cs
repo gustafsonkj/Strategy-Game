@@ -80,8 +80,12 @@ public class Unit : MonoBehaviour
                 AttackRange = 4;
                 break;
             case 2: //Harvester
-                Range = 2;
-                AttackRange = 1;
+                Range = 5;
+                AttackRange = 0;
+                break;
+            case 3: //Laringitis
+                Range = 5;
+                AttackRange = 5;
                 break;
             default:
                 break;
@@ -324,7 +328,7 @@ public class Unit : MonoBehaviour
 		int count = 100;
 
         
-		if (Type == 0 || Type == 2) {
+		if (Type == 0) {
 
 			for (int i = 0; i < count; i++) {
 				system.Emit (i);
@@ -356,7 +360,7 @@ public class Unit : MonoBehaviour
 
         //Used to do ranged attack. Sets color depending on what team is attacking. ~Erik
         
-		if (Type == 1) {
+		if (Type == 1 || Type == 3) {
             GameObject Ranged = Instantiate(ranged);
             Ranged.transform.position = CurrentAttackTarget.transform.position;
             system = Ranged.GetComponent<ParticleSystem> ();

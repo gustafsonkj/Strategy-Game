@@ -13,6 +13,10 @@ public class LightColor : MonoBehaviour {
                 break;
             case 2: GetComponent<Light>().color = Color.blue;
                 break;
+            case 3: GetComponent<Light>().color = Color.yellow;
+                break;
+            case 4: GetComponent<Light>().color = Color.magenta;
+                break;
             default: GetComponent<Light>().color = Color.white;
                 break;
         }
