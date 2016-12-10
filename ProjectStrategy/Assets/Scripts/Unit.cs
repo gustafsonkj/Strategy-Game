@@ -439,7 +439,10 @@ public class Unit : MonoBehaviour
 
         if (UnitsInAttackRange.Count != 0)
             items.Add("Emit");
-        if (BuildingOn != null && BuildingOn.Team != Team && !(this.Type==2 && BuildingOn.Type == Building.EC))
+        if (BuildingOn != null && BuildingOn.Team != Team 
+            && !(this.Type==2 && BuildingOn.Type == Building.EC)
+            && !(this.Type!=2 && BuildingOn.Type == Building.RESOURCE)
+            )
             items.Add("Capture");
         items.Add("Wait");
 
