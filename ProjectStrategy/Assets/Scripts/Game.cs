@@ -22,6 +22,7 @@ public class Game : MonoBehaviour
 
     public Transform Unit_Basic;
     public Transform Unit_Ranged;
+    public Transform Unit_TheQuacker;
 
     public Transform Effect_Explosion;
     public Transform Arrow_Line;

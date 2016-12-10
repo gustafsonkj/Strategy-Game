@@ -83,7 +83,7 @@ public class Unit : MonoBehaviour
                 Range = 5;
                 AttackRange = 0;
                 break;
-            case 3: //Laringitis
+            case 3: //The Quacker
                 Range = 5;
                 AttackRange = 5;
                 break;

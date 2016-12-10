@@ -38,9 +38,14 @@ public class BuyMenu : Menu
         AddItem("Ranged Red", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
         AddItem("Ranged Green", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
         AddItem("Ranged Blue", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
-        AddItem("Laringitis Yellow", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
-        AddItem("LAringitis Magenta", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
-
+        if (Game.GetCurrentTeam().TeamNo == 1)
+        {
+            AddItem("The Quacker Yellow", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+        }
+        else if (Game.GetCurrentTeam().TeamNo == 1)
+        {
+            AddItem("The Quacker Magenta", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+        }
     }
 
     public override void Show(bool middleOfScreen, Vector3 position)
@@ -234,14 +239,14 @@ public class BuyMenu : Menu
                     unit.AcceptMove();
                 }
                 break;
-            case "Laringitis Yellow":
+            case "The Quacker Yellow":
                 if (Game.GetCurrentTeam().Resources < prices[6])
                     break;
                 Game.GetCurrentTeam().Resources -= prices[6];
                 Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
-                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject = Instantiate(Game.Unit_TheQuacker, Building.transform.position, Quaternion.identity) as Transform;
                     unitObject.parent = GameObject.Find("Units").transform;
                     unit = unitObject.GetComponent<Unit>();
                     unit.Init();
@@ -251,7 +256,7 @@ public class BuyMenu : Menu
                 }
                 else
                 {
-                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject = Instantiate(Game.Unit_TheQuacker, Building.transform.position, Quaternion.identity) as Transform;
                     unitObject.parent = GameObject.Find("Units").transform;
                     unit = unitObject.GetComponent<Unit>();
                     unit.Init();
@@ -259,14 +264,14 @@ public class BuyMenu : Menu
                     unit.AcceptMove();
                 }
                 break;
-            case "Laringitis Magenta":
+            case "The Quacker Magenta":
                 if (Game.GetCurrentTeam().Resources < prices[7])
                     break;
                 Game.GetCurrentTeam().Resources -= prices[7];
                 Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
-                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject = Instantiate(Game.Unit_TheQuacker, Building.transform.position, Quaternion.identity) as Transform;
                     unitObject.parent = GameObject.Find("Units").transform;
                     unit = unitObject.GetComponent<Unit>();
                     unit.Init();
@@ -276,7 +281,7 @@ public class BuyMenu : Menu
                 }
                 else
                 {
-                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject = Instantiate(Game.Unit_TheQuacker, Building.transform.position, Quaternion.identity) as Transform;
                     unitObject.parent = GameObject.Find("Units").transform;
                     unit = unitObject.GetComponent<Unit>();
                     unit.Init();
