@@ -3,8 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class OptionsPopupMenu : Menu
 {
-    DataRetriever dr;
-    saver s;
+    protected Game game = GameObject.Find("Game").GetComponent<Game>();
+    private DataRetriever dr = ;
+    private saver s;
 	protected override void Init()
 	{
 		AddItem("Exit Map");

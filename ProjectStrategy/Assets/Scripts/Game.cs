@@ -7,6 +7,7 @@ public class Game : MonoBehaviour
     public UnitSelector Selector;
     public Level Level;
     public HeadsUpDisplay HUD;
+    public GameObject DataRetriever;
     public Camera Camera;
     public Transform Units;
     public Transform Buildings;
