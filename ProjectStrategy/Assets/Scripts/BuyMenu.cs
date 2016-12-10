@@ -12,7 +12,7 @@ public class BuyMenu : Menu
 
     private int[] prices = new int[]
     {
-        10000, 10000, 10000, 15000, 15000, 15000
+        10000, 10000, 10000, 15000, 15000, 15000, 50000, 50000
 	};
 
 	protected override void Init()
@@ -231,6 +231,57 @@ public class BuyMenu : Menu
                     unit.AcceptMove();
                 }
                 break;
+            case "Laringitis Yellow":
+                if (Game.GetCurrentTeam().Resources < prices[6])
+                    break;
+                Game.GetCurrentTeam().Resources -= prices[6];
+                Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
+                if (Game.GetCurrentTeam().TeamNo == 1)
+                {
+                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                    unit.UnitColor = 3;
+                }
+                else
+                {
+                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                }
+                break;
+            case "Laringitis Magenta":
+                if (Game.GetCurrentTeam().Resources < prices[7])
+                    break;
+                Game.GetCurrentTeam().Resources -= prices[7];
+                Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
+                if (Game.GetCurrentTeam().TeamNo == 1)
+                {
+                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                    unit.UnitColor = 4;
+                }
+                else
+                {
+                    unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
+                    unitObject.parent = GameObject.Find("Units").transform;
+                    unit = unitObject.GetComponent<Unit>();
+                    unit.Init();
+                    unit.SetTeam(Building.Team);
+                    unit.AcceptMove();
+                }
+                break;
+    
         }
 
 		Game.Selector.UnselectCurrentBuilding();
