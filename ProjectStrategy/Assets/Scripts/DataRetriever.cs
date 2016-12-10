@@ -6,7 +6,7 @@ using System.IO;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
-public class DataRetriever : MonoBehaviour {
+public class DataRetriever  {
     public static Scene currentLevel;//get current level the player is on
     List<Building> buildings = new List<Building>();//get teams and hitpoints
     protected static Game Game;//get current day, current team
