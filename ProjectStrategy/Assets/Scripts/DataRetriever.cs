@@ -23,6 +23,14 @@ public class DataRetriever : MonoBehaviour {
     public static List<Vector3> unitPositionsTeam2;
     public static List<int> unitTypesTeam1;
     public static List<int> unitTypesTeam2;
+    public static List<int> unitColorsTeam1;
+    public static List<int> unitColorsTeam2;
+    public static List<float> unitStrengthsTeam1;
+    public static List<float> unitStrengthsTeam2;
+    public static List<int> buildHPTeam1;
+    public static List<int> buildHPTeam2;
+    public static List<int> buildTypesTeam1;
+    public static List<int> buildTypesTeam2;
 
     public static void saveAllData()
     {
@@ -41,18 +49,26 @@ public class DataRetriever : MonoBehaviour {
         foreach(Unit u in unitsA)
         {
             unitPositionsTeam1.Add(u.transform.position);
+            unitTypesTeam1.Add(u.Type);
+            unitColorsTeam1.Add(u.UnitColor);
+            unitStrengthsTeam1.Add(u.GetHitPoints());
         }
         foreach (Unit u in unitsB)
         {
             unitPositionsTeam2.Add(u.transform.position);
-        }
-        foreach (Unit u in unitsA)
-        {
-            unitTypesTeam1.Add(u.Type);
-        }
-        foreach (Unit u in unitsB)
-        {
             unitTypesTeam2.Add(u.Type);
+            unitColorsTeam2.Add(u.UnitColor);
+            unitStrengthsTeam2.Add(u.GetHitPoints());
+        }
+        foreach(Building b in buildingsA)
+        {
+            buildHPTeam1.Add(b.GetHitPoints());
+            buildTypesTeam1.Add(b.Type);
+        }
+        foreach(Building b in buildingsB)
+        {
+            buildHPTeam2.Add(b.GetHitPoints());
+            buildTypesTeam2.Add(b.Type);
         }
     }
 }
@@ -65,10 +81,18 @@ public class AllMyData
     public int currentDay = DataRetriever.Day;//game.day
     public int team1Resources = DataRetriever.teamARes;//game.teams[0].resources
     public int team2Resources = DataRetriever.teamBRes;//game.teams[1].resources
-    public List<Unit> unitsTeam1 = DataRetriever.unitsA;//game.teams[0].units
-    public List<Unit> unitsTeam2 = DataRetriever.unitsB;//game.teams[1].units
-    public List<Building> buildingsTeam1 = DataRetriever.buildingsA;//game.teams[0].buildings
-    public List<Building> buildingsTeam2 = DataRetriever.buildingsB;//game.teams[1].buildings
+    public List<Vector3> unitPositionsTeam1 = DataRetriever.unitPositionsTeam1;
+    public List<Vector3> unitPositionsTeam2 = DataRetriever.unitPositionsTeam2;
+    public List<int> unitTypesTeam1 = DataRetriever.unitTypesTeam1;
+    public List<int> unitTypesTeam2 = DataRetriever.unitTypesTeam2;
+    public List<int> unitColorsTeam1 = DataRetriever.unitColorsTeam1;
+    public List<int> unitColorsTeam2 = DataRetriever.unitColorsTeam2;
+    public List<float> unitStrengthsTeam1 = DataRetriever.unitStrengthsTeam1;
+    public List<float> unitStrengthsTeam2 = DataRetriever.unitStrengthsTeam2;
+    public List<int> buildHPTeam1 = DataRetriever.buildHPTeam1;
+    public List<int> buildHPTeam2 = DataRetriever.buildHPTeam2;
+    public List<int> buildTypesTeam1 = DataRetriever.buildTypesTeam1;
+    public List<int> buildTypesTeam2 = DataRetriever.buildTypesTeam2;
 }
 
 public class saver : MonoBehaviour
