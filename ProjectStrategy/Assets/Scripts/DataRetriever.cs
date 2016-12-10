@@ -8,13 +8,12 @@ using UnityEngine.SceneManagement;
 
 public class DataRetriever : MonoBehaviour {
     public static Scene currentLevel;//get current level the player is on
-    List<Building> buildings = new List<Building>();//get teams and hitpoints
     protected static Game Game;//get current day, current team
     //get the unit lists from the team script
-    private static List<Unit> unitsA;//team 1 units
-    private static List<Unit> unitsB;//team 2 units
-    private static List<Building> buildingsA;//team 1 buildings
-    static List<Building> buildingsB;//team 2 buildings
+    public static List<Unit> unitsA;//team 1 units
+    public static List<Unit> unitsB;//team 2 units
+    public static List<Building> buildingsA;//team 1 buildings
+    public static List<Building> buildingsB;//team 2 buildings
     public static int teamARes;
     public static int teamBRes;
     public static int Day;
@@ -46,7 +45,28 @@ public class DataRetriever : MonoBehaviour {
 [System.Serializable]
 public class AllMyData
 {
+    private Scene currentLevel;
+    private List<Unit> unitsTeam1;
+    private List<Unit> unitsTeam2;
+    private List<Building> buildingsTeam1;
+    private List<Building> buildingsTeam2;
+    private int team1Resources;
+    private int team2Resources;
+    private int currentDay;
+    private Team currentTeam;
 
+    public void saveDatStuff()
+    {
+        currentLevel = DataRetriever.currentLevel;
+        currentTeam = DataRetriever.currentTeam;
+        currentDay = DataRetriever.Day;
+        team1Resources = DataRetriever.teamARes;
+        team2Resources = DataRetriever.teamBRes;
+        unitsTeam1 = DataRetriever.unitsA;
+        unitsTeam2 = DataRetriever.unitsB;
+        buildingsTeam1 = DataRetriever.buildingsA;
+        buildingsTeam2 = DataRetriever.buildingsB;
+    }
 }
 
 public class saver : MonoBehaviour
@@ -56,22 +76,24 @@ public class saver : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "strategygamesave"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            AllMyData dr = new AllMyData();
+            AllMyData amd = new AllMyData();
+            amd.saveDatStuff();
             FileStream fs = File.Open(Application.persistentDataPath + "strategygamesave", FileMode.Open);
-            bf.Serialize(fs, dr);
+            bf.Serialize(fs, amd);
             fs.Close();
         }
         else
         {
             BinaryFormatter bf = new BinaryFormatter();
-            AllMyData dr = new AllMyData();
+            AllMyData amd = new AllMyData();
+            amd.saveDatStuff();
             FileStream fs = File.Create(Application.persistentDataPath + "strategygamesave");
-            bf.Serialize(fs, dr);
+            bf.Serialize(fs, amd);
             fs.Close();
         }
     }
 
-    public void loadGame()
+    public static void loadGame()
     {
 
     }
