@@ -401,9 +401,9 @@ public class Unit : MonoBehaviour
             //} 
 
             StartCoroutine(DestroyRanged(Ranged, 4));
-            AcceptMove();
+           
         }
-        
+        AcceptMove();
     }
 	IEnumerator DestroyRanged(GameObject ranged, int seconds)	//Used to destroy ranged attack object after X amount of time ~ Erik 
 	{
