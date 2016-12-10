@@ -38,9 +38,12 @@ public class BuyMenu : Menu
         AddItem("Ranged Red", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
         AddItem("Ranged Green", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
         AddItem("Ranged Blue", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+        AddItem("Laringitis Yellow", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+        AddItem("LAringitis Magenta", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+
     }
 
-	public override void Show(bool middleOfScreen, Vector3 position)
+    public override void Show(bool middleOfScreen, Vector3 position)
 	{
 		for (int i = 0; i < prices.Length; i++)
 		{
