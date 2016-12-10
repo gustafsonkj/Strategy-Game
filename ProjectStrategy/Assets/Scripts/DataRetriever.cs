@@ -5,8 +5,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SceneManagement;
 
-[System.Serializable]
-public class DataRetriever  {
+
+public class DataRetriever : MonoBehaviour {
     public static Scene currentLevel;//get current level the player is on
     List<Building> buildings = new List<Building>();//get teams and hitpoints
     protected static Game Game;//get current day, current team
@@ -43,6 +43,12 @@ public class DataRetriever  {
     }
 }
 
+[System.Serializable]
+public class AllMyData
+{
+
+}
+
 public class saver : MonoBehaviour
 {
     public static void saveGame()
@@ -50,7 +56,7 @@ public class saver : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "strategygamesave"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            DataRetriever dr = new DataRetriever();
+            AllMyData dr = new AllMyData();
             FileStream fs = File.Open(Application.persistentDataPath + "strategygamesave", FileMode.Open);
             bf.Serialize(fs, dr);
             fs.Close();
@@ -58,7 +64,7 @@ public class saver : MonoBehaviour
         else
         {
             BinaryFormatter bf = new BinaryFormatter();
-            DataRetriever dr = new DataRetriever();
+            AllMyData dr = new AllMyData();
             FileStream fs = File.Create(Application.persistentDataPath + "strategygamesave");
             bf.Serialize(fs, dr);
             fs.Close();
