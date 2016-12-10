@@ -4,7 +4,7 @@ public class Team
 {
 	public int TeamNo = -1;
 
-	public int Resources = 4000;
+	public int Resources = 1000;
 	public List<Unit> Units = new List<Unit>();
 	public List<Building> Buildings = new List<Building>();
 

@@ -84,7 +84,7 @@ public class Unit : MonoBehaviour
                 Range = 5;
                 AttackRange = 0;
                 break;
-            case 3: //Laringitis
+            case 3: //The Quacker
                 Range = 5;
                 AttackRange = 5;
                 break;
@@ -439,7 +439,7 @@ public class Unit : MonoBehaviour
 
         if (UnitsInAttackRange.Count != 0)
             items.Add("Emit");
-        if (BuildingOn != null && BuildingOn.Team != Team)
+        if (BuildingOn != null && BuildingOn.Team != Team && !(this.Type==2 && BuildingOn.Type == Building.EC))
             items.Add("Capture");
         items.Add("Wait");
 
