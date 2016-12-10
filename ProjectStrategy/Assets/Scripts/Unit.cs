@@ -328,7 +328,7 @@ public class Unit : MonoBehaviour
 		int count = 100;
 
         
-		if (Type == 0 || Type == 2) {
+		if (Type == 0) {
 
 			for (int i = 0; i < count; i++) {
 				system.Emit (i);
@@ -360,7 +360,7 @@ public class Unit : MonoBehaviour
 
         //Used to do ranged attack. Sets color depending on what team is attacking. ~Erik
         
-		if (Type == 1) {
+		if (Type == 1 || Type == 3) {
             GameObject Ranged = Instantiate(ranged);
             Ranged.transform.position = CurrentAttackTarget.transform.position;
             system = Ranged.GetComponent<ParticleSystem> ();
