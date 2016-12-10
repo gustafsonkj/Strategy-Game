@@ -7,18 +7,18 @@ using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class DataRetriever : MonoBehaviour {
-    public Scene currentLevel;//get current level the player is on
+    public static Scene currentLevel;//get current level the player is on
     List<Building> buildings = new List<Building>();//get teams and hitpoints
-    protected Game Game;//get current day, current team
+    protected static Game Game;//get current day, current team
     //get the unit lists from the team script
-    List<Unit> unitsA;//team 1 units
-    List<Unit> unitsB;//team 2 units
-    List<Building> buildingsA;//team 1 buildings
-    List<Building> buildingsB;//team 2 buildings
-    public int teamARes;
-    public int teamBRes;
-    public int Day;
-    public Team currentTeam;
+    private static List<Unit> unitsA;//team 1 units
+    private static List<Unit> unitsB;//team 2 units
+    private static List<Building> buildingsA;//team 1 buildings
+    static List<Building> buildingsB;//team 2 buildings
+    public static int teamARes;
+    public static int teamBRes;
+    public static int Day;
+    public static Team currentTeam;
 
     // Use this for initialization
     void Start ()
@@ -26,7 +26,7 @@ public class DataRetriever : MonoBehaviour {
         //saveAllData();
 	}
 
-    public void saveAllData()
+    public static void saveAllData()
     {
         if (Game != null)
             return;
@@ -45,7 +45,7 @@ public class DataRetriever : MonoBehaviour {
 
 public class saver : MonoBehaviour
 {
-    public void saveGame()
+    public static void saveGame()
     {
         if (File.Exists(Application.persistentDataPath + "strategygamesave"))
         {
