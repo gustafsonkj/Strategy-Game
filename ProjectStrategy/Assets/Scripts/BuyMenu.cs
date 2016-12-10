@@ -12,7 +12,7 @@ public class BuyMenu : Menu
 
     private int[] prices = new int[]
     {
-        10000, 12000, 14000, 18000, 20000, 24000
+        10000, 10000, 10000, 15000, 15000, 15000
 	};
 
 	protected override void Init()
@@ -107,9 +107,9 @@ public class BuyMenu : Menu
                 }
 			    break;
             case "Basic Green":
-                if (Game.GetCurrentTeam().Resources < prices[0])
+                if (Game.GetCurrentTeam().Resources < prices[1])
                     break;
-                Game.GetCurrentTeam().Resources -= prices[0];
+                Game.GetCurrentTeam().Resources -= prices[1];
                 Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
@@ -132,9 +132,9 @@ public class BuyMenu : Menu
                 }
                 break;
             case "Basic Blue":
-                if (Game.GetCurrentTeam().Resources < prices[0])
+                if (Game.GetCurrentTeam().Resources < prices[2])
                     break;
-                Game.GetCurrentTeam().Resources -= prices[0];
+                Game.GetCurrentTeam().Resources -= prices[2];
                 Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
@@ -157,9 +157,9 @@ public class BuyMenu : Menu
                 }
                 break;
             case "Ranged Red":
-                if (Game.GetCurrentTeam().Resources < prices[0])
+                if (Game.GetCurrentTeam().Resources < prices[3])
                     break;
-                Game.GetCurrentTeam().Resources -= prices[0];
+                Game.GetCurrentTeam().Resources -= prices[3];
                 Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
@@ -182,9 +182,9 @@ public class BuyMenu : Menu
                 }
                 break;
             case "Ranged Green":
-                if (Game.GetCurrentTeam().Resources < prices[0])
+                if (Game.GetCurrentTeam().Resources < prices[4])
                     break;
-                Game.GetCurrentTeam().Resources -= prices[0];
+                Game.GetCurrentTeam().Resources -= prices[4];
                 Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
@@ -207,9 +207,9 @@ public class BuyMenu : Menu
                 }
                 break;
             case "Ranged Blue":
-                if (Game.GetCurrentTeam().Resources < prices[0])
+                if (Game.GetCurrentTeam().Resources < prices[5])
                     break;
-                Game.GetCurrentTeam().Resources -= prices[0];
+                Game.GetCurrentTeam().Resources -= prices[5];
                 Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {

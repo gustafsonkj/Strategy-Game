@@ -4,15 +4,24 @@ public class Team
 {
 	public int TeamNo = -1;
 
-	public int Resources = 8000;
+	public int Resources = 4000;
 	public List<Unit> Units = new List<Unit>();
 	public List<Building> Buildings = new List<Building>();
 
-	private const int INCOME_PER_BUILDING = 3000;
+	private const int INCOME_PER_RESOURCE = 5000;
 
 	public void GainIncome()
 	{
-		Resources += INCOME_PER_BUILDING * Buildings.Count;
+        int numResourceNodes = 0;
+        foreach (Building b in Buildings)
+        {
+            if (b.Type == Building.RESOURCE)
+            {
+                numResourceNodes++;
+            }
+        }
+        Resources += 1000;
+        Resources += INCOME_PER_RESOURCE * numResourceNodes;
 	}
 
 	public void ResetUnits()
@@ -33,9 +42,9 @@ public class Team
 		{
 			if (Units[i].GetHitPoints() != 10 && Units[i].BuildingOn != null && Units[i].BuildingOn.Team == Units[i].Team)
 			{
-				if (Units[i].BuildingOn.Type == Building.CITY)
+				if (Units[i].BuildingOn.Type == Building.RESOURCE)
 					Units[i].Heal(1);
-				else if (Units[i].BuildingOn.Type == Building.BASE)
+				else if (Units[i].BuildingOn.Type == Building.GENERATOR)
 					Units[i].Heal(2);
 			}
 		}
