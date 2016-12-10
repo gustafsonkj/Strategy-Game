@@ -2,50 +2,44 @@
 
 public class BuyMenu : Menu
 {
-	public Texture2D Icon_Red_Tank;
-	public Texture2D Icon_Blue_Tank;
+    public Texture2D Icon_Red_Tank;
+    public Texture2D Icon_Blue_Tank;
 
-	private Building Building;
+    private Building Building;
 
-	private Rect Price_Rect;
-	private GUIStyle Price_Style;
+    private Rect Price_Rect;
+    private GUIStyle Price_Style;
 
     private int[] prices = new int[]
     {
         10000, 10000, 10000, 15000, 15000, 15000, 50000, 50000
-	};
+    };
 
-	protected override void Init()
-	{
-		base.Init();
+    protected override void Init()
+    {
+        base.Init();
 
-		BoxWidth = 450;
+        BoxWidth = 450;
 
-		Price_Style = new GUIStyle(ButtonStyle);
-		Price_Style.alignment = TextAnchor.UpperRight;
-		Price_Style.contentOffset = new Vector2(-2, 0);
-	}
+        Price_Style = new GUIStyle(ButtonStyle);
+        Price_Style.alignment = TextAnchor.UpperRight;
+        Price_Style.contentOffset = new Vector2(-2, 0);
+    }
 
-	public void SetBuilding(Building building)
-	{
-		Building = building; 
+    public void SetBuilding(Building building)
+    {
+        Building = building;
 
-		ClearItems();
+        ClearItems();
 
-		AddItem("Basic Red", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+        AddItem("Basic Red", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
         AddItem("Basic Green", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
         AddItem("Basic Blue", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
         AddItem("Ranged Red", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
         AddItem("Ranged Green", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
         AddItem("Ranged Blue", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
-        if (Game.GetCurrentTeam().TeamNo == 1)
-        {
-            AddItem("The Quacker Yellow", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
-        }
-        else if (Game.GetCurrentTeam().TeamNo == 1)
-        {
-            AddItem("The Quacker Magenta", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
-        }
+        AddItem("The Quacker Yellow", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
+        AddItem("The Quacker Magenta", Building.Team == 2 ? Icon_Blue_Tank : Icon_Red_Tank);
     }
 
     public override void Show(bool middleOfScreen, Vector3 position)
