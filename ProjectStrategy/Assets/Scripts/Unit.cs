@@ -53,6 +53,7 @@ public class Unit : MonoBehaviour
 
     // Sound
     public AudioClip Sound_Fire;
+    public AudioClip Sound_Wave;
 
     // Use this for initialization
     void Start()
@@ -426,6 +427,10 @@ public class Unit : MonoBehaviour
     {
         GameObject Ranged = Instantiate(ranged);
         Ranged.transform.position = this.transform.position;
+
+        if (Sound_Wave != null)
+            GetComponent<AudioSource>().PlayOneShot(Sound_Wave);
+        
         system = Ranged.GetComponent<ParticleSystem>();
         var col = system.colorOverLifetime;
         col.enabled = true;

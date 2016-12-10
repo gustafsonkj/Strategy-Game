@@ -7,6 +7,7 @@ public class Building : MonoBehaviour
     protected Game Game;
     private bool Selected = false;
     public Unit UnitOnTop;
+    public AudioClip Sound_Building;
 
     private const int HitPointsDefault = 20;
     private int HitPoints = HitPointsDefault;
@@ -99,7 +100,7 @@ public class Building : MonoBehaviour
         if (HitPoints - hitPoints <= 0)
         {
             int previousTeam = Team;
-
+            GetComponent<AudioSource>().PlayOneShot(Sound_Building);
             SetTeam(team);
             HitPoints = GetHitPointsMax();
 

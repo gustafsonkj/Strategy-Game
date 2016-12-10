@@ -4,7 +4,7 @@ public class BuyMenu : Menu
 {
     public Texture2D Icon_Red_Tank;
     public Texture2D Icon_Blue_Tank;
-
+    public AudioClip Sound_NewUnit;
     private Building Building;
 
     private Rect Price_Rect;
@@ -87,6 +87,7 @@ public class BuyMenu : Menu
 			    Transform unitObject;
 			    Unit unit;
 			    Game.HUD.SetResources (Game.GetCurrentTeam ().Resources);
+                GetComponent<AudioSource>().PlayOneShot(Sound_NewUnit);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
                     unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
@@ -112,6 +113,7 @@ public class BuyMenu : Menu
                     break;
                 Game.GetCurrentTeam().Resources -= prices[1];
                 Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
+                GetComponent<AudioSource>().PlayOneShot(Sound_NewUnit);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
                     unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
@@ -138,6 +140,7 @@ public class BuyMenu : Menu
                     break;
                 Game.GetCurrentTeam().Resources -= prices[2];
                 Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
+                GetComponent<AudioSource>().PlayOneShot(Sound_NewUnit);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
                     unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
@@ -164,6 +167,7 @@ public class BuyMenu : Menu
                     break;
                 Game.GetCurrentTeam().Resources -= prices[3];
                 Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
+                GetComponent<AudioSource>().PlayOneShot(Sound_NewUnit);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
                     unitObject = Instantiate(Game.Unit_Ranged, Building.transform.position, Quaternion.identity) as Transform;
@@ -190,6 +194,7 @@ public class BuyMenu : Menu
                     break;
                 Game.GetCurrentTeam().Resources -= prices[4];
                 Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
+                GetComponent<AudioSource>().PlayOneShot(Sound_NewUnit);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
                     unitObject = Instantiate(Game.Unit_Ranged, Building.transform.position, Quaternion.identity) as Transform;
@@ -216,6 +221,7 @@ public class BuyMenu : Menu
                     break;
                 Game.GetCurrentTeam().Resources -= prices[5];
                 Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
+                GetComponent<AudioSource>().PlayOneShot(Sound_NewUnit);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
                     unitObject = Instantiate(Game.Unit_Ranged, Building.transform.position, Quaternion.identity) as Transform;
@@ -242,6 +248,7 @@ public class BuyMenu : Menu
                     break;
                 Game.GetCurrentTeam().Resources -= prices[6];
                 Game.HUD.SetResources(Game.GetCurrentTeam().Resources);
+                GetComponent<AudioSource>().PlayOneShot(Sound_NewUnit);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
                     unitObject = Instantiate(Game.Unit_TheQuacker, Building.transform.position, Quaternion.identity) as Transform;
