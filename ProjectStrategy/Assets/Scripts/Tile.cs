@@ -61,8 +61,8 @@ public class Tile : MonoBehaviour
     }
     void OnMouseEnter()
     {
-        Debug.Log(TilePosition());
-        Debug.Log(Game.Level.GetTile(TilePosition()));
+        //Debug.Log(TilePosition());
+        //Debug.Log(Game.Level.GetTile(TilePosition()));
         if (Game.HUD.ActionPopup.Visible)
             return;
 

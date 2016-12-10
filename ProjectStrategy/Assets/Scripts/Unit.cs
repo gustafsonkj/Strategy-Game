@@ -652,8 +652,19 @@ public class Unit : MonoBehaviour
             int newX = x + movePos.x; //roundtoint was here before??
             int newY = y + movePos.y;
 
-            if (Game.Level.ValidTile(newX, newY) && Game.Level.GetTile(newX, newY).ValidPath())
-                yield return new Point(newX, newY);
+            if (Game.Level.levelNumber == 1)
+            {
+                if (Game.Level.ValidTile(newX, newY) && Game.Level.GetTile(newX, newY).ValidPath())
+                    yield return new Point(newX, newY);
+            }
+            else
+            {
+                if (Game.Level.GetTile(newX, newY) != null)
+                {
+                    if (Game.Level.ValidTile(newX, newY) && Game.Level.GetTile(newX, newY).ValidPath())
+                        yield return new Point(newX, newY);
+                }
+            }
         }
     }
 

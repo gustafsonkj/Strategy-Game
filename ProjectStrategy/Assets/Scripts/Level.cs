@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 public class Level : MonoBehaviour
 {
-
+    public int levelNumber;
+    public int offset;
     public List<List<Tile>> Tiles;
 
     public Rect Bounds = new Rect();
@@ -31,30 +32,37 @@ public class Level : MonoBehaviour
         }
 
         // Setup 2D Array
-        Tiles = new List<List<Tile>>();
-        for (int y = 0; y < Bounds.height + 1; y++)
+        if (levelNumber == 1)
         {
-            Tiles.Add(new List<Tile>());
-            for (int x = 0; x < Bounds.width + 1; x++)
-                Tiles[y].Add(null);
+            Tiles = new List<List<Tile>>();
+            for (int y = 0; y < Bounds.height + 1; y++)
+            {
+                Tiles.Add(new List<Tile>());
+                for (int x = 0; x < Bounds.width + 1; x++)
+                    Tiles[y].Add(null);
+            }
+        }
+        else if (levelNumber==2)
+        {
+            Tiles = new List<List<Tile>>();
+            for (int y = 0; y < 75; y++) // X-axis
+            {
+                Tiles.Add(new List<Tile>()); // Z-Axis
+                for (int x = 0; x < 75; x++)
+                    Tiles[y].Add(null);
+            }
         }
 
         // Add Tiles into Array
-        Debug.Log(TileObjects.childCount);
+        //Debug.Log(TileObjects.childCount);
         for (int i = 0; i < TileObjects.childCount; i++)
         {
-            if (TileObjects.GetChild(i).gameObject.GetComponent<Tile>() == null)
-            {
-                Debug.Log(TileObjects.childCount);
-                continue;
-            }
-
             Vector3 pos = TileObjects.GetChild(i).gameObject.transform.position;
 
-            if (Tiles[Mathf.RoundToInt(pos.z)][Mathf.RoundToInt(pos.x)] != null && TileObjects.GetChild(i).gameObject.GetComponent<Tile>().Type != Tile.BRIDGE)
+            if (Tiles[Mathf.RoundToInt(pos.z)+offset][Mathf.RoundToInt(pos.x)+offset] != null)
                 continue;
 
-            Tiles[Mathf.RoundToInt(pos.z)][Mathf.RoundToInt(pos.x)] = TileObjects.GetChild(i).gameObject.GetComponent<Tile>();
+            Tiles[Mathf.RoundToInt(pos.z)+offset][Mathf.RoundToInt(pos.x)+offset] = TileObjects.GetChild(i).gameObject.GetComponent<Tile>();
             //The titles of the tile objects inside "Tiles" have the numbers reversed. Example: transform.position of Tile_Ground 0,1 is ACTUALLY Z1, X0, despite the format of the title of the tile being z, x
             //Debug.Log(Tiles[Mathf.RoundToInt(pos.z)][Mathf.RoundToInt(pos.x)]);
         }
@@ -78,7 +86,7 @@ public class Level : MonoBehaviour
     public Tile GetTile(Point tilePosition, bool check = false) // Zac Lindsey
     {
         if (!check)
-            return Tiles[tilePosition.y][tilePosition.x];
+            return Tiles[tilePosition.y+offset][tilePosition.x+offset];
         else
         {
             try
@@ -87,18 +95,28 @@ public class Level : MonoBehaviour
             }
             catch (System.IndexOutOfRangeException ex)
             {
-                //System.ArgumentException argEx = new System.ArgumentException("Index is out of range", "index", ex);
-                //throw argEx;
-                return null;
+                System.ArgumentException argEx = new System.ArgumentException("Index is out of range", "index", ex);
+                throw argEx;
             }
         }
     }
-    //public Tile GetTile(Point tilePosition) { return Tiles[tilePosition.y][tilePosition.x]; }
-    public Tile GetTile(int x, int y) { return Tiles[y][x]; }
+    /*public Tile GetTile(int x, int y) {return Tiles[y+offset][x+offset]; }*/
+    public Tile GetTile(int x, int y)
+    {
+        
+        return GetTile(new Point(x, y));
+    }
 
-    public bool ValidTile(int x, int y) { return x >= 0 && y >= 0 && x <= Bounds.width && y <= Bounds.height; }
+    public bool ValidTile(int x, int y) // Modified -ZL
+    {
+        if (levelNumber == 1)
+            return x >= 0 && y >= 0 && x <= Bounds.width && y <= Bounds.height;
+        else
+            return true;
+    }
     public bool ValidTile(Point tilePosition) { return ValidTile(tilePosition.x, tilePosition.y); }
 
+    /* //Zac Lindsey
     public IEnumerable<Point> TilePositionsWithinRange(Point tile, float range)
     {
         int r = (int)range;
@@ -110,7 +128,26 @@ public class Level : MonoBehaviour
                     yield return new Point(x, y);
             }
         }
+    }*/
+
+    public IEnumerable<Point> AllTilePositions() // Zac Lindsey
+    {
+        List<Point> validPoints = new List<Point>();
+        foreach (List<Tile> lt in Tiles)
+        {
+            foreach (Tile t in lt)
+            {
+                if (t!= null)
+                {
+                    validPoints.Add(new Point(t.TilePosition().x, t.TilePosition().y));
+                }
+            }
+        }
+        foreach (Point validPoint in validPoints)
+            yield return new Point(validPoint.x, validPoint.y);
     }
+
+    /* //Old
     public IEnumerable<Point> AllTilePositions()
     {
         for (int y = 0; y < Tiles.Count; y++)
@@ -120,5 +157,5 @@ public class Level : MonoBehaviour
                 yield return new Point(x, y);
             }
         }
-    }
+    }*/
 }
