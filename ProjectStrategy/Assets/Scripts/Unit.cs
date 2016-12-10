@@ -80,8 +80,12 @@ public class Unit : MonoBehaviour
                 AttackRange = 4;
                 break;
             case 2: //Harvester
-                Range = 2;
-                AttackRange = 1;
+                Range = 5;
+                AttackRange = 0;
+                break;
+            case 3: //Laringitis
+                Range = 5;
+                AttackRange = 5;
                 break;
             default:
                 break;
