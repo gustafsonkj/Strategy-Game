@@ -22,6 +22,10 @@ public class ActionPopupMenu : Menu
 			if (Game.Selector.CurrentUnit != null)
 				Game.Selector.CurrentUnit.SetAttackTarget();
 			break;
+        case "Shockwave":
+            if (Game.Selector.CurrentUnit != null)
+                Game.Selector.CurrentUnit.Shockwave();
+            break;
 		case "Capture":
 			if (Game.Selector.CurrentUnit != null)
 				Game.Selector.CurrentUnit.CaptureBuilding();

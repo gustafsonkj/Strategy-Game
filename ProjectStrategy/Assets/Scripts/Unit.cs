@@ -86,7 +86,7 @@ public class Unit : MonoBehaviour
                 break;
             case 3: //The Quacker
                 Range = 5;
-                AttackRange = 5;
+                AttackRange = 4;
                 break;
             default:
                 break;
@@ -421,7 +421,43 @@ public class Unit : MonoBehaviour
     }
     public bool InAttackRangeList(Unit unit) { return UnitsInAttackRange.IndexOf(unit) != -1; }
 
+    public void Shockwave()
+    {
+        GameObject Ranged = Instantiate(ranged);
+        Ranged.transform.position = this.transform.position;
+        system = Ranged.GetComponent<ParticleSystem>();
+        var col = system.colorOverLifetime;
+        col.enabled = true;
+        Gradient grad = new Gradient();
+        if (Team == 1)
+        {
+            grad.SetKeys(new GradientColorKey[] {
+                    new GradientColorKey (Color.yellow, 0.0f),
+                    new GradientColorKey (Color.white, 1.0f),
+                }, new GradientAlphaKey[] {
+                    new GradientAlphaKey (2.0f, 0.0f),
+                    new GradientAlphaKey (0.0f, 0.0f)
+                });
+        }
+        else {
+            grad.SetKeys(new GradientColorKey[] {
+                    new GradientColorKey (Color.magenta, 0.0f),
+                    new GradientColorKey (Color.white, 1.0f)
+                }, new GradientAlphaKey[] {
+                    new GradientAlphaKey (2.0f, 0.0f),
+                    new GradientAlphaKey (0.0f, 1.0f)
+                });
 
+        }
+        col.color = grad;
+        system.Emit(75);
+        GetUnitsInAttackRange();
+        foreach (Unit u in UnitsInAttackRange)
+        {
+            u.Damage(5.0f);
+        }
+        AcceptMove();
+    }
     public void CaptureBuilding()
     {
         if (BuildingOn == null)
@@ -437,7 +473,11 @@ public class Unit : MonoBehaviour
     {
         List<string> items = new List<string>();
 
-        if (UnitsInAttackRange.Count != 0)
+        if (this.Type == 3)
+            items.Add("Shockwave");
+        if (UnitsInAttackRange.Count != 0
+            && this.Type != 3
+            && this.Type != 4)
             items.Add("Emit");
         if (BuildingOn != null && BuildingOn.Team != Team 
             && !(this.Type==2 && BuildingOn.Type == Building.EC)
