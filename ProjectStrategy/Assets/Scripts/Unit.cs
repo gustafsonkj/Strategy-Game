@@ -79,6 +79,10 @@ public class Unit : MonoBehaviour
                 Range = 2;
                 AttackRange = 4;
                 break;
+            case 2: //Harvester
+                Range = 2;
+                AttackRange = 1;
+                break;
             default:
                 break;
     }
@@ -320,7 +324,7 @@ public class Unit : MonoBehaviour
 		int count = 100;
 
         
-		if (Type == 0) {
+		if (Type == 0 || Type == 2) {
 
 			for (int i = 0; i < count; i++) {
 				system.Emit (i);
