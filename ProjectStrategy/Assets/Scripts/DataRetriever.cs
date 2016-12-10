@@ -48,7 +48,7 @@ public class DataRetriever : MonoBehaviour {
         currentLevel = SceneManager.GetActiveScene().buildIndex;
         foreach(Unit u in unitsA)
         {
-            unitPositionsTeam1.Add(u.transform.position);
+            //unitPositionsTeam1.Add(u.transform.position);
             unitTypesTeam1.Add(u.Type);
             unitColorsTeam1.Add(u.UnitColor);
             unitStrengthsTeam1.Add(u.GetHitPoints());
