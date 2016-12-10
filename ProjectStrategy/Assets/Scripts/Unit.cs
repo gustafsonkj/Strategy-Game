@@ -85,8 +85,9 @@ public class Unit : MonoBehaviour
                 AttackRange = 0;
                 break;
             case 3: //The Quacker
-                Range = 5;
+                Range = 3;
                 AttackRange = 4;
+                HitPoints = 15;
                 break;
             default:
                 break;
@@ -379,8 +380,8 @@ public class Unit : MonoBehaviour
 			} 
 			else {
 				grad.SetKeys (new GradientColorKey[] {
-					new GradientColorKey (Color.blue, 0.0f),
-					new GradientColorKey (Color.magenta, 1.0f)
+					new GradientColorKey (Color.magenta, 0.0f),
+					new GradientColorKey (Color.white, 1.0f)
 				}, new GradientAlphaKey[] {
 					new GradientAlphaKey (2.0f, 0.0f),
 					new GradientAlphaKey (0.0f, 1.0f)
@@ -398,14 +399,14 @@ public class Unit : MonoBehaviour
             //	system.Emit (count);
             //} 
 
-            StartCoroutine(DestroyRanged(Ranged));
+            StartCoroutine(DestroyRanged(Ranged, 4));
             AcceptMove();
         }
         
     }
-	IEnumerator DestroyRanged(GameObject ranged)	//Used to destroy ranged attack object after X amount of time ~ Erik 
+	IEnumerator DestroyRanged(GameObject ranged, int seconds)	//Used to destroy ranged attack object after X amount of time ~ Erik 
 	{
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(seconds);
 		DestroyImmediate(ranged.gameObject);
 	}
     private void GetUnitsInAttackRange()
@@ -456,7 +457,9 @@ public class Unit : MonoBehaviour
         {
             u.Damage(5.0f);
         }
+        
         AcceptMove();
+        StartCoroutine(DestroyRanged(Ranged, 6));
     }
     public void CaptureBuilding()
     {

@@ -12,7 +12,7 @@ public class BuyMenu : Menu
 
     private int[] prices = new int[]
     {
-        10000, 10000, 10000, 15000, 15000, 15000, 50000
+        10000, 10000, 10000, 15000, 15000, 15000, 99999
     };
 
     protected override void Init()
