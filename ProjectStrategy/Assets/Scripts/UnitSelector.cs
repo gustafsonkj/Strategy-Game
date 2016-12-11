@@ -145,8 +145,9 @@ public class UnitSelector : MonoBehaviour
         UnselectCurrentTile();
         CurrentTile = tile;
 
-        if (tile == null)
-            return;
+		if (tile == null) {
+			return;
+		}
         tile.gameObject.GetComponent<Tile>().Select();
 
         transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y + 1, tile.transform.position.z);

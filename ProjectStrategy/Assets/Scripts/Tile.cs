@@ -75,7 +75,7 @@ public class Tile : MonoBehaviour
             Game.HUD.SetTileInfo(BuildingOnTop.GetTypeName(), BuildingOnTop.Team, BuildingOnTop.GetHitPoints());
         else
             Game.HUD.SetTileInfo(GetTypeName());
-
+		//Debug.Log ("Select");
         TintAsSelected();
     }
 
