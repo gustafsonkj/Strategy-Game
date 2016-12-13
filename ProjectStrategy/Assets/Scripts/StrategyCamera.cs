@@ -36,9 +36,9 @@ public class StrategyCamera : MonoBehaviour {
             transform.Translate((Vector3.forward - transform.forward) * scrollSpeed * Time.deltaTime);
 
         //// Zooming
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize < 18)
             GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize++;
-        else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0 && GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize > 1)
             GameObject.Find("Main Camera").GetComponent<Camera>().orthographicSize--;
     }
 }
