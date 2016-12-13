@@ -46,9 +46,11 @@ public class DataRetriever : MonoBehaviour {
         Day = Game.Day;
         currentTeam = Game.CurrentTeam;
         currentLevel = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log(unitsA);
         foreach(Unit u in unitsA)
         {
-            //unitPositionsTeam1.Add(u.transform.position);
+            Debug.Log(u);
+            unitPositionsTeam1.Add(u.transform.position);
             unitTypesTeam1.Add(u.Type);
             unitColorsTeam1.Add(u.UnitColor);
             unitStrengthsTeam1.Add(u.GetHitPoints());
