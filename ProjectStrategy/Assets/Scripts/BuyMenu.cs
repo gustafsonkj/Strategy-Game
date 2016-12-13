@@ -80,14 +80,14 @@ public class BuyMenu : Menu
 
 		switch (item)
 		{
-		    case "Basic Red":
-			    if (Game.GetCurrentTeam ().Resources < prices [0])
-				    break;
-			    Game.GetCurrentTeam ().Resources -= prices [0];
-			    Transform unitObject;
-			    Unit unit;
-			    Game.HUD.SetResources (Game.GetCurrentTeam ().Resources);
-                GetComponent<AudioSource>().PlayOneShot(Sound_NewUnit);
+		case "Basic Red":
+			if (Game.GetCurrentTeam ().Resources < prices [0])
+				break;
+			Game.GetCurrentTeam ().Resources -= prices [0];
+			Transform unitObject;
+			Unit unit;
+			Game.HUD.SetResources (Game.GetCurrentTeam ().Resources);
+			GetComponent<AudioSource> ().PlayOneShot (Sound_NewUnit);
                 if (Game.GetCurrentTeam().TeamNo == 1)
                 {
                     unitObject = Instantiate(Game.Unit_Basic, Building.transform.position, Quaternion.identity) as Transform;
