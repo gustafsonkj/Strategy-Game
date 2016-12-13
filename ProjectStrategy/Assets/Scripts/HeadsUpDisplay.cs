@@ -59,7 +59,7 @@ public class HeadsUpDisplay : MonoBehaviour
 	private const string Tutorial_Message =
 		"Forces of light and dark have began to CLASH!\n" +
 		"Only one can reign supreme. \n" + " CSC 323 will never be the same........\n\n\n" +
-		"Capturing Buildings take multiple turns, make sure to select 'Capture' each time.\n\n" +
+		"Capturing Buildings takes multiple turns, make sure to select 'Capture' each time.\n\n" +
 		"Play using the Mouse/Mouse Buttons/Mouse Wheel.";
 
 	// Day Change
