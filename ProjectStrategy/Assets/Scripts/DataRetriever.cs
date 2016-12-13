@@ -36,6 +36,13 @@ public class DataRetriever : MonoBehaviour {
     {
         if (Game != null)
             return;
+
+		//Creating shallow copies may cause problems -ZL
+
+		// Try something like:
+
+		//list<Obj>  list2 = new list<Obj>(list1.Select(x => x?.Clone()));
+
         Game = GameObject.Find("Game").GetComponent<Game>();
         unitsA = Game.Teams[0].Units;
         unitsB = Game.Teams[1].Units;
