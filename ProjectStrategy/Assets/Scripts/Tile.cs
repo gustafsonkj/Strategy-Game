@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Tile : MonoBehaviour
+public class Tile : Level
 {
 
     protected Game Game;
+
 
     public Building BuildingOnTop;
     private Transform Arrow;
@@ -31,11 +32,22 @@ public class Tile : MonoBehaviour
     public const int R = 4;
     public const int G = 5;
     public const int B = 6;
+	public 
 
     // Use this for initialization
     void Start()
     {
-        Game = GameObject.Find("Game").GetComponent<Game>();
+		
+			try
+		{
+			Game = GameObject.Find ("Game").GetComponent<Game> ();
+
+		}	
+		catch {
+			Debug.Log ("This is not the main menu");
+		}
+		
+		
     }
 
     void OnMouseDown()
@@ -75,7 +87,7 @@ public class Tile : MonoBehaviour
             Game.HUD.SetTileInfo(BuildingOnTop.GetTypeName(), BuildingOnTop.Team, BuildingOnTop.GetHitPoints());
         else
             Game.HUD.SetTileInfo(GetTypeName());
-		//Debug.Log ("Select");
+
         TintAsSelected();
     }
 

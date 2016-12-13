@@ -10,66 +10,71 @@ public class DataRetriever : MonoBehaviour {
     public static Scene currentLevel1;//get current level the player is on
     protected static Game Game;//get current day, current team
     //get the unit lists from the team script
-    public static List<Unit> unitsA;//team 1 units
-    public static List<Unit> unitsB;//team 2 units
-    public static List<Building> buildingsA;//team 1 buildings
-    public static List<Building> buildingsB;//team 2 buildings
     public static int teamARes;
     public static int teamBRes;
     public static int Day;
     public static int currentTeam;
     public static int currentLevel;
-    public static List<Vector3> unitPositionsTeam1;
-    public static List<Vector3> unitPositionsTeam2;
-    public static List<int> unitTypesTeam1;
-    public static List<int> unitTypesTeam2;
-    public static List<int> unitColorsTeam1;
-    public static List<int> unitColorsTeam2;
-    public static List<float> unitStrengthsTeam1;
-    public static List<float> unitStrengthsTeam2;
-    public static List<int> buildHPTeam1;
-    public static List<int> buildHPTeam2;
-    public static List<int> buildTypesTeam1;
-    public static List<int> buildTypesTeam2;
+	public static List<Vector3> unitPositionsTeam1 = new List<Vector3>();
+	public static List<Vector3> unitPositionsTeam2 = new List<Vector3>();
+	public static List<int> unitTypesTeam1 = new List<int>();
+	public static List<int> unitTypesTeam2 = new List<int>();
+	public static List<int> unitColorsTeam1 = new List<int>();
+	public static List<int> unitColorsTeam2 = new List<int>();
+	public static List<float> unitStrengthsTeam1 = new List<float>();
+	public static List<float> unitStrengthsTeam2 = new List<float>();
+	public static List<int> buildHPTeam1 = new List<int>();
+	public static List<int> buildHPTeam2 = new List<int>();
+	public static List<int> buildTypesTeam1 = new List<int>();
+	public static List<int> buildTypesTeam2 = new List<int>();
 
+	void Awake()
+	{
+		Game = GameObject.Find("Game").GetComponent<Game>();
+	}
+		
     public static void saveAllData()
     {
-        if (Game != null)
-            return;
-        Game = GameObject.Find("Game").GetComponent<Game>();
-        unitsA = Game.Teams[0].Units;
-        unitsB = Game.Teams[1].Units;
-        buildingsA = Game.Teams[0].Buildings;
-        buildingsB = Game.Teams[1].Buildings;
-        teamARes = Game.Teams[0].Resources;
-        teamBRes = Game.Teams[1].Resources;
         Day = Game.Day;
+
         currentTeam = Game.CurrentTeam;
         currentLevel = SceneManager.GetActiveScene().buildIndex;
-        foreach(Unit u in unitsA)
+
+		Unit tempUnit;
+		foreach (GameObject go in GameObject.FindGameObjectsWithTag ("Unit"))
         {
-            //unitPositionsTeam1.Add(u.transform.position);
-            unitTypesTeam1.Add(u.Type);
-            unitColorsTeam1.Add(u.UnitColor);
-            unitStrengthsTeam1.Add(u.GetHitPoints());
+			tempUnit = go.GetComponent<Unit> ();
+			if (tempUnit.Team == 1) {
+				unitPositionsTeam1.Add (new Vector3(go.transform.position.x,
+													go.transform.position.y,
+													go.transform.position.z
+				));
+				unitTypesTeam1.Add (tempUnit.Type);
+				unitColorsTeam1.Add (tempUnit.UnitColor);
+				unitStrengthsTeam1.Add (tempUnit.GetHitPoints ());
+			} else if (tempUnit.Team == 2) {
+				unitPositionsTeam2.Add (new Vector3(go.transform.position.x,
+													go.transform.position.y,
+													go.transform.position.z
+				));
+				unitTypesTeam2.Add (tempUnit.Type);
+				unitColorsTeam2.Add (tempUnit.UnitColor);
+				unitStrengthsTeam2.Add (tempUnit.GetHitPoints ());
+			}
         }
-        foreach (Unit u in unitsB)
-        {
-            unitPositionsTeam2.Add(u.transform.position);
-            unitTypesTeam2.Add(u.Type);
-            unitColorsTeam2.Add(u.UnitColor);
-            unitStrengthsTeam2.Add(u.GetHitPoints());
-        }
-        foreach(Building b in buildingsA)
-        {
-            buildHPTeam1.Add(b.GetHitPoints());
-            buildTypesTeam1.Add(b.Type);
-        }
-        foreach(Building b in buildingsB)
-        {
-            buildHPTeam2.Add(b.GetHitPoints());
-            buildTypesTeam2.Add(b.Type);
-        }
+
+		Building tempBuild;
+		foreach (GameObject go in GameObject.FindGameObjectsWithTag ("Building"))
+		{
+			tempBuild = go.GetComponent<Building> ();
+			if (tempBuild.Team == 1) {
+				buildHPTeam1.Add(tempBuild.GetHitPoints());
+				buildTypesTeam1.Add(tempBuild.Type);
+			} else if (tempBuild.Team == 2) {
+				buildHPTeam2.Add(tempBuild.GetHitPoints());
+				buildTypesTeam2.Add(tempBuild.Type);
+			}
+		}
     }
 }
 
@@ -81,8 +86,8 @@ public class AllMyData
     public int currentDay = DataRetriever.Day;//game.day
     public int team1Resources = DataRetriever.teamARes;//game.teams[0].resources
     public int team2Resources = DataRetriever.teamBRes;//game.teams[1].resources
-    public List<Vector3> unitPositionsTeam1 = DataRetriever.unitPositionsTeam1;
-    public List<Vector3> unitPositionsTeam2 = DataRetriever.unitPositionsTeam2;
+    //public List<Vector3> unitPositionsTeam1 = DataRetriever.unitPositionsTeam1;
+    //public List<Vector3> unitPositionsTeam2 = DataRetriever.unitPositionsTeam2;
     public List<int> unitTypesTeam1 = DataRetriever.unitTypesTeam1;
     public List<int> unitTypesTeam2 = DataRetriever.unitTypesTeam2;
     public List<int> unitColorsTeam1 = DataRetriever.unitColorsTeam1;
@@ -99,6 +104,7 @@ public class saver : MonoBehaviour
 {
     public static void saveGame()
     {
+		Debug.Log (Application.persistentDataPath);
         if (File.Exists(Application.persistentDataPath + "/strategygame.save"))
         {
             BinaryFormatter bf = new BinaryFormatter();

@@ -5,6 +5,7 @@ public class Level : MonoBehaviour
 {
     public int levelNumber;
     public int offset;
+
     public List<List<Tile>> Tiles;
 
     public Rect Bounds = new Rect();
@@ -12,6 +13,7 @@ public class Level : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		
         // Setup Tile Selection
         Transform TileObjects = this.gameObject.transform.FindChild("Tiles");
 

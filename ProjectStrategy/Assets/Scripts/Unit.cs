@@ -56,7 +56,7 @@ public class Unit : MonoBehaviour
     public AudioClip Sound_Wave;
 
     // Use this for initialization
-    void Start()
+	void Start()
     {
         Init();
     }
