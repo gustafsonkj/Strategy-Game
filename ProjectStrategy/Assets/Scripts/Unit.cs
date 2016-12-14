@@ -717,12 +717,23 @@ public class Unit : MonoBehaviour
                 if (Game.Level.ValidTile(newX, newY) && Game.Level.GetTile(newX, newY).ValidPath())
                     yield return new Point(newX, newY);
             }
-            else
+            else if (Game.Level.levelNumber == 2)
             {
                 if (Game.Level.GetTile(newX, newY) != null)
                 {
                     if (Game.Level.ValidTile(newX, newY) && Game.Level.GetTile(newX, newY).ValidPath())
                         yield return new Point(newX, newY);
+                }
+            }
+            else
+            {
+                if (Game.Level.ValidTile(newX, newY))
+                {
+                    if (Game.Level.GetTile(newX, newY) != null)
+                    { 
+                        if (Game.Level.GetTile(newX, newY).ValidPath())
+                            yield return new Point(newX, newY);
+                    }
                 }
             }
         }

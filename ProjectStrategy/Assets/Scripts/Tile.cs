@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Tile : Level
+public class Tile : MonoBehaviour
 {
 
     protected Game Game;
@@ -32,7 +32,6 @@ public class Tile : Level
     public const int R = 4;
     public const int G = 5;
     public const int B = 6;
-	public 
 
     // Use this for initialization
     void Start()

@@ -32,7 +32,6 @@ public class Level : MonoBehaviour
             else if (pos.z > Bounds.height)
                 Bounds.height = pos.z;
         }
-
         // Setup 2D Array
         if (levelNumber == 1)
         {
@@ -54,17 +53,25 @@ public class Level : MonoBehaviour
                     Tiles[y].Add(null);
             }
         }
-
+        else if (levelNumber == 3)
+        {
+            Tiles = new List<List<Tile>>();
+            for (int y = 0; y < 41; y++) // X-axis
+            {
+                Tiles.Add(new List<Tile>()); // Z-Axis
+                for (int x = 0; x < 41; x++)
+                    Tiles[y].Add(null);
+            }
+        }
         // Add Tiles into Array
-        //Debug.Log(TileObjects.childCount);
         for (int i = 0; i < TileObjects.childCount; i++)
         {
             Vector3 pos = TileObjects.GetChild(i).gameObject.transform.position;
 
             if (Tiles[Mathf.RoundToInt(pos.z)+offset][Mathf.RoundToInt(pos.x)+offset] != null)
                 continue;
-
             Tiles[Mathf.RoundToInt(pos.z)+offset][Mathf.RoundToInt(pos.x)+offset] = TileObjects.GetChild(i).gameObject.GetComponent<Tile>();
+           
             //The titles of the tile objects inside "Tiles" have the numbers reversed. Example: transform.position of Tile_Ground 0,1 is ACTUALLY Z1, X0, despite the format of the title of the tile being z, x
             //Debug.Log(Tiles[Mathf.RoundToInt(pos.z)][Mathf.RoundToInt(pos.x)]);
         }
@@ -85,22 +92,9 @@ public class Level : MonoBehaviour
     }
 
 
-    public Tile GetTile(Point tilePosition, bool check = false) // Zac Lindsey
+    public Tile GetTile(Point tilePosition) // Zac Lindsey
     {
-        if (!check)
-            return Tiles[tilePosition.y+offset][tilePosition.x+offset];
-        else
-        {
-            try
-            {
-                return Tiles[tilePosition.y][tilePosition.x];
-            }
-            catch (System.IndexOutOfRangeException ex)
-            {
-                System.ArgumentException argEx = new System.ArgumentException("Index is out of range", "index", ex);
-                throw argEx;
-            }
-        }
+        return Tiles[tilePosition.y + offset][tilePosition.x + offset];
     }
     /*public Tile GetTile(int x, int y) {return Tiles[y+offset][x+offset]; }*/
     public Tile GetTile(int x, int y)
@@ -111,7 +105,7 @@ public class Level : MonoBehaviour
 
     public bool ValidTile(int x, int y) // Modified -ZL
     {
-        if (levelNumber == 1)
+        if (levelNumber == 1 || levelNumber == 3)
             return x >= 0 && y >= 0 && x <= Bounds.width && y <= Bounds.height;
         else
             return true;
