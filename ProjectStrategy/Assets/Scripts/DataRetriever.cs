@@ -17,7 +17,13 @@ public class DataRetriever : MonoBehaviour {
     public static int currentLevel;
 	public static List<Vector3> unitPositionsTeam1 = new List<Vector3>();
 	public static List<Vector3> unitPositionsTeam2 = new List<Vector3>();
-	public static List<int> unitTypesTeam1 = new List<int>();
+    public static List<float> unitPosX1 = new List<float>();
+    public static List<float> unitPosX2 = new List<float>();
+    public static List<float> unitPosY1 = new List<float>();
+    public static List<float> unitPosY2 = new List<float>();
+    public static List<float> unitPosZ1 = new List<float>();
+    public static List<float> unitPosZ2 = new List<float>();
+    public static List<int> unitTypesTeam1 = new List<int>();
 	public static List<int> unitTypesTeam2 = new List<int>();
 	public static List<int> unitColorsTeam1 = new List<int>();
 	public static List<int> unitColorsTeam2 = new List<int>();
@@ -75,6 +81,18 @@ public class DataRetriever : MonoBehaviour {
 				buildTypesTeam2.Add(tempBuild.Type);
 			}
 		}
+        foreach(Vector3 v in unitPositionsTeam1)
+        {
+            unitPosX1.Add(v.x);
+            unitPosY1.Add(v.y);
+            unitPosZ1.Add(v.z);
+        }
+        foreach(Vector3 v in unitPositionsTeam2)
+        {
+            unitPosX2.Add(v.x);
+            unitPosY2.Add(v.y);
+            unitPosZ2.Add(v.z);
+        }
     }
 }
 
@@ -86,8 +104,12 @@ public class AllMyData
     public int currentDay = DataRetriever.Day;//game.day
     public int team1Resources = DataRetriever.teamARes;//game.teams[0].resources
     public int team2Resources = DataRetriever.teamBRes;//game.teams[1].resources
-    //public List<Vector3> unitPositionsTeam1 = DataRetriever.unitPositionsTeam1;
-    //public List<Vector3> unitPositionsTeam2 = DataRetriever.unitPositionsTeam2;
+    public List<float> uPX1 = DataRetriever.unitPosX1;//position x team 1
+    public List<float> uPY1 = DataRetriever.unitPosY1;//y team 1
+    public List<float> uPZ1 = DataRetriever.unitPosZ1;//z team 1
+    public List<float> uPX2 = DataRetriever.unitPosX2;//x team 2
+    public List<float> uPY2 = DataRetriever.unitPosY2;//y team 2
+    public List<float> uPZ2 = DataRetriever.unitPosZ2;//z team 2
     public List<int> unitTypesTeam1 = DataRetriever.unitTypesTeam1;
     public List<int> unitTypesTeam2 = DataRetriever.unitTypesTeam2;
     public List<int> unitColorsTeam1 = DataRetriever.unitColorsTeam1;
