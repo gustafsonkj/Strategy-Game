@@ -17,12 +17,20 @@ public class DataRetriever : MonoBehaviour {
     public static int currentLevel;
 	public static List<Vector3> unitPositionsTeam1 = new List<Vector3>();
 	public static List<Vector3> unitPositionsTeam2 = new List<Vector3>();
-    public static List<float> unitPosX1 = new List<float>();
+    public static List<Vector3> buildPosT1 = new List<Vector3>();
+    public static List<Vector3> buildPosT2 = new List<Vector3>();
+    public static List<float> unitPosX1 = new List<float>();//unit positions
     public static List<float> unitPosX2 = new List<float>();
     public static List<float> unitPosY1 = new List<float>();
     public static List<float> unitPosY2 = new List<float>();
     public static List<float> unitPosZ1 = new List<float>();
     public static List<float> unitPosZ2 = new List<float>();
+    public static List<float> buildPosX1 = new List<float>();//build positions
+    public static List<float> buildPosX2 = new List<float>();
+    public static List<float> buildPosY1 = new List<float>();
+    public static List<float> buildPosY2 = new List<float>();
+    public static List<float> buildPosZ1 = new List<float>();
+    public static List<float> buildPosZ2 = new List<float>();
     public static List<int> unitTypesTeam1 = new List<int>();
 	public static List<int> unitTypesTeam2 = new List<int>();
 	public static List<int> unitColorsTeam1 = new List<int>();
@@ -76,10 +84,12 @@ public class DataRetriever : MonoBehaviour {
 			if (tempBuild.Team == 1) {
 				buildHPTeam1.Add(tempBuild.GetHitPoints());
 				buildTypesTeam1.Add(tempBuild.Type);
+                buildPosT1.Add(new Vector3(go.transform.position.x, go.transform.position.y, go.transform.position.z));
 			} else if (tempBuild.Team == 2) {
 				buildHPTeam2.Add(tempBuild.GetHitPoints());
 				buildTypesTeam2.Add(tempBuild.Type);
-			}
+                buildPosT2.Add(new Vector3(go.transform.position.x, go.transform.position.y, go.transform.position.z));
+            }
 		}
         foreach(Vector3 v in unitPositionsTeam1)
         {
@@ -93,6 +103,18 @@ public class DataRetriever : MonoBehaviour {
             unitPosY2.Add(v.y);
             unitPosZ2.Add(v.z);
         }
+        foreach(Vector3 v in buildPosT1)
+        {
+            buildPosX1.Add(v.x);
+            buildPosY1.Add(v.y);
+            buildPosZ1.Add(v.z);
+        }
+        foreach(Vector3 v in buildPosT2)
+        {
+            buildPosX2.Add(v.x);
+            buildPosY2.Add(v.y);
+            buildPosZ2.Add(v.z);
+        }
     }
 }
 
@@ -104,12 +126,18 @@ public class AllMyData
     public int currentDay = DataRetriever.Day;//game.day
     public int team1Resources = DataRetriever.teamARes;//game.teams[0].resources
     public int team2Resources = DataRetriever.teamBRes;//game.teams[1].resources
-    public List<float> uPX1 = DataRetriever.unitPosX1;//position x team 1
+    public List<float> uPX1 = DataRetriever.unitPosX1;//unit position x team 1
     public List<float> uPY1 = DataRetriever.unitPosY1;//y team 1
     public List<float> uPZ1 = DataRetriever.unitPosZ1;//z team 1
     public List<float> uPX2 = DataRetriever.unitPosX2;//x team 2
     public List<float> uPY2 = DataRetriever.unitPosY2;//y team 2
     public List<float> uPZ2 = DataRetriever.unitPosZ2;//z team 2
+    public List<float> bPX1 = DataRetriever.buildPosX1;//building position x team 1
+    public List<float> bPY1 = DataRetriever.buildPosY1;//building position y team 1
+    public List<float> bPZ1 = DataRetriever.buildPosZ1;//building position z team 1
+    public List<float> bPX2 = DataRetriever.buildPosX2;//building position x team 2
+    public List<float> bPY2 = DataRetriever.buildPosY2;//building position y team 2
+    public List<float> bPZ2 = DataRetriever.buildPosZ2;//building position z team 2
     public List<int> unitTypesTeam1 = DataRetriever.unitTypesTeam1;
     public List<int> unitTypesTeam2 = DataRetriever.unitTypesTeam2;
     public List<int> unitColorsTeam1 = DataRetriever.unitColorsTeam1;
@@ -148,6 +176,8 @@ public class saver : MonoBehaviour
 
     public static void loadGame()
     {
+        Transform t;
+        Transform t2;
         if (File.Exists(Application.persistentDataPath+"/strategygame.save"))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -159,7 +189,14 @@ public class saver : MonoBehaviour
             game.CurrentTeam = amd.currentTeam;
             game.Teams[0].Resources = amd.team1Resources;
             game.Teams[1].Resources = amd.team2Resources;
-
+            foreach(int i in amd.unitTypesTeam1)
+            {
+                switch(i)
+                {
+                    case 0:
+                        break;
+                }
+            }
         }
     }
 }
