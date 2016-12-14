@@ -100,7 +100,7 @@ public class DataRetriever : MonoBehaviour {
 public class AllMyData
 {
     public int currentLevel = DataRetriever.currentLevel;//loadscene
-    public int currentTeam = DataRetriever.currentTeam;//game.currentteam?
+    public int currentTeam = DataRetriever.currentTeam;//game.currentteam
     public int currentDay = DataRetriever.Day;//game.day
     public int team1Resources = DataRetriever.teamARes;//game.teams[0].resources
     public int team2Resources = DataRetriever.teamBRes;//game.teams[1].resources
@@ -153,7 +153,12 @@ public class saver : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = File.Open(Application.persistentDataPath + "/strategygame.save", FileMode.Open);
             AllMyData amd = (AllMyData)bf.Deserialize(fs);
+            Game game = GameObject.Find("Game").GetComponent<Game>();
             SceneManager.LoadScene(amd.currentLevel);
+            game.Day = amd.currentDay;
+            game.CurrentTeam = amd.currentTeam;
+            game.Teams[0].Resources = amd.team1Resources;
+            game.Teams[1].Resources = amd.team2Resources;
 
         }
     }
