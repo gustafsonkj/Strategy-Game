@@ -17,7 +17,7 @@ public class Unit : MonoBehaviour
 
     private float Range;
     private float AttackRange;
-    private float HitPoints = 10;
+    public float HitPoints = 10;
 	public GameObject ranged;
 
     public int Team = 0;
