@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 69b26b27ecc77c44cbed323182188087
+timeCreated: 1479616316
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - MaterialNormal: {fileID: 2100000, guid: b4b6b74fe7454e64ea8f8de7ff4bd8ab, type: 2}
+  - MaterialRed: {fileID: 2100000, guid: a737ef885506c574aab16388b0a5250e, type: 2}
+  - MaterialBlue: {fileID: 2100000, guid: 3df10b63d99120a44a37c2584c268a23, type: 2}
+  - ShaderNormal: {instanceID: 0}
+  - ShaderAlpha: {fileID: 4800000, guid: a59f5a84c99f16b48a33e5bb3208675e, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
