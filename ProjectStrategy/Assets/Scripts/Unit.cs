@@ -56,6 +56,10 @@ public class Unit : MonoBehaviour
     public AudioClip Sound_Wave;
 
     // Use this for initialization
+    public void ForceStart()
+    {
+        Start();
+    }
 	void Start()
     {
         Init();
@@ -100,7 +104,10 @@ public class Unit : MonoBehaviour
     }
     public void Remove()
     {
-        Game.Level.GetTile(TilePosition()).OnUnitLeave();
+        Debug.Log(TilePosition());
+        Debug.Log(Game);
+        Debug.Log(Game.Level);
+            Game.Level.GetTile(TilePosition()).OnUnitLeave();
 
         Game.Teams[Team - 1].Units.Remove(this);
         GameObject.Destroy(this.gameObject);

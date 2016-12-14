@@ -10,6 +10,10 @@ public class Level : MonoBehaviour
 
     public Rect Bounds = new Rect();
 
+    public void ForceStart()
+    {
+        Start();
+    }
     // Use this for initialization
     void Start()
     {
@@ -67,7 +71,6 @@ public class Level : MonoBehaviour
         for (int i = 0; i < TileObjects.childCount; i++)
         {
             Vector3 pos = TileObjects.GetChild(i).gameObject.transform.position;
-
             if (Tiles[Mathf.RoundToInt(pos.z)+offset][Mathf.RoundToInt(pos.x)+offset] != null)
                 continue;
             Tiles[Mathf.RoundToInt(pos.z)+offset][Mathf.RoundToInt(pos.x)+offset] = TileObjects.GetChild(i).gameObject.GetComponent<Tile>();

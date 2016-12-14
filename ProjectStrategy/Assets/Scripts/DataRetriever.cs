@@ -162,6 +162,8 @@ public class AllMyData
 
 public class saver : MonoBehaviour
 {
+    protected static Game game;
+    public static bool wasCalled = false;
     public static void saveGame()
     {
         Debug.Log(Application.persistentDataPath);
@@ -184,156 +186,166 @@ public class saver : MonoBehaviour
         }
     }
 
-
+    static AllMyData amd;
+    static Transform t;
+    static Unit u;
     public static void loadGame()
     {
         Debug.Log("You got to loadGame()!");
-        Transform t;
-        Unit u;
+        wasCalled = true;
+        Object o = new Object();
         if (File.Exists(Application.persistentDataPath + "/strategygame.save"))
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = File.Open(Application.persistentDataPath + "/strategygame.save", FileMode.Open);
-            AllMyData amd = (AllMyData)bf.Deserialize(fs);
-            Game game = GameObject.Find("Game").GetComponent<Game>();
-            SceneManager.LoadScene(amd.currentLevel);
-            game.Day = amd.currentDay;
-            game.CurrentTeam = amd.currentTeam;
-            game.Teams[0].Resources = amd.team1Resources;
-            game.Teams[1].Resources = amd.team2Resources;
-            //destroy ALL existing units in scene
-            foreach (GameObject g in GameObject.FindGameObjectsWithTag("Unit"))
+            amd = (AllMyData)bf.Deserialize(fs);
+            SceneManager.LoadScene(amd.currentLevel, LoadSceneMode.Single);
+            //Application.LoadLevel("Main");
+            Debug.Log("The current build index is " + amd.currentLevel);
+        }
+    }
+    public static void loadGameValues()
+    {
+        Debug.Log("HERE");
+        game = GameObject.Find("Game").GetComponent<Game>();
+        game.Day = amd.currentDay;
+        game.CurrentTeam = amd.currentTeam;
+        game.Teams[0].Resources = amd.team1Resources;
+        game.Teams[1].Resources = amd.team2Resources;
+        //destroy ALL existing units in scene
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("Unit"))
+        {
+            g.GetComponent<Unit>().Remove();
+        }
+        //team 1 units instantiation
+        for (int i = 0; i < amd.unitTypesTeam1.Count; i++)
+        {
+            switch (amd.unitTypesTeam1[i])
             {
-                g.GetComponent<Unit>().Remove();
+                case 0:
+                    t = Instantiate(game.Unit_Basic, new Vector3(amd.uPX1[i], amd.uPY1[i], amd.uPZ1[i]), Quaternion.identity) as Transform;
+                    t.parent = GameObject.Find("Units").transform;
+                    u = t.GetComponent<Unit>();
+                    u.Init();
+                    u.SetTeam(1);
+                    u.AcceptMove();
+                    u.UnitColor = amd.unitColorsTeam1[i];
+                    u.Type = amd.unitTypesTeam1[i];
+                    u.HitPoints = amd.unitStrengthsTeam1[i];
+                    break;
+                case 1:
+                    t = Instantiate(game.Unit_Ranged, new Vector3(amd.uPX1[i], amd.uPY1[i], amd.uPZ1[i]), Quaternion.identity) as Transform;
+                    t.parent = GameObject.Find("Units").transform;
+                    u = t.GetComponent<Unit>();
+                    u.Init();
+                    u.SetTeam(1);
+                    u.AcceptMove();
+                    u.UnitColor = amd.unitColorsTeam1[i];
+                    u.Type = amd.unitTypesTeam1[i];
+                    u.HitPoints = amd.unitStrengthsTeam1[i];
+                    break;
+                case 2:
+                    t = Instantiate(game.Unit_HarvesterA, new Vector3(amd.uPX1[i], amd.uPY1[i], amd.uPZ1[i]), Quaternion.identity) as Transform;
+                    t.parent = GameObject.Find("Units").transform;
+                    u = t.GetComponent<Unit>();
+                    u.Init();
+                    u.SetTeam(1);
+                    u.AcceptMove();
+                    u.UnitColor = amd.unitColorsTeam1[i];
+                    u.Type = amd.unitTypesTeam1[i];
+                    u.HitPoints = amd.unitStrengthsTeam1[i];
+                    break;
+                case 3:
+                    t = Instantiate(game.Unit_TheQuacker, new Vector3(amd.uPX1[i], amd.uPY1[i], amd.uPZ1[i]), Quaternion.identity) as Transform;
+                    t.parent = GameObject.Find("Units").transform;
+                    u = t.GetComponent<Unit>();
+                    u.Init();
+                    u.SetTeam(1);
+                    u.AcceptMove();
+                    u.UnitColor = amd.unitColorsTeam1[i];
+                    u.Type = amd.unitTypesTeam1[i];
+                    u.HitPoints = amd.unitStrengthsTeam1[i];
+                    break;
+                default: break;
             }
-            //team 1 units instantiation
-            for (int i = 0; i < amd.unitTypesTeam1.Count; i++)
+        }
+        //team 2 unit instantiation
+        for (int i = 0; i < amd.unitTypesTeam2.Count; i++)
+        {
+            switch (amd.unitTypesTeam2[i])
             {
-                switch (amd.unitTypesTeam1[i])
-                {
-                    case 0:
-                        t = Instantiate(game.Unit_Basic, new Vector3(amd.uPX1[i], amd.uPY1[i], amd.uPZ1[i]), Quaternion.identity) as Transform;
-                        t.parent = GameObject.Find("Units").transform;
-                        u = t.GetComponent<Unit>();
-                        u.Init();
-                        u.SetTeam(1);
-                        u.AcceptMove();
-                        u.UnitColor = amd.unitColorsTeam1[i];
-                        u.Type = amd.unitTypesTeam1[i];
-                        u.HitPoints = amd.unitStrengthsTeam1[i];
-                        break;
-                    case 1:
-                        t = Instantiate(game.Unit_Ranged, new Vector3(amd.uPX1[i], amd.uPY1[i], amd.uPZ1[i]), Quaternion.identity) as Transform;
-                        t.parent = GameObject.Find("Units").transform;
-                        u = t.GetComponent<Unit>();
-                        u.Init();
-                        u.SetTeam(1);
-                        u.AcceptMove();
-                        u.UnitColor = amd.unitColorsTeam1[i];
-                        u.Type = amd.unitTypesTeam1[i];
-                        u.HitPoints = amd.unitStrengthsTeam1[i];
-                        break;
-                    case 2:
-                        t = Instantiate(game.Unit_HarvesterA, new Vector3(amd.uPX1[i], amd.uPY1[i], amd.uPZ1[i]), Quaternion.identity) as Transform;
-                        t.parent = GameObject.Find("Units").transform;
-                        u = t.GetComponent<Unit>();
-                        u.Init();
-                        u.SetTeam(1);
-                        u.AcceptMove();
-                        u.UnitColor = amd.unitColorsTeam1[i];
-                        u.Type = amd.unitTypesTeam1[i];
-                        u.HitPoints = amd.unitStrengthsTeam1[i];
-                        break;
-                    case 3:
-                        t = Instantiate(game.Unit_TheQuacker, new Vector3(amd.uPX1[i], amd.uPY1[i], amd.uPZ1[i]), Quaternion.identity) as Transform;
-                        t.parent = GameObject.Find("Units").transform;
-                        u = t.GetComponent<Unit>();
-                        u.Init();
-                        u.SetTeam(1);
-                        u.AcceptMove();
-                        u.UnitColor = amd.unitColorsTeam1[i];
-                        u.Type = amd.unitTypesTeam1[i];
-                        u.HitPoints = amd.unitStrengthsTeam1[i];
-                        break;
-                    default: break;
-                }
+                case 0:
+                    t = Instantiate(game.Unit_Basic, new Vector3(amd.uPX2[i], amd.uPY2[i], amd.uPZ2[i]), Quaternion.identity) as Transform;
+                    t.parent = GameObject.Find("Units").transform;
+                    u = t.GetComponent<Unit>();
+                    u.Init();
+                    u.SetTeam(2);
+                    u.AcceptMove();
+                    u.UnitColor = amd.unitColorsTeam1[i];
+                    u.Type = amd.unitTypesTeam1[i];
+                    u.HitPoints = amd.unitStrengthsTeam1[i];
+                    break;
+                case 1:
+                    t = Instantiate(game.Unit_Ranged, new Vector3(amd.uPX2[i], amd.uPY2[i], amd.uPZ2[i]), Quaternion.identity) as Transform;
+                    t.parent = GameObject.Find("Units").transform;
+                    u = t.GetComponent<Unit>();
+                    u.Init();
+                    u.SetTeam(2);
+                    u.AcceptMove();
+                    u.UnitColor = amd.unitColorsTeam1[i];
+                    u.Type = amd.unitTypesTeam1[i];
+                    u.HitPoints = amd.unitStrengthsTeam1[i];
+                    break;
+                case 2:
+                    t = Instantiate(game.Unit_HarvesterA, new Vector3(amd.uPX2[i], amd.uPY2[i], amd.uPZ2[i]), Quaternion.identity) as Transform;
+                    t.parent = GameObject.Find("Units").transform;
+                    u = t.GetComponent<Unit>();
+                    u.Init();
+                    u.SetTeam(2);
+                    u.AcceptMove();
+                    u.UnitColor = amd.unitColorsTeam1[i];
+                    u.Type = amd.unitTypesTeam1[i];
+                    u.HitPoints = amd.unitStrengthsTeam1[i];
+                    break;
+                case 3:
+                    t = Instantiate(game.Unit_TheQuacker, new Vector3(amd.uPX2[i], amd.uPY2[i], amd.uPZ2[i]), Quaternion.identity) as Transform;
+                    t.parent = GameObject.Find("Units").transform;
+                    u = t.GetComponent<Unit>();
+                    u.Init();
+                    u.SetTeam(2);
+                    u.AcceptMove();
+                    u.UnitColor = amd.unitColorsTeam1[i];
+                    u.Type = amd.unitTypesTeam1[i];
+                    u.HitPoints = amd.unitStrengthsTeam1[i];
+                    break;
+                default: break;
             }
-            //team 2 unit instantiation
-            for (int i = 0; i < amd.unitTypesTeam2.Count; i++)
+        }
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("Building"))
+        {
+            for (int i = 0; i < GameObject.FindGameObjectsWithTag("Building").Length; i++)
             {
-                switch (amd.unitTypesTeam2[i])
+                for (int n = 0; n < amd.buildTypesTeam1.Count; n++)
                 {
-                    case 0:
-                        t = Instantiate(game.Unit_Basic, new Vector3(amd.uPX2[i], amd.uPY2[i], amd.uPZ2[i]), Quaternion.identity) as Transform;
-                        t.parent = GameObject.Find("Units").transform;
-                        u = t.GetComponent<Unit>();
-                        u.Init();
-                        u.SetTeam(2);
-                        u.AcceptMove();
-                        u.UnitColor = amd.unitColorsTeam1[i];
-                        u.Type = amd.unitTypesTeam1[i];
-                        u.HitPoints = amd.unitStrengthsTeam1[i];
-                        break;
-                    case 1:
-                        t = Instantiate(game.Unit_Ranged, new Vector3(amd.uPX2[i], amd.uPY2[i], amd.uPZ2[i]), Quaternion.identity) as Transform;
-                        t.parent = GameObject.Find("Units").transform;
-                        u = t.GetComponent<Unit>();
-                        u.Init();
-                        u.SetTeam(2);
-                        u.AcceptMove();
-                        u.UnitColor = amd.unitColorsTeam1[i];
-                        u.Type = amd.unitTypesTeam1[i];
-                        u.HitPoints = amd.unitStrengthsTeam1[i];
-                        break;
-                    case 2:
-                        t = Instantiate(game.Unit_HarvesterA, new Vector3(amd.uPX2[i], amd.uPY2[i], amd.uPZ2[i]), Quaternion.identity) as Transform;
-                        t.parent = GameObject.Find("Units").transform;
-                        u = t.GetComponent<Unit>();
-                        u.Init();
-                        u.SetTeam(2);
-                        u.AcceptMove();
-                        u.UnitColor = amd.unitColorsTeam1[i];
-                        u.Type = amd.unitTypesTeam1[i];
-                        u.HitPoints = amd.unitStrengthsTeam1[i];
-                        break;
-                    case 3:
-                        t = Instantiate(game.Unit_TheQuacker, new Vector3(amd.uPX2[i], amd.uPY2[i], amd.uPZ2[i]), Quaternion.identity) as Transform;
-                        t.parent = GameObject.Find("Units").transform;
-                        u = t.GetComponent<Unit>();
-                        u.Init();
-                        u.SetTeam(2);
-                        u.AcceptMove();
-                        u.UnitColor = amd.unitColorsTeam1[i];
-                        u.Type = amd.unitTypesTeam1[i];
-                        u.HitPoints = amd.unitStrengthsTeam1[i];
-                        break;
-                    default: break;
-                }
-            }
-            foreach (GameObject g in GameObject.FindGameObjectsWithTag("Building"))
-            {
-                for (int i = 0; i < GameObject.FindGameObjectsWithTag("Building").Length; i++)
-                {
-                    for (int n = 0; n < amd.buildTypesTeam1.Count; n++)
+                    if (GameObject.FindGameObjectsWithTag("Building")[i].transform.position == new Vector3(amd.bPX1[n], amd.bPY1[n], amd.bPZ1[n]))
                     {
-                        if (GameObject.FindGameObjectsWithTag("Building")[i].transform.position == new Vector3(amd.bPX1[n], amd.bPY1[n], amd.bPZ1[n]))
-                        {
-                            GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().Team = 1;
-                            GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().Type = amd.buildTypesTeam1[n];
-                            GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().HitPoints = amd.buildHPTeam1[n];
-                        }
+                        GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().Team = 1;
+                        GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().GetComponentInChildren<TeamColour>().SetTeam(1);
+                        GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().Type = amd.buildTypesTeam1[n];
+                        GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().HitPoints = amd.buildHPTeam1[n];
                     }
                 }
-                for (int i = 0; i < GameObject.FindGameObjectsWithTag("Building").Length; i++)
+            }
+            for (int i = 0; i < GameObject.FindGameObjectsWithTag("Building").Length; i++)
+            {
+                for (int n = 0; n < amd.buildTypesTeam2.Count; n++)
                 {
-                    for (int n = 0; n < amd.buildTypesTeam2.Count; n++)
+                    if (GameObject.FindGameObjectsWithTag("Building")[i].transform.position == new Vector3(amd.bPX2[n], amd.bPY2[n], amd.bPZ2[n]))
                     {
-                        if (GameObject.FindGameObjectsWithTag("Building")[i].transform.position == new Vector3(amd.bPX2[n], amd.bPY2[n], amd.bPZ2[n]))
-                        {
-                            GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().Team = 2;
-                            GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().Type = amd.buildTypesTeam2[n];
-                            GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().HitPoints = amd.buildHPTeam2[n];
-                        }
+                        GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().Team = 2;
+                        GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().GetComponentInChildren<TeamColour>().SetTeam(2);
+                        GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().Type = amd.buildTypesTeam2[n];
+                        GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().HitPoints = amd.buildHPTeam2[n];
                     }
                 }
             }

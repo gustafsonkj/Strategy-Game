@@ -35,6 +35,7 @@ public class Game : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         Selector = GameObject.Find("Selector").GetComponent<UnitSelector>();
         Level = GameObject.Find("Level").GetComponent<Level>();
         HUD = GameObject.Find("GUI").GetComponent<HeadsUpDisplay>();
@@ -45,6 +46,17 @@ public class Game : MonoBehaviour
 
         Teams[0].TeamNo = 1;
         Teams[1].TeamNo = 2;
+
+        if (saver.wasCalled)
+        {
+            Level.ForceStart(); // I hate this line. - ZL
+            foreach (Unit u in Units.GetComponentsInChildren<Unit>())
+                u.ForceStart();
+            saver.loadGameValues();
+        }
+
+        Teams[0].ResetUnits();
+        Teams[1].ResetUnits();
     }
 
     // Update is called once per frame
