@@ -315,11 +315,15 @@ public class saver : MonoBehaviour
                 for (int i = 0; i < GameObject.FindGameObjectsWithTag("Building").Length; i++)
                 {
 
-
+                    if (GameObject.FindGameObjectsWithTag("Building")[i].transform.position == new Vector3(amd.bPX1[n], amd.bPY1[n], amd.bPZ1[n]))
+                    {
+                        GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().Team = 1;
+                        GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().Type = amd.buildTypesTeam1[n];
+                        GameObject.FindGameObjectsWithTag("Building")[i].GetComponent<Building>().HitPoints = amd.buildHPTeam1[n];
+                    }
                 }
                 for (int i = 0; i < GameObject.FindGameObjectsWithTag("Building").Length; i++)
                 {
-
 
                 }
             }

@@ -10,7 +10,7 @@ public class Building : MonoBehaviour
     public AudioClip Sound_Building;
 
     private const int HitPointsDefault = 20;
-    private int HitPoints = HitPointsDefault;
+    public int HitPoints = HitPointsDefault;
 
     private Color AlphaOffset = new Color(0, 0, 0, 0);
 
