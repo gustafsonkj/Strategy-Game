@@ -343,9 +343,9 @@ public class HeadsUpDisplay : MonoBehaviour
 	public void ShowDayNo(int no)
 	{
 		Day_No = no;
-		if (Team == 1)
+		if (Game.CurrentTeam == 1)
 			Day_Color = Color.yellow;
-		else if (Team == 2)
+		else if (Game.CurrentTeam == 2)
 			Day_Color = Color.magenta;
 		Day_Style.normal.textColor = Day_Color;
 		Day_AlphaOffset = 0;
