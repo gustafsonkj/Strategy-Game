@@ -204,6 +204,12 @@ public class saver : MonoBehaviour
             Debug.Log("The current build index is " + amd.currentLevel);
         }
     }
+
+    public static int getDay()
+    {
+        return amd.currentDay;
+    }
+
     public static void loadGameValues()
     {
         Debug.Log("HERE");

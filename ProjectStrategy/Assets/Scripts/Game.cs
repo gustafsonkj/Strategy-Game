@@ -53,6 +53,7 @@ public class Game : MonoBehaviour
             foreach (Unit u in Units.GetComponentsInChildren<Unit>())
                 u.ForceStart();
             saver.loadGameValues();
+            Day = saver.getDay();
         }
 
         Teams[0].ResetUnits();
