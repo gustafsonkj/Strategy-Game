@@ -47,6 +47,34 @@ public class DataRetriever : MonoBehaviour
 
     public static void saveAllData()
     {
+        unitPositionsTeam1.Clear();
+        unitPositionsTeam2.Clear();
+        buildPosT1.Clear();
+        buildPosT2.Clear();
+        unitPosX1.Clear();
+        unitPosX2.Clear();
+        unitPosY1.Clear();
+        unitPosY2.Clear();
+        unitPosZ1.Clear();
+        unitPosZ2.Clear();
+        buildPosX1.Clear();
+        buildPosX2.Clear();
+        buildPosY1.Clear();
+        buildPosY2.Clear();
+        buildPosZ1.Clear();
+        buildPosZ2.Clear();
+        unitTypesTeam1.Clear();
+        unitTypesTeam2.Clear();
+        unitColorsTeam1.Clear();
+        unitColorsTeam2.Clear();
+        unitStrengthsTeam1.Clear();
+        unitStrengthsTeam2.Clear();
+        buildHPTeam1.Clear();
+        buildHPTeam2.Clear();
+        buildTypesTeam1.Clear();
+        buildTypesTeam2.Clear();
+
+
         Game = GameObject.Find("Game").GetComponent<Game>();
         Day = Game.Day;
 
@@ -61,6 +89,7 @@ public class DataRetriever : MonoBehaviour
             tempUnit = go.GetComponent<Unit>();
             if (tempUnit.Team == 1)
             {
+                //Debug.Log("saving a unit for team 1");
                 unitPositionsTeam1.Add(new Vector3(go.transform.position.x,
                                                     go.transform.position.y,
                                                     go.transform.position.z
@@ -71,6 +100,7 @@ public class DataRetriever : MonoBehaviour
             }
             else if (tempUnit.Team == 2)
             {
+                //Debug.Log("saving a unit for team 2");
                 unitPositionsTeam2.Add(new Vector3(go.transform.position.x,
                                                     go.transform.position.y,
                                                     go.transform.position.z
@@ -191,7 +221,7 @@ public class saver : MonoBehaviour
     static Unit u;
     public static void loadGame()
     {
-        Debug.Log("You got to loadGame()!");
+        //Debug.Log("You got to loadGame()!");
         wasCalled = true;
         Object o = new Object();
         if (File.Exists(Application.persistentDataPath + "/strategygame.save"))
@@ -201,12 +231,33 @@ public class saver : MonoBehaviour
             amd = (AllMyData)bf.Deserialize(fs);
             SceneManager.LoadScene(amd.currentLevel, LoadSceneMode.Single);
             //Application.LoadLevel("Main");
-            Debug.Log("The current build index is " + amd.currentLevel);
+            //Debug.Log("The current build index is " + amd.currentLevel);
         }
     }
+
+    public static int getDay()
+    {
+        return amd.currentDay;
+    }
+
+    public static int getTeam1Res()
+    {
+        return amd.team1Resources;
+    }
+
+    public static int getTeam2Res()
+    {
+        return amd.team2Resources;
+    }
+
+    public static int getCurrentTeam()
+    {
+        return amd.currentTeam;
+    }
+
     public static void loadGameValues()
     {
-        Debug.Log("HERE");
+        //Debug.Log("HERE");
         game = GameObject.Find("Game").GetComponent<Game>();
         game.Day = amd.currentDay;
         game.CurrentTeam = amd.currentTeam;
@@ -215,14 +266,17 @@ public class saver : MonoBehaviour
         //destroy ALL existing units in scene
         foreach (GameObject g in GameObject.FindGameObjectsWithTag("Unit"))
         {
+            //Debug.Log("removing " + g);
             g.GetComponent<Unit>().Remove();
         }
         //team 1 units instantiation
+        Debug.Log(amd.unitTypesTeam1.Count);
         for (int i = 0; i < amd.unitTypesTeam1.Count; i++)
         {
             switch (amd.unitTypesTeam1[i])
             {
                 case 0:
+                    Debug.Log("creating basic unit for team 1");
                     t = Instantiate(game.Unit_Basic, new Vector3(amd.uPX1[i], amd.uPY1[i], amd.uPZ1[i]), Quaternion.identity) as Transform;
                     t.parent = GameObject.Find("Units").transform;
                     u = t.GetComponent<Unit>();
@@ -234,6 +288,7 @@ public class saver : MonoBehaviour
                     u.HitPoints = amd.unitStrengthsTeam1[i];
                     break;
                 case 1:
+                    Debug.Log("creating ranged unit for team 1");
                     t = Instantiate(game.Unit_Ranged, new Vector3(amd.uPX1[i], amd.uPY1[i], amd.uPZ1[i]), Quaternion.identity) as Transform;
                     t.parent = GameObject.Find("Units").transform;
                     u = t.GetComponent<Unit>();
@@ -245,6 +300,7 @@ public class saver : MonoBehaviour
                     u.HitPoints = amd.unitStrengthsTeam1[i];
                     break;
                 case 2:
+                    Debug.Log("creating harvester unit for team 1");
                     t = Instantiate(game.Unit_HarvesterA, new Vector3(amd.uPX1[i], amd.uPY1[i], amd.uPZ1[i]), Quaternion.identity) as Transform;
                     t.parent = GameObject.Find("Units").transform;
                     u = t.GetComponent<Unit>();
@@ -256,6 +312,7 @@ public class saver : MonoBehaviour
                     u.HitPoints = amd.unitStrengthsTeam1[i];
                     break;
                 case 3:
+                    Debug.Log("creating quacker unit for team 1");
                     t = Instantiate(game.Unit_TheQuacker, new Vector3(amd.uPX1[i], amd.uPY1[i], amd.uPZ1[i]), Quaternion.identity) as Transform;
                     t.parent = GameObject.Find("Units").transform;
                     u = t.GetComponent<Unit>();
@@ -275,6 +332,7 @@ public class saver : MonoBehaviour
             switch (amd.unitTypesTeam2[i])
             {
                 case 0:
+                    Debug.Log("creating basic unit for team 2");
                     t = Instantiate(game.Unit_Basic, new Vector3(amd.uPX2[i], amd.uPY2[i], amd.uPZ2[i]), Quaternion.identity) as Transform;
                     t.parent = GameObject.Find("Units").transform;
                     u = t.GetComponent<Unit>();
@@ -286,6 +344,7 @@ public class saver : MonoBehaviour
                     u.HitPoints = amd.unitStrengthsTeam1[i];
                     break;
                 case 1:
+                    Debug.Log("creating ranged unit for team 2");
                     t = Instantiate(game.Unit_Ranged, new Vector3(amd.uPX2[i], amd.uPY2[i], amd.uPZ2[i]), Quaternion.identity) as Transform;
                     t.parent = GameObject.Find("Units").transform;
                     u = t.GetComponent<Unit>();
@@ -297,7 +356,8 @@ public class saver : MonoBehaviour
                     u.HitPoints = amd.unitStrengthsTeam1[i];
                     break;
                 case 2:
-                    t = Instantiate(game.Unit_HarvesterA, new Vector3(amd.uPX2[i], amd.uPY2[i], amd.uPZ2[i]), Quaternion.identity) as Transform;
+                    Debug.Log("creating harvester unit for team 2");
+                    t = Instantiate(game.Unit_HarvesterB, new Vector3(amd.uPX2[i], amd.uPY2[i], amd.uPZ2[i]), Quaternion.identity) as Transform;
                     t.parent = GameObject.Find("Units").transform;
                     u = t.GetComponent<Unit>();
                     u.Init();
@@ -308,6 +368,7 @@ public class saver : MonoBehaviour
                     u.HitPoints = amd.unitStrengthsTeam1[i];
                     break;
                 case 3:
+                    Debug.Log("creating quacker unit for team 2");
                     t = Instantiate(game.Unit_TheQuacker, new Vector3(amd.uPX2[i], amd.uPY2[i], amd.uPZ2[i]), Quaternion.identity) as Transform;
                     t.parent = GameObject.Find("Units").transform;
                     u = t.GetComponent<Unit>();
