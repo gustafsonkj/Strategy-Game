@@ -6,6 +6,7 @@ public class LevelMaker : MonoBehaviour {
 
     public Transform Tiles;
     public Transform Buildings;
+	public GameObject Tile_Empty;
     public GameObject Tile_RGB;
     public GameObject Tile_R;
     public GameObject Tile_G;
@@ -42,7 +43,7 @@ public class LevelMaker : MonoBehaviour {
             {
                 switch (map[i][j])
                 {
-                    case 19: break;
+				case 19: Instantiate(Tile_Empty, new Vector3((float)i, 0, (float)j), new Quaternion(), Tiles); break;
                     case 0: Instantiate(Tile_RGB, new Vector3((float)i, 0, (float)j), new Quaternion(), Tiles); break;
                     case 1: Instantiate(Tile_RG, new Vector3((float)i, 0, (float)j), new Quaternion(), Tiles); break;
                     case 2: Instantiate(Tile_RB, new Vector3((float)i, 0, (float)j), new Quaternion(), Tiles); break;
