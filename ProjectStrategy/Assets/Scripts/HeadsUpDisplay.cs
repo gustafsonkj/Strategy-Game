@@ -280,7 +280,7 @@ public class HeadsUpDisplay : MonoBehaviour
 			if (GUI.Button(new Rect(0, 0, Screen.width, Screen.height), GUIContent.none, GUIStyle.none))
 			{
 				HideTutorial();
-				ShowDayNo(1);
+				ShowDayNo(Game.Day);
 			}
 		}
 	}
