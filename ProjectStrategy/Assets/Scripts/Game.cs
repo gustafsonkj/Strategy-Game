@@ -54,6 +54,9 @@ public class Game : MonoBehaviour
                 u.ForceStart();
             saver.loadGameValues();
             Day = saver.getDay();
+            CurrentTeam = saver.getCurrentTeam();
+            Teams[0].Resources = saver.getTeam1Res();
+            Teams[1].Resources = saver.getTeam2Res();
         }
 
         Teams[0].ResetUnits();
